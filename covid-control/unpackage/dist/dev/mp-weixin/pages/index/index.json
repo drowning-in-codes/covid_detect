@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "新冠症状监测",
+  "usingComponents": {
+    "tab-bar": "/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain"
+  }
+}
