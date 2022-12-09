@@ -24,12 +24,52 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.sex-label.data-v-45e3c05f {
+  margin-top: 8rpx;
+  display: flex;
+  gap: 60rpx;
+}
+.uni-column + .uni-column.data-v-45e3c05f {
+  margin-top: 20rpx;
+}
+.detect-title.data-v-45e3c05f {
+  font-size: 36rpx;
+  color: #8f8f94;
+  border-bottom: black solid;
+}
+.uni-list.data-v-45e3c05f {
+  margin: 0 auto;
+  width: 90%;
+}
+.box-label.data-v-45e3c05f {
+  margin-left: 50rpx;
+}
+.uni-list-cell.data-v-45e3c05f {
+  display: flex;
+  justify-items: center;
+}
+.uni-list-cell.data-v-45e3c05f {
+  margin-top: 15rpx;
+}
+.basic-info.data-v-45e3c05f, .ext-info.data-v-45e3c05f {
+  padding: 30rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.ext-info.data-v-45e3c05f {
+  margin-top: 50rpx;
+  margin-bottom: 40rpx;
+}
+.uni-btn-v.data-v-45e3c05f {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
 .uni-input.data-v-45e3c05f {
-  margin-left: 30rpx;
   background-color: white;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
   min-height: 60rpx;
+  background-color: #ededed;
 }
 .age-choose.data-v-45e3c05f {
   display: flex;
@@ -37,8 +77,8 @@
 .detect-form.data-v-45e3c05f {
   width: 90%;
   margin: 10rpx auto;
-  padding: 40rpx;
-  min-height: 100vh;
+  padding: 10rpx;
+  min-height: 80vh;
 }
 .detect-container.data-v-45e3c05f {
   display: flex;

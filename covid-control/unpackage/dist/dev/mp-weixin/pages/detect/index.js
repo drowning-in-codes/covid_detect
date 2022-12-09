@@ -184,21 +184,89 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
+      symptoms: [{ value: "咳嗽", name: "咳嗽" }, { value: "呼吸困难", name: "呼吸困难" }, { value: "发烧", name: "发烧" }, { value: "喉咙疼痛", name: "喉咙疼痛" }, { value: "头痛", name: "头痛" }, { value: "与阳性患者接触过", name: "与阳性患者接触过" }],
       ismale: 1,
-      temperature: [{ val: '35.7' }, { val: '35.8' }, { val: '35.8' }, { val: '36.0' }],
-      index: 2 };
+      age: 20,
+      temperature: [{
+        val: '35.7以下' },
+      {
+        val: '35.7' },
+      {
+        val: '35.8' },
+      {
+        val: '35.9' },
+      {
+        val: '36.0' },
+      {
+        val: '36.1' },
+      {
+        val: '36.2' },
+      {
+        val: '36.3' },
+      {
+        val: '36.4' },
+      {
+        val: '36.5' },
+      {
+        val: '36.6' },
+      {
+        val: '36.7' },
+      {
+        val: '36.8' },
+      {
+        val: '36.9' },
+      {
+        val: '37.0' },
+      {
+        val: '37.1' },
+      {
+        val: '37.2' },
+      {
+        val: '37.3' },
+      {
+        val: '37.4' },
+      {
+        val: '37.5' },
+      {
+        val: '37.6' },
+      {
+        val: '37.7' },
+      {
+        val: '37.8' },
+      {
+        val: '37.9' },
+      {
+        val: '38.0' },
+      {
+        val: '38.0以上' }],
+
+      index: 16,
+      currTemp: '37.2' };
 
   },
   methods: {
-    bindPickerChange: function bindPickerChange() {
+    submit: function submit() {},
+    reset: function reset() {
+      this.index = 16;
+      this.currTemp = '37.2';
+    },
+    checkboxChange: function checkboxChange()
+    {
+
+    },
+    handleAgechange: function handleAgechange(e) {
+      this.age = e.detail.value;
+    },
+    bindPickerChange: function bindPickerChange(e) {
+      this.index = e.detail.value;
+      this.currTemp = this.temperature[this.index].val;
+    },
+    handleSexchange: function handleSexchange(e) {
+      this.ismale = e.detail.value;
     } } };exports.default = _default;
 
 /***/ }),

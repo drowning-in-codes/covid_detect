@@ -1,0 +1,1 @@
+<view class="info-container data-v-2e7e0500"><view class="covid-data data-v-2e7e0500"></view><block wx:for="{{info}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="info-view data-v-2e7e0500"><text class="data-v-2e7e0500">{{item}}</text></view></block></view>

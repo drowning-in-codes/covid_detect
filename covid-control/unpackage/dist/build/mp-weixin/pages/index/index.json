@@ -1,4 +1,8 @@
 {
-  "navigationBarTitleText": "uni-app",
-  "usingComponents": {}
+  "navigationBarTitleText": "新冠症状监测",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-notice-bar": "/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar",
+    "cov-info": "/components/covid-info"
+  }
 }
