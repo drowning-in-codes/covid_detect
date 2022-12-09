@@ -24,26 +24,50 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content {
+.confirm.data-v-57280228 {
+  color: #a31d13;
+  font-size: 24px;
+}
+.confirmadd.data-v-57280228 {
+  color: #a31d13;
+}
+.nosymadd.data-v-57280228 {
+  color: #791618;
+}
+.nosym.data-v-57280228 {
+  color: #791618;
+  font-size: 24px;
+}
+.covid-data.data-v-57280228 {
+  display: flex;
+  justify-content: space-between;
+  gap: 40rpx;
+}
+.title.data-v-57280228 {
+  font-size: 36rpx;
+  color: #8f8f94;
+  border-bottom: black solid;
+}
+.uni-margin-wrap.data-v-57280228 {
+  width: 690rpx;
+  width: 100%;
+}
+.swiper.data-v-57280228 {
+  height: 300rpx;
+  margin-top: 10rpx;
+}
+.swiper-item.data-v-57280228 {
+  display: block;
+  height: 300rpx;
+  line-height: 300rpx;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.top-container.data-v-57280228 {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
 }
 

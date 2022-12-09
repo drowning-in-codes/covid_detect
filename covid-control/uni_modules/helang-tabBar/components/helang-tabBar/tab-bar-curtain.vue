@@ -48,7 +48,7 @@
 		data() {
 			return {
 				prevIndex:-1,
-				current:4,
+				current:0,
 				tabList:[
 					{
 						"icon":"home",
@@ -82,13 +82,17 @@
 				if(this.tabList[index].bulge){
 					return;
 				}
-				//点击切换页面
+				
 				if(this.current == index){
 					return;
 				};
-				
 				this.prevIndex = this.current;
 				this.current = index;
+				//点击切换页面
+				if(this.current == 0 )
+				{
+					
+				}
 			}
 		}
 	}

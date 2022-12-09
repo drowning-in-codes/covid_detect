@@ -1,0 +1,15 @@
+{
+    "id": "kevy-swiper",
+    "displayName": "轮播图",
+    "version": "1.2.0",
+    "description": "轮播图插件，最多只显示3个，循环切换，具有3d样式效果，支持自动播放设置，click事件和change事件",
+    "keywords": [
+        "轮播"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
+}
