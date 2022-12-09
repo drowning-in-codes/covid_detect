@@ -11,6 +11,10 @@
 					</swiper-item>
 				</swiper>
 			</view>
+			<view class="tip-bar">
+				<uni-notice-bar text="数据来源:国家卫健委以及各省市卫健委.如有不符,请在官方网站查看最新数据."></uni-notice-bar>
+			</view>
+			<view class="data-title">数据截至{{upDatetime}}</view>
 			<view class="covid-data">
 				<view class="data-1">
 					<text>无症状感染者</text>
@@ -18,7 +22,7 @@
 						<text class="nosym">
 							{{noSymptom}}
 						</text>
-						<view>
+						<view class="add">
 								较昨日<text class="nosymadd">+{{incrNoSymptom}}</text>
 						</view>
 					</view>
@@ -29,7 +33,7 @@
 						<text class="confirm">
 							{{confirm}}
 						</text>
-						<view>
+						<view class="add">
 								较昨日<text class="confirmadd">+{{confirmAdd}}</text>
 						</view>
 					</view>
@@ -37,16 +41,15 @@
 			</view>
 		</view>
 		<covInfo />
-		<tabBar />
 	</view>
 </template>
 
 <script>
-	import tabBar from "@/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain.vue" //导入插件
 	import covInfo from "@/components/covid-info.vue"
 	export default {
 		data() {
 			return {
+				upDatetime:undefined,
 				confirmAdd: 1,
 				confirm: 1,
 				incrNoSymptom: 1,
@@ -56,8 +59,6 @@
 				interval: 2000,
 				duration: 500,
 				imgs: [
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-					'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg',
@@ -65,11 +66,9 @@
 			}
 		},
 		components: {
-			tabBar,
 			covInfo
 		},
 		onLoad() {
-			console.log('你好')
 			this.fetchCovData();
 		},
 		methods: {
@@ -84,8 +83,8 @@
 						// 无症状感染者
 						this.incrNoSymptom = result.chinaTotal.extData.incrNoSymptom;
 						this.noSymptom = result.chinaTotal.extData.noSymptom;
-
-
+						this.upDatetime = result.lastUpdateTime;
+	
 					}
 				});
 			}
@@ -94,6 +93,22 @@
 </script>
 
 <style lang="scss" scoped>
+	.tip-bar {
+		margin-top: 5rpx;
+	}
+	.data-1,.data-2 {
+		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+		padding: 30rpx;
+		background-color: #ededed;
+	}
+	.add {
+		font-size: 14px;
+		color:#a9a9a9;
+	}
+	.data-title {
+		margin-top: 20rpx;
+		color:#a9a9a9;
+	} 
 	.confirm {
 		color:#a31d13;
 		font-size: 24px;

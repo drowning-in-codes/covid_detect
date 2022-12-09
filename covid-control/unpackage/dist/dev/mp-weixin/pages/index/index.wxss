@@ -24,6 +24,22 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.tip-bar.data-v-57280228 {
+  margin-top: 5rpx;
+}
+.data-1.data-v-57280228, .data-2.data-v-57280228 {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 30rpx;
+  background-color: #ededed;
+}
+.add.data-v-57280228 {
+  font-size: 14px;
+  color: #a9a9a9;
+}
+.data-title.data-v-57280228 {
+  margin-top: 20rpx;
+  color: #a9a9a9;
+}
 .confirm.data-v-57280228 {
   color: #a31d13;
   font-size: 24px;

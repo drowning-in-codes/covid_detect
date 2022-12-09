@@ -103,6 +103,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniNoticeBar: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar */ "uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue */ 40))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -138,7 +161,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var tabBar = function tabBar() {__webpack_require__.e(/*! require.ensure | uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain */ "uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain.vue */ 20));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var covInfo = function covInfo() {__webpack_require__.e(/*! require.ensure | components/covid-info */ "components/covid-info").then((function () {return resolve(__webpack_require__(/*! @/components/covid-info.vue */ 39));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var covInfo = function covInfo() {__webpack_require__.e(/*! require.ensure | components/covid-info */ "components/covid-info").then((function () {return resolve(__webpack_require__(/*! @/components/covid-info.vue */ 47));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
 
 
 
@@ -187,6 +212,7 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
+      upDatetime: undefined,
       confirmAdd: 1,
       confirm: 1,
       incrNoSymptom: 1,
@@ -196,8 +222,6 @@ __webpack_require__.r(__webpack_exports__);
       interval: 2000,
       duration: 500,
       imgs: [
-      'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe1.jpg',
-      'https://cdn.zebraui.com/zebra-ui/images/swipe-demo/swipe2.jpg',
       'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg',
       'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg',
       'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg'] };
@@ -205,11 +229,9 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   components: {
-    tabBar: tabBar,
     covInfo: covInfo },
 
   onLoad: function onLoad() {
-    console.log('你好');
     this.fetchCovData();
   },
   methods: {
@@ -224,7 +246,7 @@ __webpack_require__.r(__webpack_exports__);
           // 无症状感染者
           _this.incrNoSymptom = result.chinaTotal.extData.incrNoSymptom;
           _this.noSymptom = result.chinaTotal.extData.noSymptom;
-
+          _this.upDatetime = result.lastUpdateTime;
 
         } });
 

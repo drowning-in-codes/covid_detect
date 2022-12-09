@@ -3,13 +3,59 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "新冠症状监测"
+				"navigationBarTitleText": "新冠症状监测",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/detect/index",
+			"style": {
+				"navigationBarTitleText": "症状填写"
+			}
+		},
+		{
+			"path": "pages/prediction/index",
+			"style": {
+				"navigationBarTitleText": "后续预测"
+			}
+		},
+		{
+			"path": "pages/feedback/index",
+			"style": {
+				"navigationBarTitleText": "反馈情况"
 			}
 		}
 	],
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/tabBar/首页.png",
+			"selectedIconPath": "static/tabBar/首页选中.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/detect/index",
+			"iconPath": "static/tabBar/填写.png",
+			"selectedIconPath": "static/tabBar/填写报告.png",
+			"text": "症状填写"
+		}, {
+			"pagePath": "pages/prediction/index",
+			"iconPath": "static/tabBar/预测.png",
+			"selectedIconPath": "static/tabBar/报告管理.png",
+			"text": "情况预测"
+		}, {
+			"pagePath": "pages/feedback/index",
+			"iconPath": "static/tabBar/意见反馈.png",
+			"selectedIconPath": "static/tabBar/意见反馈filled.png",
+			"text": "反馈"
+		}]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "新冠症状监测",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

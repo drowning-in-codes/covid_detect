@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "新冠症状监测",
+  "enablePullDownRefresh": true,
   "usingComponents": {
-    "tab-bar": "/uni_modules/helang-tabBar/components/helang-tabBar/tab-bar-curtain",
+    "uni-notice-bar": "/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar",
     "cov-info": "/components/covid-info"
   }
 }
