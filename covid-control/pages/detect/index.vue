@@ -465,8 +465,8 @@
 	}
 
 	.tmpimg {
-		width: 350rpx;
-		height: 350rpx;
+		width: 300rpx;
+		height: 300rpx;
 	}
 
 	.geoimg {

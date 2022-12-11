@@ -114,8 +114,8 @@
   border-bottom: #F2F2F7 solid;
 }
 .tmpimg.data-v-45e3c05f {
-  width: 350rpx;
-  height: 350rpx;
+  width: 300rpx;
+  height: 300rpx;
 }
 .geoimg.data-v-45e3c05f {
   width: 120rpx;

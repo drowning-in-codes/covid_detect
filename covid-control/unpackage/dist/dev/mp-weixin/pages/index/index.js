@@ -158,12 +158,27 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -213,17 +228,37 @@ var _default = {
       interval: 2000,
       duration: 500,
       imgs: ['http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221211124823.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg']
-      // tmplIds: ['0_8dChLWolTY82j-r8oBRgbOlC-n6SgnuciKU37cBTA'],
-      // AppId: 'wxf2ff04695fb4db53',
-      // AppSecret: '3656299fd4ae977e0de01XXXXXXXXX',
     };
   },
-
   components: {},
   onLoad: function onLoad() {},
-  methods: {}
+  methods: {
+    showmsg1: function showmsg1() {
+      uni.showModal({
+        title: '提示',
+        content: '填写症状预测您是否阳性'
+      });
+    },
+    showmsg2: function showmsg2() {
+      uni.showModal({
+        title: '提示',
+        content: '填写情况预测您的病程'
+      });
+    },
+    topredict: function topredict() {
+      uni.navigateTo({
+        url: "/pages/detect/index"
+      });
+    },
+    torecovery: function torecovery() {
+      uni.navigateTo({
+        url: "/pages/prediction/index"
+      });
+    }
+  }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
