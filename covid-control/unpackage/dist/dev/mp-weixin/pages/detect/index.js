@@ -251,6 +251,8 @@ var _qqmapWxJssdkMin = _interopRequireDefault(__webpack_require__(/*! @/libs/qqm
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return (0, _defineProperty2.default)({
@@ -392,6 +394,12 @@ var _default = {
     this.getUserLocation();
   },
   methods: {
+    showmsg: function showmsg() {
+      uni.showModal({
+        title: '提示',
+        content: '填写情况填写您的症状.若无,则选择无以上症状'
+      });
+    },
     formReset: function formReset(e) {
       console.log('清空数据');
     },

@@ -53,7 +53,7 @@
 							range-key="val">
 							<view class="wrapper">
 								<view class="picker temp-show">{{ temperature[index].val}}</view>
-								<image style="width: 80rpx;height: 80rpx;"
+								<image style="width: 120rpx;height: 120rpx;"
 									src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik02IDEzLjMzM2E0LjY2NyA0LjY2NyAwIDAgMSAwLTkuMzM0IDQuNjY3IDQuNjY3IDAgMCAxIDAgOS4zMzR6bTAtMi42NjZhMiAyIDAgMSAwIDAtNCAyIDIgMCAxIDAgMCA0em0yMy4zMzMgMi42NjZoLTIuNjY3YTUuMzMzIDUuMzMzIDAgMSAwLTEwLjY2NiAwVjIwYTUuMzMzIDUuMzMzIDAgMSAwIDEwLjY2NiAwaDIuNjY3YTggOCAwIDAgMS0xNiAwdi02LjY2N2E4IDggMCAwIDEgMTYgMHoiIGZpbGw9InJnYmEoNTUuMDgsMTI2Ljk5LDEyNi45OSwxKSIvPjwvc3ZnPg==">
 								</image>
 							</view>
@@ -61,7 +61,9 @@
 					</view>
 				</view>
 			</view>
-			<text class="query">是否有如下情况<text class="red">*</text></text>
+			<view class="wrapper">
+				<text class="query">是否有如下情况</text><image @click="showmsg" class="resizeimg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+"></image>
+			</view>
 			<view class="ext-info">
 				<view class="uni-list">
 					<checkbox-group @change="checkboxChange" class="checkgroups">
@@ -246,6 +248,13 @@
 			this.getUserLocation();
 		},
 		methods: {
+			showmsg()
+			{
+				uni.showModal({
+					title: '提示',
+					content: '填写情况填写您的症状.若无,则选择无以上症状',
+				});
+			},
 			formReset: function(e) {
 				console.log('清空数据')
 			},
@@ -381,6 +390,11 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
+	.resizeimg {
+		width: 80rpx;
+		height: 80rpx;
+		margin-left: 10rpx;
+	}
 	.form-item-picker {
 		width: 60vw;
 	}

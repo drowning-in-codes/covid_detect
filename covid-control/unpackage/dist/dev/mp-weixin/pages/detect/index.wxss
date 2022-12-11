@@ -43,6 +43,11 @@
 .icon-diliweizhi1.data-v-45e3c05f:before {
   content: "\e607";
 }
+.resizeimg.data-v-45e3c05f {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 10rpx;
+}
 .form-item-picker.data-v-45e3c05f {
   width: 60vw;
 }

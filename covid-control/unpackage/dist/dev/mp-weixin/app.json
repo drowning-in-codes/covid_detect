@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/detect/index",
     "pages/prediction/index",
-    "pages/feedback/index"
+    "pages/feedback/index",
+    "pages/predictionresult/predictionresult",
+    "pages/recoveryresult/recoveryresult"
   ],
   "subPackages": [],
   "window": {
