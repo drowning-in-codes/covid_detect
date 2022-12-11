@@ -5,23 +5,25 @@
 		</view>
 		<form @submit="formSubmit" @reset="formReset" class="detect-form">
 			<view class="basic-info">
-				<view class="uni-column">
-					<view class="title">请选择您的性别</view>
-					<radio-group name="radio" @change="handleSexchange" class="sex-label">
-						<label>
-							<radio value="1" /><text>男</text>
-						</label>
-						<label>
-							<radio value="0" /><text>女</text>
-						</label>
-					</radio-group>
+				<view class="basic-info-top">
+					<view class="basic-info-left">
+						<view class="uni-column">
+							<view class="title">年龄</view>
+							<picker @change="bindageChange" :value="ageindex" :range="agerange" range-key="val">
+								<view style="padding: 20rpx;background-color: #ededed;">{{ agerange[index].val }}</view>
+							</picker>
+						</view>
+						<view class="uni-column">
+							<view class="title">性别</view>
+							
+						</view>
+					</view>
+					
+					<view class="basic-info-right">
+					</view>
 				</view>
-				<view class="uni-column">
-					<view class="title">请输入您的年龄</view>
-					<input class="uni-input" @confirm="handleAgechange" type="number" name="input"
-						placeholder="输入您的年龄" />
-				</view>
-				<view class="uni-column">
+			
+				<view class="basic-info-bottom">
 					<view class="title">请选择您的体温(℃)</view>
 					<picker @change="bindPickerChange" :value="index" :range="temperature" range-key="val">
 						<view style="padding: 20rpx;background-color: #ededed;">{{ temperature[index].val }}</view>
@@ -55,8 +57,11 @@
 		data() {
 			return {
 				symptoms:[{value:"咳嗽",name:"咳嗽"},{value:"呼吸困难",name:"呼吸困难"},{value:"发烧",name:"发烧"},{value:"喉咙疼痛",name:"喉咙疼痛"},{value:"头痛",name:"头痛"},{value:"与阳性患者接触过",name:"与阳性患者接触过"},],
+				currSymptoms:[],
 				ismale: 1,
-				age: 20,
+				age:1,
+				agerange: [],
+				ageindex:20,
 				temperature: [{
 					val: '35.7以下'
 				}, {
@@ -114,18 +119,33 @@
 				currTemp: '37.2'
 			};
 		},
+		onLoad()
+		{
+			this.agerange = new Array();
+			for(let i=1;i<100;i++)
+			{
+				let ageobj = {
+					val:i,
+				}
+				this.agerange.push(ageobj);
+			}
+			this.agerange.push({val:"100及以上"});
+			console.log('加载表格页面')
+		}
+		,
 		methods: {
 			submit() {},
 			reset() {
 				this.index = 16;
 				this.currTemp = '37.2';
+				this.currSymptoms = [];
 			},
-			checkboxChange()
+			checkboxChange(e)
 			{
-				
+				this.currSymptoms = e.detail.value;
 			},
-			handleAgechange(e) {
-				this.age = e.detail.value;
+			bindageChange(e) {
+				this.age = this.ageindex[e.detail.value].val;
 			},
 			bindPickerChange(e) {
 				this.index = e.detail.value;

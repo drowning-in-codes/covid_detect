@@ -184,13 +184,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
 var _default =
 {
   data: function data() {
     return {
       symptoms: [{ value: "咳嗽", name: "咳嗽" }, { value: "呼吸困难", name: "呼吸困难" }, { value: "发烧", name: "发烧" }, { value: "喉咙疼痛", name: "喉咙疼痛" }, { value: "头痛", name: "头痛" }, { value: "与阳性患者接触过", name: "与阳性患者接触过" }],
+      currSymptoms: [],
       ismale: 1,
-      age: 20,
+      age: 1,
+      agerange: [],
+      ageindex: 20,
       temperature: [{
         val: '35.7以下' },
       {
@@ -248,18 +253,33 @@ var _default =
       currTemp: '37.2' };
 
   },
+  onLoad: function onLoad()
+  {
+    this.agerange = new Array();
+    for (var i = 1; i < 100; i++)
+    {
+      var ageobj = {
+        val: i };
+
+      this.agerange.push(ageobj);
+    }
+    this.agerange.push({ val: "100及以上" });
+    console.log('加载表格页面');
+  },
+
   methods: {
     submit: function submit() {},
     reset: function reset() {
       this.index = 16;
       this.currTemp = '37.2';
+      this.currSymptoms = [];
     },
-    checkboxChange: function checkboxChange()
+    checkboxChange: function checkboxChange(e)
     {
-
+      this.currSymptoms = e.detail.value;
     },
-    handleAgechange: function handleAgechange(e) {
-      this.age = e.detail.value;
+    bindageChange: function bindageChange(e) {
+      this.age = this.ageindex[e.detail.value].val;
     },
     bindPickerChange: function bindPickerChange(e) {
       this.index = e.detail.value;

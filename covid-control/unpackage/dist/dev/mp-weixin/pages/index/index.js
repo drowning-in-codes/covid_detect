@@ -105,8 +105,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniNoticeBar: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar */ "uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue */ 40))
+    uniLink: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-link/components/uni-link/uni-link */ "uni_modules/uni-link/components/uni-link/uni-link").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-link/components/uni-link/uni-link.vue */ 40))
     }
   }
 } catch (e) {
@@ -161,97 +161,71 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var covInfo = function covInfo() {__webpack_require__.e(/*! require.ensure | components/covid-info */ "components/covid-info").then((function () {return resolve(__webpack_require__(/*! @/components/covid-info.vue */ 47));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default =
 {
   data: function data() {
     return {
-      upDatetime: undefined,
-      confirmAdd: 1,
-      confirm: 1,
-      incrNoSymptom: 1,
-      noSymptom: 1,
       indicatorDots: true,
       autoplay: true,
       interval: 2000,
       duration: 500,
       imgs: [
+      'http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221211124823.jpg',
       'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg',
       'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg',
-      'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg'] };
+      'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg']
 
-
+      // tmplIds: ['0_8dChLWolTY82j-r8oBRgbOlC-n6SgnuciKU37cBTA'],
+      // AppId: 'wxf2ff04695fb4db53',
+      // AppSecret: '3656299fd4ae977e0de01XXXXXXXXX',
+    };
   },
-  components: {
-    covInfo: covInfo },
+  components: {},
 
   onLoad: function onLoad() {
-    this.fetchCovData();
   },
-  methods: {
-    fetchCovData: function fetchCovData() {var _this = this;
-      uni.request({
-        url: 'https://c.m.163.com/ug/api/wuhan/app/data/list-total',
-        success: function success(res) {
-          var result = res.data.data;
-          // 累计确诊
-          _this.confirm = result.chinaTotal.total.confirm;
-          _this.confirmAdd = result.chinaTotal.today.confirm;
-          // 无症状感染者
-          _this.incrNoSymptom = result.chinaTotal.extData.incrNoSymptom;
-          _this.noSymptom = result.chinaTotal.extData.noSymptom;
-          _this.upDatetime = result.lastUpdateTime;
-
-        } });
-
-    } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+  methods: {} };exports.default = _default;
 
 /***/ }),
 /* 18 */
