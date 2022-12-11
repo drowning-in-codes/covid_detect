@@ -43,6 +43,35 @@
 .icon-diliweizhi1.data-v-45e3c05f:before {
   content: "\e607";
 }
+.form-item-picker.data-v-45e3c05f {
+  width: 60vw;
+}
+.form-item.data-v-45e3c05f {
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20rpx;
+}
+.block.data-v-45e3c05f {
+  display: block;
+}
+.wrapper.data-v-45e3c05f {
+  display: flex;
+  align-items: center;
+}
+.temp-show.data-v-45e3c05f {
+  min-height: 50rpx;
+  color: #1C1F23;
+  font-size: 60rpx;
+  font-weight: 700;
+  font-family: SourceHanSansSC-regular;
+}
+.checkgroups.data-v-45e3c05f {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .red.data-v-45e3c05f {
   color: red;
   font-weight: 700;
@@ -62,7 +91,7 @@
 .tmptitle.data-v-45e3c05f {
   color: #bd3124;
   font-weight: 700;
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
 }
 .center.data-v-45e3c05f {
   margin-top: 15rpx;
@@ -70,30 +99,32 @@
 }
 .basic-info-bottom.data-v-45e3c05f {
   display: flex;
-  gap: 50rpx;
+  gap: 40rpx;
   align-items: center;
-  margin-top: 15rpx;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  margin-top: 35rpx;
+  box-shadow: 0px 2px 8px 0px #888888;
   padding: 15rpx;
   border-radius: 15rpx;
 }
 .geo-top.data-v-45e3c05f {
   display: flex;
   justify-content: center;
+  gap: 35rpx;
   align-items: center;
-  border-bottom: #8f8f94 solid;
+  border-bottom: #F2F2F7 solid;
 }
 .tmpimg.data-v-45e3c05f {
   width: 350rpx;
   height: 350rpx;
 }
 .geoimg.data-v-45e3c05f {
-  width: 150rpx;
-  height: 150rpx;
+  width: 120rpx;
+  height: 120rpx;
 }
 .picker.data-v-45e3c05f {
   padding: 20rpx;
   background-color: #ededed;
+  border: #C1C2C5 solid;
 }
 .basic-info-top.data-v-45e3c05f {
   display: flex;
@@ -103,7 +134,7 @@
   width: 50vw;
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  box-shadow: 0px 2px 8px 0px #888888;
   padding: 15rpx;
   border-radius: 15rpx;
 }
@@ -131,15 +162,15 @@
   margin-left: 30rpx;
 }
 .uni-list-cell.data-v-45e3c05f {
+  flex: 1 0 50%;
   display: flex;
   align-items: center;
   margin-top: 15rpx;
-  width: 50%;
 }
 .ext-info.data-v-45e3c05f {
   padding: 30rpx;
   border-radius: 15rpx;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  box-shadow: 0px 2px 8px 0px #888888;
   margin-top: 30rpx;
   margin-bottom: 40rpx;
 }

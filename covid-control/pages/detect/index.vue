@@ -3,7 +3,7 @@
 		<view class="detect-title">
 			请填写您的信息
 		</view>
-		<form @submit="formSubmit" @reset="formReset" class="detect-form">
+		<form  @reset="formReset" class="detect-form">
 			<view class="basic-info">
 				<view class="basic-info-top">
 					<view class="basic-info-left">
@@ -11,26 +11,34 @@
 							<view class="title">年龄</view>
 							<picker @change="bindageChange" :value="ageindex" :range="agerange" range-key="val">
 								<view v-if="ageindex!=null" class="picker">
-									{{ agerange[ageindex].name }}
+									{{ agerange[ageindex].val }}(岁)
 								</view>
 								<view class="picker" v-else>请选择年龄</view>
 							</picker>
 						</view>
 						<view class="uni-column">
 							<view class="title">性别</view>
-							<picker @change="bindsexChange" :value="sexindex" :range="sexrange" range-key="val">
-								<view v-if="sexindex!=null" class="picker">
-									{{ sexrange[sexindex].name }}
+							<picker @change="handleSexchange" :value="sexindex" :range="sexrange" range-key="val">
+								<view v-if="sexindex" class="picker">
+									{{ sexrange[sexindex].val }}
 								</view>
 								<view class="picker" v-else>请选择性别</view>
 							</picker>
 						</view>
 					</view>
 					<view class="basic-info-right">
-						<view class="geo-top"><view class="img-box"><image class="geoimg" src="../../static/geo.png"></image></view><text>地理位置</text></view>
+						<view class="geo-top">
+							<view class="img-box">
+								<image class="geoimg"
+									src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0yNC40ODUgMjMuMTUyTDE2IDMxLjYzN2wtOC40ODUtOC40ODVBMTEuOTYyIDExLjk2MiAwIDAgMSA0IDE0LjY2N2MwLTYuNjI3IDUuMzczLTEyIDEyLTEyczEyIDUuMzczIDEyIDEyYzAgMy4zMTQtMS4zNDMgNi4zMTQtMy41MTUgOC40ODV6TTE2IDE3LjMzM2EyLjY2NyAyLjY2NyAwIDEgMCAwLTUuMzM0IDIuNjY3IDIuNjY3IDAgMSAwIDAgNS4zMzR6IiBmaWxsPSJyZ2JhKDU1LjA4LDEyNi45OSwxMjYuOTksMSkiLz48L3N2Zz4=">
+								</image>
+							</view>
+							<view>地理位置</view>
+						</view>
 						<view class="geo-bottom">
 							<view class="center">国家:{{country}}</view>
-							<view>{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text class="iconfont icon-youjiantou"></text>{{district}}</view>
+							<view class="center">{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text
+									class="iconfont icon-youjiantou"></text>{{district}}</view>
 						</view>
 					</view>
 				</view>
@@ -40,10 +48,16 @@
 						<image src="../../static/temperature2.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
-					<view class="tmptitle">今日体温(℃)</view>
-					<picker @change="bindPickerChange" :value="index" :range="temperature" range-key="val">
-						<view style="padding: 20rpx;background-color: #ededed;">{{ temperature[index].val }}</view>
-					</picker>
+						<view class="tmptitle">今日体温:</view>
+						<picker @change="bindPickerChange" class="showtemp" :value="index" :range="temperature"
+							range-key="val">
+							<view class="wrapper">
+								<view class="picker temp-show">{{ temperature[index].val}}</view>
+								<image style="width: 80rpx;height: 80rpx;"
+									src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik02IDEzLjMzM2E0LjY2NyA0LjY2NyAwIDAgMSAwLTkuMzM0IDQuNjY3IDQuNjY3IDAgMCAxIDAgOS4zMzR6bTAtMi42NjZhMiAyIDAgMSAwIDAtNCAyIDIgMCAxIDAgMCA0em0yMy4zMzMgMi42NjZoLTIuNjY3YTUuMzMzIDUuMzMzIDAgMSAwLTEwLjY2NiAwVjIwYTUuMzMzIDUuMzMzIDAgMSAwIDEwLjY2NiAwaDIuNjY3YTggOCAwIDAgMS0xNiAwdi02LjY2N2E4IDggMCAwIDEgMTYgMHoiIGZpbGw9InJnYmEoNTUuMDgsMTI2Ljk5LDEyNi45OSwxKSIvPjwvc3ZnPg==">
+								</image>
+							</view>
+						</picker>
 					</view>
 				</view>
 			</view>
@@ -59,10 +73,32 @@
 						</view>
 					</checkbox-group>
 				</view>
-
+			</view>
+			<view class="form-item">
+				<view>
+					<text>最近一次核酸检测结果</text>
+				</view>
+				<picker @change="bindresultChange" class="form-item-picker" :value="resultindex" :range="results"
+					range-key="val">
+					<view v-if="resultindex!=null" class="picker">
+						{{ results[resultindex].val }}
+					</view>
+					<view class="picker" v-else>请选择阳性,阴性或未知</view>
+				</picker>
+			</view>
+			<view class="form-item">
+				<view>
+					<text>症状出现天数</text>
+				</view>
+				<picker @change="binddayChange" class="form-item-picker" :value="dayindex" :range="days" range-key="val">
+					<view v-if="dayindex!=null" class="picker">
+						{{ days[dayindex].val }}(天)
+					</view>
+					<view class="picker" v-else>请选择第几天</view>
+				</picker>
 			</view>
 			<view class="uni-btn-v">
-				<button form-type="submit" type="primary" @click="submit">提交</button>
+				<button  type="primary" @click="submit">感染预测</button>
 				<button type="default" form-type="reset" @click="reset">重置</button>
 			</view>
 		</form>
@@ -74,24 +110,42 @@
 	export default {
 		data() {
 			return {
+				dayindex: null,
+				days: [],
+				day: null,
+				results: [{
+					val: "阳性"
+				}, {
+					val: '阴性'
+				}, {
+					val: "未知"
+				}],
+				resultindex: null,
+				result: null,
 				symptoms: [{
-					value: "咳嗽",
-					name: "咳嗽"
-				}, {
-					value: "呼吸困难",
-					name: "呼吸困难"
-				}, {
-					value: "发烧",
-					name: "发烧"
-				}, {
-					value: "喉咙疼痛",
-					name: "喉咙疼痛"
-				}, {
 					value: "头痛",
 					name: "头痛"
 				}, {
-					value: "与阳性患者接触过",
-					name: "与阳性患者接触过"
+					value: "气喘",
+					name: "气喘"
+				}, {
+					value: "咽干喉痛",
+					name: "咽干喉痛"
+				}, {
+					value: "流涕鼻塞",
+					name: "流涕鼻塞"
+				}, {
+					value: "身体乏力",
+					name: "身体乏力"
+				}, {
+					value: "肠胃不适",
+					name: "肠胃不适"
+				}, {
+					value: "咽痒咳嗽",
+					name: "咽痒咳嗽"
+				}, {
+					value: "无以上症状",
+					name: "无以上症状"
 				}, ],
 				currSymptoms: [],
 				sex: "男",
@@ -160,31 +214,41 @@
 				}],
 				index: 16,
 				currTemp: '37.2',
-				country:null,
-				province:null,
-				city:null,
-				district:null,
+				country: null,
+				province: null,
+				city: null,
+				district: null,
+				sex: null,
 			};
 		},
 		onLoad() {
 			this.agerange = new Array();
+			this.days = new Array();
+			this.days.push({val:"0"});
 			for (let i = 1; i < 100; i++) {
 				let ageobj = {
 					val: i,
+				}
+				if(i<=10)
+				{
+				this.days.push(ageobj);
 				}
 				this.agerange.push(ageobj);
 			}
 			this.agerange.push({
 				val: "100及以上"
 			});
+			this.days.push({val:"10天及以上"})
 			console.log('加载表格页面');
-
 			this.qqmapsdk = new QQMapWX({
 				key: 'L32BZ-VJSCU-INJVN-4CIEX-XWUVS-CHF7Q'
 			});
 			this.getUserLocation();
 		},
 		methods: {
+			formReset: function(e) {
+				console.log('清空数据')
+			},
 			getUserLocation() {
 				uni.getSetting({
 					success: (res) => {
@@ -217,77 +281,99 @@
 			getCityInfo() {
 				console.log('调用getCityInfo')
 				uni.authorize({
-						scope: "scope.userLocation",
-						success: () => {
-							console.log('授权')
-							uni.getLocation({
-								type: "gcj02", //  wgs84: 返回GPS坐标，gcj02: 返回国测局坐标
-								success: res => {
-									console.log('获取位置')
-									const {
-										latitude,
-										longitude
-									} = res;
-									const location = {
-										latitude,
-										longitude
-									};
-									this.qqmapsdk.reverseGeocoder({
-										location,
-										success: (res) => {
-											let loginAddress = res.result.ad_info.name
-											console.log(loginAddress)
-											// 获取信息
-											this.country = loginAddress.split(',')[0];
-											this.province = loginAddress.split(',')[1];
-											this.city = loginAddress.split(',')[2];
-											this.district = loginAddress.split(',')[3];
-										},
-										fail: (res) => {
-											uni.showModal({
-												title: '错误',
-												content: '获取地理位置错误,请刷新重试',
-												showCancel: true,
-												confirmText: '确定'
-											});
-											console.log(res)
-										},
-									});
-								},
-								fail: () => {
-									uni.showModal({
-										title: '错误',
-										content: '获取地理位置错误,请刷新重试',
-										showCancel: true,
-										confirmText: '确定'
-									});
-								}
-							});
-						},
-						fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
-						})
+					scope: "scope.userLocation",
+					success: () => {
+						console.log('授权')
+						uni.getLocation({
+							type: "gcj02", //  wgs84: 返回GPS坐标，gcj02: 返回国测局坐标
+							success: res => {
+								console.log('获取位置')
+								const {
+									latitude,
+									longitude
+								} = res;
+								const location = {
+									latitude,
+									longitude
+								};
+								this.qqmapsdk.reverseGeocoder({
+									location,
+									success: (res) => {
+										let loginAddress = res.result.ad_info.name
+										console.log(loginAddress)
+										// 获取信息
+										this.country = loginAddress.split(',')[0];
+										this.province = loginAddress.split(',')[1];
+										this.city = loginAddress.split(',')[2];
+										this.district = loginAddress.split(',')[3];
+									},
+									fail: (res) => {
+										uni.showModal({
+											title: '错误',
+											content: '获取地理位置错误,请刷新重试',
+											showCancel: true,
+											confirmText: '确定'
+										});
+										console.log(res)
+									},
+								});
+							},
+							fail: () => {
+								uni.showModal({
+									title: '错误',
+									content: '获取地理位置错误,请刷新重试',
+									showCancel: true,
+									confirmText: '确定'
+								});
+							}
+						});
+					},
+					fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
+				})
 			},
 			submit() {},
 			reset() {
+				// 重置年龄
+				this.ageindex = null;
+				this.age = null;
+				// 重置性别
+				this.sex = null;
+				this.sexindex = null;
+				// 重置体温
 				this.index = 16;
 				this.currTemp = '37.2';
+				//重置症状
 				this.currSymptoms = [];
+				// 重置剩余项
+				this.result = null;
+				this.resultindex = null;
+				this.day = null;
+				this.dayindex = null;
 			},
-			bindsexChange(e) {
-				this.sex = this.sexrange[e.detail.value].val;
+			bindresultChange(e) {
+				this.resultindex = e.detail.value;
+				this.result = this.results[this.resultindex].val;
 			},
 			checkboxChange(e) {
+				// console.log(e.detail.value)
 				this.currSymptoms = e.detail.value;
 			},
 			bindageChange(e) {
-				this.age = this.ageindex[e.detail.value].val;
+				this.ageindex = e.detail.value;
+				this.age = this.agerange[this.ageindex].val;
 			},
 			bindPickerChange(e) {
 				this.index = e.detail.value;
 				this.currTemp = this.temperature[this.index].val;
 			},
 			handleSexchange(e) {
-				this.ismale = e.detail.value;
+				this.sexindex = e.detail.value;
+				this.sex = this.sexrange[this.sexindex].val;
+			},
+			binddayChange(e)
+			{
+				this.dayindex = e.detail.value;
+				this.day = this.days[this.dayindex].val;
 			}
 		}
 	}
@@ -295,72 +381,119 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
-	
+	.form-item-picker {
+		width: 60vw;
+	}
+	.form-item {
+		margin-bottom: 30rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		gap: 20rpx;
+	}
+
+	.block {
+		display: block;
+	}
+
+	.wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.temp-show {
+		min-height: 50rpx;
+		color: #1C1F23;
+		font-size: 60rpx;
+		font-weight: 700;
+		font-family: SourceHanSansSC-regular;
+	}
+
+	.checkgroups {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+
 	.red {
 		color: red;
 		font-weight: 700;
 		margin-left: 5rpx;
 	}
+
 	.query {
 		font-weight: 700;
 		font-size: 50rpx;
 	}
+
 	.title {
 		margin-bottom: 10rpx;
 		font-weight: 700;
 	}
+
 	.basic-info {
 		margin-bottom: 25rpx;
 	}
+
 	.tmptitle {
 		color: rgb(189, 49, 36);
 		font-weight: 700;
-		margin-bottom: 10rpx;
+		margin-bottom: 20rpx;
 	}
+
 	.center {
 		margin-top: 15rpx;
 		text-align: center;
 	}
+
 	.basic-info-bottom {
 		display: flex;
-		gap: 50rpx;
+		gap: 40rpx;
 		align-items: center;
-		margin-top: 15rpx;
-		box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+		margin-top: 35rpx;
+		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
 		padding: 15rpx;
 		border-radius: 15rpx;
 	}
+
 	.geo-top {
 		display: flex;
 		justify-content: center;
+		gap: 35rpx;
 		align-items: center;
-		border-bottom: #8f8f94 solid;
+		border-bottom: #F2F2F7 solid;
 	}
+
 	.tmpimg {
 		width: 350rpx;
 		height: 350rpx;
 	}
+
 	.geoimg {
-		width: 150rpx;
-		height: 150rpx;
+		width: 120rpx;
+		height: 120rpx;
 	}
+
 	.picker {
 		padding: 20rpx;
 		background-color: #ededed;
+		border: #C1C2C5 solid;
 	}
 
 	.basic-info-top {
 		display: flex;
 		justify-content: space-around;
 	}
+
 	.basic-info-right {
-		width:50vw;
+		width: 50vw;
 		display: flex;
 		flex-direction: column;
-		box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
 		padding: 15rpx;
 		border-radius: 15rpx;
 	}
+
 	.basic-info-left {
 		display: flex;
 		flex-direction: column;
@@ -391,16 +524,16 @@
 	}
 
 	.uni-list-cell {
+		flex: 1 0 50%;
 		display: flex;
 		align-items: center;
 		margin-top: 15rpx;
-		width: 50%;
 	}
 
 	.ext-info {
 		padding: 30rpx;
 		border-radius: 15rpx;
-		box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
 		margin-top: 30rpx;
 		margin-bottom: 40rpx;
 	}

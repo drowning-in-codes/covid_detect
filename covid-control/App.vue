@@ -14,4 +14,8 @@
 
 <style>
 	/*每个页面公共css */
+	:root{
+		font-family: PingFangSC-regular,'Courier New', Courier, monospace;
+		color:#101010;
+	}
 </style>

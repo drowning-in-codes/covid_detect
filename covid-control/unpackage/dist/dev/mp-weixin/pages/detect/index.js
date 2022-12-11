@@ -142,7 +142,44 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 10));
 var _qqmapWxJssdkMin = _interopRequireDefault(__webpack_require__(/*! @/libs/qqmap-wx-jssdk.min.js */ 46));
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -216,25 +253,43 @@ var _qqmapWxJssdkMin = _interopRequireDefault(__webpack_require__(/*! @/libs/qqm
 //
 var _default = {
   data: function data() {
-    return {
+    return (0, _defineProperty2.default)({
+      dayindex: null,
+      days: [],
+      day: null,
+      results: [{
+        val: "阳性"
+      }, {
+        val: '阴性'
+      }, {
+        val: "未知"
+      }],
+      resultindex: null,
+      result: null,
       symptoms: [{
-        value: "咳嗽",
-        name: "咳嗽"
-      }, {
-        value: "呼吸困难",
-        name: "呼吸困难"
-      }, {
-        value: "发烧",
-        name: "发烧"
-      }, {
-        value: "喉咙疼痛",
-        name: "喉咙疼痛"
-      }, {
         value: "头痛",
         name: "头痛"
       }, {
-        value: "与阳性患者接触过",
-        name: "与阳性患者接触过"
+        value: "气喘",
+        name: "气喘"
+      }, {
+        value: "咽干喉痛",
+        name: "咽干喉痛"
+      }, {
+        value: "流涕鼻塞",
+        name: "流涕鼻塞"
+      }, {
+        value: "身体乏力",
+        name: "身体乏力"
+      }, {
+        value: "肠胃不适",
+        name: "肠胃不适"
+      }, {
+        value: "咽痒咳嗽",
+        name: "咽痒咳嗽"
+      }, {
+        value: "无以上症状",
+        name: "无以上症状"
       }],
       currSymptoms: [],
       sex: "男",
@@ -307,18 +362,28 @@ var _default = {
       province: null,
       city: null,
       district: null
-    };
+    }, "sex", null);
   },
   onLoad: function onLoad() {
     this.agerange = new Array();
+    this.days = new Array();
+    this.days.push({
+      val: "0"
+    });
     for (var i = 1; i < 100; i++) {
       var ageobj = {
         val: i
       };
+      if (i <= 10) {
+        this.days.push(ageobj);
+      }
       this.agerange.push(ageobj);
     }
     this.agerange.push({
       val: "100及以上"
+    });
+    this.days.push({
+      val: "10天及以上"
     });
     console.log('加载表格页面');
     this.qqmapsdk = new _qqmapWxJssdkMin.default({
@@ -327,6 +392,9 @@ var _default = {
     this.getUserLocation();
   },
   methods: {
+    formReset: function formReset(e) {
+      console.log('清空数据');
+    },
     getUserLocation: function getUserLocation() {
       var _this = this;
       uni.getSetting({
@@ -416,25 +484,46 @@ var _default = {
     },
     submit: function submit() {},
     reset: function reset() {
+      // 重置年龄
+      this.ageindex = null;
+      this.age = null;
+      // 重置性别
+      this.sex = null;
+      this.sexindex = null;
+      // 重置体温
       this.index = 16;
       this.currTemp = '37.2';
+      //重置症状
       this.currSymptoms = [];
+      // 重置剩余项
+      this.result = null;
+      this.resultindex = null;
+      this.day = null;
+      this.dayindex = null;
     },
-    bindsexChange: function bindsexChange(e) {
-      this.sex = this.sexrange[e.detail.value].val;
+    bindresultChange: function bindresultChange(e) {
+      this.resultindex = e.detail.value;
+      this.result = this.results[this.resultindex].val;
     },
     checkboxChange: function checkboxChange(e) {
+      // console.log(e.detail.value)
       this.currSymptoms = e.detail.value;
     },
     bindageChange: function bindageChange(e) {
-      this.age = this.ageindex[e.detail.value].val;
+      this.ageindex = e.detail.value;
+      this.age = this.agerange[this.ageindex].val;
     },
     bindPickerChange: function bindPickerChange(e) {
       this.index = e.detail.value;
       this.currTemp = this.temperature[this.index].val;
     },
     handleSexchange: function handleSexchange(e) {
-      this.ismale = e.detail.value;
+      this.sexindex = e.detail.value;
+      this.sex = this.sexrange[this.sexindex].val;
+    },
+    binddayChange: function binddayChange(e) {
+      this.dayindex = e.detail.value;
+      this.day = this.days[this.dayindex].val;
     }
   }
 };
