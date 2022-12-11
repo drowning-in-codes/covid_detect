@@ -24,6 +24,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.picker.data-v-45e3c05f {
+  padding: 20rpx;
+  background-color: #ededed;
+}
+.basic-info-top.data-v-45e3c05f {
+  display: flex;
+}
+.basic-info-left.data-v-45e3c05f {
+  display: flex;
+  flex-direction: column;
+}
 .sex-label.data-v-45e3c05f {
   margin-top: 8rpx;
   display: flex;
@@ -51,7 +62,8 @@
 .uni-list-cell.data-v-45e3c05f {
   margin-top: 15rpx;
 }
-.basic-info.data-v-45e3c05f, .ext-info.data-v-45e3c05f {
+.basic-info.data-v-45e3c05f,
+.ext-info.data-v-45e3c05f {
   padding: 30rpx;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }

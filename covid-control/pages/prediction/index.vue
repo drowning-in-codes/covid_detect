@@ -5,13 +5,24 @@
 </template>
 
 <script>
+	
 	export default {
 		data() {
 			return {
 				
 			}
 		},
+		onLoad()
+		{
+		
+		}
+		,
 		methods: {
+			getLocation()
+			{
+			
+			}
+		
 			
 		}
 	}
