@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
-
-/***/ 1:
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
+/* 0 */,
+/* 1 */
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -8,29 +8,47 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.createPlugin = createPlugin;exports.createSubpackageApp = createSubpackageApp;exports.default = void 0;var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 3);
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
+/* WEBPACK VAR INJECTION */(function(global) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 3);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createApp = createApp;
+exports.createComponent = createComponent;
+exports.createPage = createPage;
+exports.createPlugin = createPlugin;
+exports.createSubpackageApp = createSubpackageApp;
+exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 4));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 10));
+var _construct2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/construct */ 14));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 17));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 12));
+var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 21);
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 24));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var realAtob;
-
 var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 var b64re = /^(?:[A-Za-z\d+/]{4})*?(?:[A-Za-z\d+/]{2}(?:==)?|[A-Za-z\d+/]{3}=?)?$/;
-
 if (typeof atob !== 'function') {
   realAtob = function realAtob(str) {
     str = String(str).replace(/[\t\n\f\r ]+/g, '');
-    if (!b64re.test(str)) {throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");}
+    if (!b64re.test(str)) {
+      throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");
+    }
 
     // Adding the padding if missing, for semplicity
     str += '=='.slice(2 - (str.length & 3));
-    var bitmap;var result = '';var r1;var r2;var i = 0;
+    var bitmap;
+    var result = '';
+    var r1;
+    var r2;
+    var i = 0;
     for (; i < str.length;) {
-      bitmap = b64.indexOf(str.charAt(i++)) << 18 | b64.indexOf(str.charAt(i++)) << 12 |
-      (r1 = b64.indexOf(str.charAt(i++))) << 6 | (r2 = b64.indexOf(str.charAt(i++)));
-
-      result += r1 === 64 ? String.fromCharCode(bitmap >> 16 & 255) :
-      r2 === 64 ? String.fromCharCode(bitmap >> 16 & 255, bitmap >> 8 & 255) :
-      String.fromCharCode(bitmap >> 16 & 255, bitmap >> 8 & 255, bitmap & 255);
+      bitmap = b64.indexOf(str.charAt(i++)) << 18 | b64.indexOf(str.charAt(i++)) << 12 | (r1 = b64.indexOf(str.charAt(i++))) << 6 | (r2 = b64.indexOf(str.charAt(i++)));
+      result += r1 === 64 ? String.fromCharCode(bitmap >> 16 & 255) : r2 === 64 ? String.fromCharCode(bitmap >> 16 & 255, bitmap >> 8 & 255) : String.fromCharCode(bitmap >> 16 & 255, bitmap >> 8 & 255, bitmap & 255);
     }
     return result;
   };
@@ -38,13 +56,11 @@ if (typeof atob !== 'function') {
   // 注意atob只能在全局对象上调用，例如：`const Base64 = {atob};Base64.atob('xxxx')`是错误的用法
   realAtob = atob;
 }
-
 function b64DecodeUnicode(str) {
   return decodeURIComponent(realAtob(str).split('').map(function (c) {
     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
   }).join(''));
 }
-
 function getCurrentUserInfo() {
   var token = wx.getStorageSync('uni_id_token') || '';
   var tokenArr = token.split('.');
@@ -53,8 +69,8 @@ function getCurrentUserInfo() {
       uid: null,
       role: [],
       permission: [],
-      tokenExpired: 0 };
-
+      tokenExpired: 0
+    };
   }
   var userInfo;
   try {
@@ -67,52 +83,45 @@ function getCurrentUserInfo() {
   delete userInfo.iat;
   return userInfo;
 }
-
 function uniIdMixin(Vue) {
-  Vue.prototype.uniIDHasRole = function (roleId) {var _getCurrentUserInfo =
-
-
-    getCurrentUserInfo(),role = _getCurrentUserInfo.role;
+  Vue.prototype.uniIDHasRole = function (roleId) {
+    var _getCurrentUserInfo = getCurrentUserInfo(),
+      role = _getCurrentUserInfo.role;
     return role.indexOf(roleId) > -1;
   };
-  Vue.prototype.uniIDHasPermission = function (permissionId) {var _getCurrentUserInfo2 =
-
-
-    getCurrentUserInfo(),permission = _getCurrentUserInfo2.permission;
+  Vue.prototype.uniIDHasPermission = function (permissionId) {
+    var _getCurrentUserInfo2 = getCurrentUserInfo(),
+      permission = _getCurrentUserInfo2.permission;
     return this.uniIDHasRole('admin') || permission.indexOf(permissionId) > -1;
   };
-  Vue.prototype.uniIDTokenValid = function () {var _getCurrentUserInfo3 =
-
-
-    getCurrentUserInfo(),tokenExpired = _getCurrentUserInfo3.tokenExpired;
+  Vue.prototype.uniIDTokenValid = function () {
+    var _getCurrentUserInfo3 = getCurrentUserInfo(),
+      tokenExpired = _getCurrentUserInfo3.tokenExpired;
     return tokenExpired > Date.now();
   };
 }
-
 var _toString = Object.prototype.toString;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
-
 function isFn(fn) {
   return typeof fn === 'function';
 }
-
 function isStr(str) {
   return typeof str === 'string';
 }
-
+function isObject(obj) {
+  return obj !== null && (0, _typeof2.default)(obj) === 'object';
+}
 function isPlainObject(obj) {
   return _toString.call(obj) === '[object Object]';
 }
-
 function hasOwn(obj, key) {
   return hasOwnProperty.call(obj, key);
 }
-
 function noop() {}
 
 /**
-                    * Create a cached version of a pure function.
-                    */
+ * Create a cached version of a pure function.
+ */
 function cached(fn) {
   var cache = Object.create(null);
   return function cachedFn(str) {
@@ -122,13 +131,14 @@ function cached(fn) {
 }
 
 /**
-   * Camelize a hyphen-delimited string.
-   */
+ * Camelize a hyphen-delimited string.
+ */
 var camelizeRE = /-(\w)/g;
 var camelize = cached(function (str) {
-  return str.replace(camelizeRE, function (_, c) {return c ? c.toUpperCase() : '';});
+  return str.replace(camelizeRE, function (_, c) {
+    return c ? c.toUpperCase() : '';
+  });
 });
-
 function sortObject(obj) {
   var sortObj = {};
   if (isPlainObject(obj)) {
@@ -138,30 +148,13 @@ function sortObject(obj) {
   }
   return !Object.keys(sortObj) ? obj : sortObj;
 }
-
-var HOOKS = [
-'invoke',
-'success',
-'fail',
-'complete',
-'returnValue'];
-
-
+var HOOKS = ['invoke', 'success', 'fail', 'complete', 'returnValue'];
 var globalInterceptors = {};
 var scopedInterceptors = {};
-
 function mergeHook(parentVal, childVal) {
-  var res = childVal ?
-  parentVal ?
-  parentVal.concat(childVal) :
-  Array.isArray(childVal) ?
-  childVal : [childVal] :
-  parentVal;
-  return res ?
-  dedupeHooks(res) :
-  res;
+  var res = childVal ? parentVal ? parentVal.concat(childVal) : Array.isArray(childVal) ? childVal : [childVal] : parentVal;
+  return res ? dedupeHooks(res) : res;
 }
-
 function dedupeHooks(hooks) {
   var res = [];
   for (var i = 0; i < hooks.length; i++) {
@@ -171,14 +164,12 @@ function dedupeHooks(hooks) {
   }
   return res;
 }
-
 function removeHook(hooks, hook) {
   var index = hooks.indexOf(hook);
   if (index !== -1) {
     hooks.splice(index, 1);
   }
 }
-
 function mergeInterceptorHook(interceptor, option) {
   Object.keys(option).forEach(function (hook) {
     if (HOOKS.indexOf(hook) !== -1 && isFn(option[hook])) {
@@ -186,7 +177,6 @@ function mergeInterceptorHook(interceptor, option) {
     }
   });
 }
-
 function removeInterceptorHook(interceptor, option) {
   if (!interceptor || !option) {
     return;
@@ -197,7 +187,6 @@ function removeInterceptorHook(interceptor, option) {
     }
   });
 }
-
 function addInterceptor(method, option) {
   if (typeof method === 'string' && isPlainObject(option)) {
     mergeInterceptorHook(scopedInterceptors[method] || (scopedInterceptors[method] = {}), option);
@@ -205,7 +194,6 @@ function addInterceptor(method, option) {
     mergeInterceptorHook(globalInterceptors, method);
   }
 }
-
 function removeInterceptor(method, option) {
   if (typeof method === 'string') {
     if (isPlainObject(option)) {
@@ -217,17 +205,14 @@ function removeInterceptor(method, option) {
     removeInterceptorHook(globalInterceptors, method);
   }
 }
-
 function wrapperHook(hook) {
   return function (data) {
     return hook(data) || data;
   };
 }
-
 function isPromise(obj) {
-  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
+  return !!obj && ((0, _typeof2.default)(obj) === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
-
 function queue(hooks, data) {
   var promise = false;
   for (var i = 0; i < hooks.length; i++) {
@@ -241,19 +226,19 @@ function queue(hooks, data) {
       }
       if (res === false) {
         return {
-          then: function then() {} };
-
+          then: function then() {}
+        };
       }
     }
   }
   return promise || {
     then: function then(callback) {
       return callback(data);
-    } };
-
+    }
+  };
 }
-
-function wrapperOptions(interceptor) {var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+function wrapperOptions(interceptor) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   ['success', 'fail', 'complete'].forEach(function (name) {
     if (Array.isArray(interceptor[name])) {
       var oldCallback = options[name];
@@ -267,22 +252,20 @@ function wrapperOptions(interceptor) {var options = arguments.length > 1 && argu
   });
   return options;
 }
-
 function wrapperReturnValue(method, returnValue) {
   var returnValueHooks = [];
   if (Array.isArray(globalInterceptors.returnValue)) {
-    returnValueHooks.push.apply(returnValueHooks, _toConsumableArray(globalInterceptors.returnValue));
+    returnValueHooks.push.apply(returnValueHooks, (0, _toConsumableArray2.default)(globalInterceptors.returnValue));
   }
   var interceptor = scopedInterceptors[method];
   if (interceptor && Array.isArray(interceptor.returnValue)) {
-    returnValueHooks.push.apply(returnValueHooks, _toConsumableArray(interceptor.returnValue));
+    returnValueHooks.push.apply(returnValueHooks, (0, _toConsumableArray2.default)(interceptor.returnValue));
   }
   returnValueHooks.forEach(function (hook) {
     returnValue = hook(returnValue) || returnValue;
   });
   return returnValue;
 }
-
 function getApiInterceptorHooks(method) {
   var interceptor = Object.create(null);
   Object.keys(globalInterceptors).forEach(function (hook) {
@@ -300,8 +283,10 @@ function getApiInterceptorHooks(method) {
   }
   return interceptor;
 }
-
-function invokeApi(method, api, options) {for (var _len = arguments.length, params = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {params[_key - 3] = arguments[_key];}
+function invokeApi(method, api, options) {
+  for (var _len = arguments.length, params = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+    params[_key - 3] = arguments[_key];
+  }
   var interceptor = getApiInterceptorHooks(method);
   if (interceptor && Object.keys(interceptor).length) {
     if (Array.isArray(interceptor.invoke)) {
@@ -315,7 +300,6 @@ function invokeApi(method, api, options) {for (var _len = arguments.length, para
   }
   return api.apply(void 0, [options].concat(params));
 }
-
 var promiseInterceptor = {
   returnValue: function returnValue(res) {
     if (!isPromise(res)) {
@@ -330,12 +314,9 @@ var promiseInterceptor = {
         }
       });
     });
-  } };
-
-
-var SYNC_API_RE =
-/^\$|Window$|WindowStyle$|sendHostEvent|sendNativeEvent|restoreGlobal|requireGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64|getLocale|setLocale|invokePushCallback|getWindowInfo|getDeviceInfo|getAppBaseInfo|getSystemSetting|getAppAuthorizeSetting/;
-
+  }
+};
+var SYNC_API_RE = /^\$|Window$|WindowStyle$|sendHostEvent|sendNativeEvent|restoreGlobal|requireGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64|getLocale|setLocale|invokePushCallback|getWindowInfo|getDeviceInfo|getAppBaseInfo|getSystemSetting|getAppAuthorizeSetting/;
 var CONTEXT_API_RE = /^create|Manager$/;
 
 // Context例外情况
@@ -343,33 +324,25 @@ var CONTEXT_API_RE_EXC = ['createBLEConnection'];
 
 // 同步例外情况
 var ASYNC_API = ['createBLEConnection', 'createPushMessage'];
-
 var CALLBACK_API_RE = /^on|^off/;
-
 function isContextApi(name) {
   return CONTEXT_API_RE.test(name) && CONTEXT_API_RE_EXC.indexOf(name) === -1;
 }
 function isSyncApi(name) {
   return SYNC_API_RE.test(name) && ASYNC_API.indexOf(name) === -1;
 }
-
 function isCallbackApi(name) {
   return CALLBACK_API_RE.test(name) && name !== 'onPush';
 }
-
 function handlePromise(promise) {
   return promise.then(function (data) {
     return [null, data];
-  }).
-  catch(function (err) {return [err];});
+  }).catch(function (err) {
+    return [err];
+  });
 }
-
 function shouldPromise(name) {
-  if (
-  isContextApi(name) ||
-  isSyncApi(name) ||
-  isCallbackApi(name))
-  {
+  if (isContextApi(name) || isSyncApi(name) || isCallbackApi(name)) {
     return false;
   }
   return true;
@@ -379,55 +352,56 @@ function shouldPromise(name) {
 if (!Promise.prototype.finally) {
   Promise.prototype.finally = function (callback) {
     var promise = this.constructor;
-    return this.then(
-    function (value) {return promise.resolve(callback()).then(function () {return value;});},
-    function (reason) {return promise.resolve(callback()).then(function () {
+    return this.then(function (value) {
+      return promise.resolve(callback()).then(function () {
+        return value;
+      });
+    }, function (reason) {
+      return promise.resolve(callback()).then(function () {
         throw reason;
-      });});
-
+      });
+    });
   };
 }
-
 function promisify(name, api) {
   if (!shouldPromise(name)) {
     return api;
   }
-  return function promiseApi() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};for (var _len2 = arguments.length, params = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {params[_key2 - 1] = arguments[_key2];}
+  return function promiseApi() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    for (var _len2 = arguments.length, params = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      params[_key2 - 1] = arguments[_key2];
+    }
     if (isFn(options.success) || isFn(options.fail) || isFn(options.complete)) {
       return wrapperReturnValue(name, invokeApi.apply(void 0, [name, api, options].concat(params)));
     }
     return wrapperReturnValue(name, handlePromise(new Promise(function (resolve, reject) {
       invokeApi.apply(void 0, [name, api, Object.assign({}, options, {
         success: resolve,
-        fail: reject })].concat(
-      params));
+        fail: reject
+      })].concat(params));
     })));
   };
 }
-
 var EPS = 1e-4;
 var BASE_DEVICE_WIDTH = 750;
 var isIOS = false;
 var deviceWidth = 0;
 var deviceDPR = 0;
-
-function checkDeviceWidth() {var _wx$getSystemInfoSync =
-
-
-
-
-  wx.getSystemInfoSync(),platform = _wx$getSystemInfoSync.platform,pixelRatio = _wx$getSystemInfoSync.pixelRatio,windowWidth = _wx$getSystemInfoSync.windowWidth; // uni=>wx runtime 编译目标是 uni 对象，内部不允许直接使用 uni
+function checkDeviceWidth() {
+  var _wx$getSystemInfoSync = wx.getSystemInfoSync(),
+    platform = _wx$getSystemInfoSync.platform,
+    pixelRatio = _wx$getSystemInfoSync.pixelRatio,
+    windowWidth = _wx$getSystemInfoSync.windowWidth; // uni=>wx runtime 编译目标是 uni 对象，内部不允许直接使用 uni
 
   deviceWidth = windowWidth;
   deviceDPR = pixelRatio;
   isIOS = platform === 'ios';
 }
-
 function upx2px(number, newDeviceWidth) {
   if (deviceWidth === 0) {
     checkDeviceWidth();
   }
-
   number = Number(number);
   if (number === 0) {
     return 0;
@@ -446,21 +420,16 @@ function upx2px(number, newDeviceWidth) {
   }
   return number < 0 ? -result : result;
 }
-
 var LOCALE_ZH_HANS = 'zh-Hans';
 var LOCALE_ZH_HANT = 'zh-Hant';
 var LOCALE_EN = 'en';
 var LOCALE_FR = 'fr';
 var LOCALE_ES = 'es';
-
 var messages = {};
-
 var locale;
-
 {
   locale = normalizeLocale(wx.getSystemInfoSync().language) || LOCALE_EN;
 }
-
 function initI18nMessages() {
   if (!isEnableLocale()) {
     return;
@@ -478,16 +447,12 @@ function initI18nMessages() {
     });
   }
 }
-
 initI18nMessages();
-
-var i18n = (0, _uniI18n.initVueI18n)(
-locale,
-{});
-
+var i18n = (0, _uniI18n.initVueI18n)(locale, {});
 var t = i18n.t;
 var i18nMixin = i18n.mixin = {
-  beforeCreate: function beforeCreate() {var _this = this;
+  beforeCreate: function beforeCreate() {
+    var _this = this;
     var unwatch = i18n.i18n.watchLocale(function () {
       _this.$forceUpdate();
     });
@@ -498,16 +463,15 @@ var i18nMixin = i18n.mixin = {
   methods: {
     $$t: function $$t(key, values) {
       return t(key, values);
-    } } };
-
-
+    }
+  }
+};
 var setLocale = i18n.setLocale;
 var getLocale = i18n.getLocale;
-
 function initAppLocale(Vue, appVm, locale) {
   var state = Vue.observable({
-    locale: locale || i18n.getLocale() });
-
+    locale: locale || i18n.getLocale()
+  });
   var localeWatchers = [];
   appVm.$watchLocale = function (fn) {
     localeWatchers.push(fn);
@@ -518,23 +482,25 @@ function initAppLocale(Vue, appVm, locale) {
     },
     set: function set(v) {
       state.locale = v;
-      localeWatchers.forEach(function (watch) {return watch(v);});
-    } });
-
+      localeWatchers.forEach(function (watch) {
+        return watch(v);
+      });
+    }
+  });
 }
-
 function isEnableLocale() {
   return typeof __uniConfig !== 'undefined' && __uniConfig.locales && !!Object.keys(__uniConfig.locales).length;
 }
-
 function include(str, parts) {
-  return !!parts.find(function (part) {return str.indexOf(part) !== -1;});
+  return !!parts.find(function (part) {
+    return str.indexOf(part) !== -1;
+  });
 }
-
 function startsWith(str, parts) {
-  return parts.find(function (part) {return str.indexOf(part) === 0;});
+  return parts.find(function (part) {
+    return str.indexOf(part) === 0;
+  });
 }
-
 function normalizeLocale(locale, messages) {
   if (!locale) {
     return;
@@ -577,14 +543,13 @@ function normalizeLocale(locale, messages) {
 function getLocale$1() {
   // 优先使用 $locale
   var app = getApp({
-    allowDefault: true });
-
+    allowDefault: true
+  });
   if (app && app.$vm) {
     return app.$vm.$locale;
   }
   return normalizeLocale(wx.getSystemInfoSync().language) || LOCALE_EN;
 }
-
 function setLocale$1(locale) {
   var app = getApp();
   if (!app) {
@@ -593,29 +558,27 @@ function setLocale$1(locale) {
   var oldLocale = app.$vm.$locale;
   if (oldLocale !== locale) {
     app.$vm.$locale = locale;
-    onLocaleChangeCallbacks.forEach(function (fn) {return fn({
-        locale: locale });});
-
+    onLocaleChangeCallbacks.forEach(function (fn) {
+      return fn({
+        locale: locale
+      });
+    });
     return true;
   }
   return false;
 }
-
 var onLocaleChangeCallbacks = [];
 function onLocaleChange(fn) {
   if (onLocaleChangeCallbacks.indexOf(fn) === -1) {
     onLocaleChangeCallbacks.push(fn);
   }
 }
-
 if (typeof global !== 'undefined') {
   global.getLocale = getLocale$1;
 }
-
 var interceptors = {
-  promiseInterceptor: promiseInterceptor };
-
-
+  promiseInterceptor: promiseInterceptor
+};
 var baseApi = /*#__PURE__*/Object.freeze({
   __proto__: null,
   upx2px: upx2px,
@@ -624,9 +587,8 @@ var baseApi = /*#__PURE__*/Object.freeze({
   onLocaleChange: onLocaleChange,
   addInterceptor: addInterceptor,
   removeInterceptor: removeInterceptor,
-  interceptors: interceptors });
-
-
+  interceptors: interceptors
+});
 function findExistsPageIndex(url) {
   var pages = getCurrentPages();
   var len = pages.length;
@@ -638,7 +600,6 @@ function findExistsPageIndex(url) {
   }
   return -1;
 }
-
 var redirectTo = {
   name: function name(fromArgs) {
     if (fromArgs.exists === 'back' && fromArgs.delta) {
@@ -656,9 +617,8 @@ var redirectTo = {
         }
       }
     }
-  } };
-
-
+  }
+};
 var previewImage = {
   args: function args(fromArgs) {
     var currentIndex = parseInt(fromArgs.current);
@@ -680,19 +640,18 @@ var previewImage = {
     }
     if (currentIndex > 0) {
       fromArgs.current = urls[currentIndex];
-      fromArgs.urls = urls.filter(
-      function (item, index) {return index < currentIndex ? item !== urls[currentIndex] : true;});
-
+      fromArgs.urls = urls.filter(function (item, index) {
+        return index < currentIndex ? item !== urls[currentIndex] : true;
+      });
     } else {
       fromArgs.current = urls[0];
     }
     return {
       indicator: false,
-      loop: false };
-
-  } };
-
-
+      loop: false
+    };
+  }
+};
 var UUID_KEY = '__DC_STAT_UUID';
 var deviceId;
 function useDeviceId(result) {
@@ -701,12 +660,11 @@ function useDeviceId(result) {
     deviceId = Date.now() + '' + Math.floor(Math.random() * 1e7);
     wx.setStorage({
       key: UUID_KEY,
-      data: deviceId });
-
+      data: deviceId
+    });
   }
   result.deviceId = deviceId;
 }
-
 function addSafeAreaInsets(result) {
   if (result.safeArea) {
     var safeArea = result.safeArea;
@@ -714,18 +672,26 @@ function addSafeAreaInsets(result) {
       top: safeArea.top,
       left: safeArea.left,
       right: result.windowWidth - safeArea.right,
-      bottom: result.screenHeight - safeArea.bottom };
-
+      bottom: result.screenHeight - safeArea.bottom
+    };
   }
 }
-
-function populateParameters(result) {var _result$brand =
-
-
-
-
-
-  result.brand,brand = _result$brand === void 0 ? '' : _result$brand,_result$model = result.model,model = _result$model === void 0 ? '' : _result$model,_result$system = result.system,system = _result$system === void 0 ? '' : _result$system,_result$language = result.language,language = _result$language === void 0 ? '' : _result$language,theme = result.theme,version = result.version,platform = result.platform,fontSizeSetting = result.fontSizeSetting,SDKVersion = result.SDKVersion,pixelRatio = result.pixelRatio,deviceOrientation = result.deviceOrientation;
+function populateParameters(result) {
+  var _result$brand = result.brand,
+    brand = _result$brand === void 0 ? '' : _result$brand,
+    _result$model = result.model,
+    model = _result$model === void 0 ? '' : _result$model,
+    _result$system = result.system,
+    system = _result$system === void 0 ? '' : _result$system,
+    _result$language = result.language,
+    language = _result$language === void 0 ? '' : _result$language,
+    theme = result.theme,
+    version = result.version,
+    platform = result.platform,
+    fontSizeSetting = result.fontSizeSetting,
+    SDKVersion = result.SDKVersion,
+    pixelRatio = result.pixelRatio,
+    deviceOrientation = result.deviceOrientation;
   // const isQuickApp = "mp-weixin".indexOf('quickapp-webview') !== -1
 
   // osName osVersion
@@ -766,8 +732,8 @@ function populateParameters(result) {var _result$brand =
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.5",
-    uniRuntimeVersion: "3.6.5",
+    uniCompileVersion: "3.6.13",
+    uniRuntimeVersion: "3.6.13",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -790,20 +756,18 @@ function populateParameters(result) {var _result$brand =
     ua: undefined,
     hostPackageName: undefined,
     browserName: undefined,
-    browserVersion: undefined };
-
-
+    browserVersion: undefined
+  };
   Object.assign(result, parameters);
 }
-
 function getGetDeviceType(result, model) {
   var deviceType = result.deviceType || 'phone';
   {
     var deviceTypeMaps = {
       ipad: 'pad',
       windows: 'pc',
-      mac: 'pc' };
-
+      mac: 'pc'
+    };
     var deviceTypeMapsKeys = Object.keys(deviceTypeMaps);
     var _model = model.toLocaleLowerCase();
     for (var index = 0; index < deviceTypeMapsKeys.length; index++) {
@@ -816,7 +780,6 @@ function getGetDeviceType(result, model) {
   }
   return deviceType;
 }
-
 function getDeviceBrand(brand) {
   var deviceBrand = brand;
   if (deviceBrand) {
@@ -824,13 +787,9 @@ function getDeviceBrand(brand) {
   }
   return deviceBrand;
 }
-
 function getAppLanguage(defaultLanguage) {
-  return getLocale$1 ?
-  getLocale$1() :
-  defaultLanguage;
+  return getLocale$1 ? getLocale$1() : defaultLanguage;
 }
-
 function getHostName(result) {
   var _platform = 'WeChat';
   var _hostName = result.hostName || _platform; // mp-jd
@@ -841,34 +800,31 @@ function getHostName(result) {
       _hostName = result.host.env;
     }
   }
-
   return _hostName;
 }
-
 var getSystemInfo = {
   returnValue: function returnValue(result) {
     useDeviceId(result);
     addSafeAreaInsets(result);
     populateParameters(result);
-  } };
-
-
+  }
+};
 var showActionSheet = {
   args: function args(fromArgs) {
-    if (typeof fromArgs === 'object') {
+    if ((0, _typeof2.default)(fromArgs) === 'object') {
       fromArgs.alertText = fromArgs.title;
     }
-  } };
-
-
+  }
+};
 var getAppBaseInfo = {
-  returnValue: function returnValue(result) {var _result =
-    result,version = _result.version,language = _result.language,SDKVersion = _result.SDKVersion,theme = _result.theme;
-
+  returnValue: function returnValue(result) {
+    var _result = result,
+      version = _result.version,
+      language = _result.language,
+      SDKVersion = _result.SDKVersion,
+      theme = _result.theme;
     var _hostName = getHostName(result);
-
     var hostLanguage = language.replace('_', '-');
-
     result = sortObject(Object.assign(result, {
       appId: "__UNI__D87F129",
       appName: "covid-control",
@@ -879,49 +835,45 @@ var getAppBaseInfo = {
       hostLanguage: hostLanguage,
       hostName: _hostName,
       hostSDKVersion: SDKVersion,
-      hostTheme: theme }));
-
-  } };
-
-
+      hostTheme: theme
+    }));
+  }
+};
 var getDeviceInfo = {
-  returnValue: function returnValue(result) {var _result2 =
-    result,brand = _result2.brand,model = _result2.model;
+  returnValue: function returnValue(result) {
+    var _result2 = result,
+      brand = _result2.brand,
+      model = _result2.model;
     var deviceType = getGetDeviceType(result, model);
     var deviceBrand = getDeviceBrand(brand);
     useDeviceId(result);
-
     result = sortObject(Object.assign(result, {
       deviceType: deviceType,
       deviceBrand: deviceBrand,
-      deviceModel: model }));
-
-  } };
-
-
+      deviceModel: model
+    }));
+  }
+};
 var getWindowInfo = {
   returnValue: function returnValue(result) {
     addSafeAreaInsets(result);
-
     result = sortObject(Object.assign(result, {
       windowTop: 0,
-      windowBottom: 0 }));
-
-  } };
-
-
+      windowBottom: 0
+    }));
+  }
+};
 var getAppAuthorizeSetting = {
-  returnValue: function returnValue(result) {var
-    locationReducedAccuracy = result.locationReducedAccuracy;
-
+  returnValue: function returnValue(result) {
+    var locationReducedAccuracy = result.locationReducedAccuracy;
     result.locationAccuracy = 'unsupported';
     if (locationReducedAccuracy === true) {
       result.locationAccuracy = 'reduced';
     } else if (locationReducedAccuracy === false) {
       result.locationAccuracy = 'full';
     }
-  } };
-
+  }
+};
 
 // import navigateTo from 'uni-helpers/navigate-to'
 
@@ -935,26 +887,22 @@ var protocols = {
   getAppBaseInfo: getAppBaseInfo,
   getDeviceInfo: getDeviceInfo,
   getWindowInfo: getWindowInfo,
-  getAppAuthorizeSetting: getAppAuthorizeSetting };
-
-var todos = [
-'vibrate',
-'preloadPage',
-'unPreloadPage',
-'loadSubPackage'];
-
+  getAppAuthorizeSetting: getAppAuthorizeSetting
+};
+var todos = ['vibrate', 'preloadPage', 'unPreloadPage', 'loadSubPackage'];
 var canIUses = [];
-
 var CALLBACKS = ['success', 'fail', 'cancel', 'complete'];
-
 function processCallback(methodName, method, returnValue) {
   return function (res) {
     return method(processReturnValue(methodName, res, returnValue));
   };
 }
-
-function processArgs(methodName, fromArgs) {var argsOption = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var returnValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};var keepFromArgs = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-  if (isPlainObject(fromArgs)) {// 一般 api 的参数解析
+function processArgs(methodName, fromArgs) {
+  var argsOption = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var returnValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var keepFromArgs = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+  if (isPlainObject(fromArgs)) {
+    // 一般 api 的参数解析
     var toArgs = keepFromArgs === true ? fromArgs : {}; // returnValue 为 false 时，说明是格式化返回值，直接在返回值对象上修改赋值
     if (isFn(argsOption)) {
       argsOption = argsOption(fromArgs, toArgs) || {};
@@ -965,11 +913,14 @@ function processArgs(methodName, fromArgs) {var argsOption = arguments.length > 
         if (isFn(keyOption)) {
           keyOption = keyOption(fromArgs[key], fromArgs, toArgs);
         }
-        if (!keyOption) {// 不支持的参数
+        if (!keyOption) {
+          // 不支持的参数
           console.warn("The '".concat(methodName, "' method of platform '\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F' does not support option '").concat(key, "'"));
-        } else if (isStr(keyOption)) {// 重写参数 key
+        } else if (isStr(keyOption)) {
+          // 重写参数 key
           toArgs[keyOption] = fromArgs[key];
-        } else if (isPlainObject(keyOption)) {// {name:newName,value:value}可重新指定参数 key:value
+        } else if (isPlainObject(keyOption)) {
+          // {name:newName,value:value}可重新指定参数 key:value
           toArgs[keyOption.name ? keyOption.name : key] = keyOption.value;
         }
       } else if (CALLBACKS.indexOf(key) !== -1) {
@@ -988,30 +939,30 @@ function processArgs(methodName, fromArgs) {var argsOption = arguments.length > 
   }
   return fromArgs;
 }
-
-function processReturnValue(methodName, res, returnValue) {var keepReturnValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  if (isFn(protocols.returnValue)) {// 处理通用 returnValue
+function processReturnValue(methodName, res, returnValue) {
+  var keepReturnValue = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  if (isFn(protocols.returnValue)) {
+    // 处理通用 returnValue
     res = protocols.returnValue(methodName, res);
   }
   return processArgs(methodName, res, returnValue, {}, keepReturnValue);
 }
-
 function wrapper(methodName, method) {
   if (hasOwn(protocols, methodName)) {
     var protocol = protocols[methodName];
-    if (!protocol) {// 暂不支持的 api
+    if (!protocol) {
+      // 暂不支持的 api
       return function () {
         console.error("Platform '\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F' does not support '".concat(methodName, "'."));
       };
     }
-    return function (arg1, arg2) {// 目前 api 最多两个参数
+    return function (arg1, arg2) {
+      // 目前 api 最多两个参数
       var options = protocol;
       if (isFn(protocol)) {
         options = protocol(arg1);
       }
-
       arg1 = processArgs(methodName, arg1, options.args, options.returnValue);
-
       var args = [arg1];
       if (typeof arg2 !== 'undefined') {
         args.push(arg2);
@@ -1022,7 +973,8 @@ function wrapper(methodName, method) {
         methodName = options.name;
       }
       var returnValue = wx[methodName].apply(wx, args);
-      if (isSyncApi(methodName)) {// 同步 api
+      if (isSyncApi(methodName)) {
+        // 同步 api
         return processReturnValue(methodName, returnValue, options.returnValue, isContextApi(methodName));
       }
       return returnValue;
@@ -1030,70 +982,53 @@ function wrapper(methodName, method) {
   }
   return method;
 }
-
 var todoApis = Object.create(null);
-
-var TODOS = [
-'onTabBarMidButtonTap',
-'subscribePush',
-'unsubscribePush',
-'onPush',
-'offPush',
-'share'];
-
-
+var TODOS = ['onTabBarMidButtonTap', 'subscribePush', 'unsubscribePush', 'onPush', 'offPush', 'share'];
 function createTodoApi(name) {
-  return function todoApi(_ref)
-
-
-  {var fail = _ref.fail,complete = _ref.complete;
+  return function todoApi(_ref) {
+    var fail = _ref.fail,
+      complete = _ref.complete;
     var res = {
-      errMsg: "".concat(name, ":fail method '").concat(name, "' not supported") };
-
+      errMsg: "".concat(name, ":fail method '").concat(name, "' not supported")
+    };
     isFn(fail) && fail(res);
     isFn(complete) && complete(res);
   };
 }
-
 TODOS.forEach(function (name) {
   todoApis[name] = createTodoApi(name);
 });
-
 var providers = {
   oauth: ['weixin'],
   share: ['weixin'],
   payment: ['wxpay'],
-  push: ['weixin'] };
-
-
-function getProvider(_ref2)
-
-
-
-
-{var service = _ref2.service,success = _ref2.success,fail = _ref2.fail,complete = _ref2.complete;
+  push: ['weixin']
+};
+function getProvider(_ref2) {
+  var service = _ref2.service,
+    success = _ref2.success,
+    fail = _ref2.fail,
+    complete = _ref2.complete;
   var res = false;
   if (providers[service]) {
     res = {
       errMsg: 'getProvider:ok',
       service: service,
-      provider: providers[service] };
-
+      provider: providers[service]
+    };
     isFn(success) && success(res);
   } else {
     res = {
-      errMsg: 'getProvider:fail service not found' };
-
+      errMsg: 'getProvider:fail service not found'
+    };
     isFn(fail) && fail(res);
   }
   isFn(complete) && complete(res);
 }
-
 var extraApi = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  getProvider: getProvider });
-
-
+  getProvider: getProvider
+});
 var getEmitter = function () {
   var Emitter;
   return function getUniEmitter() {
@@ -1103,11 +1038,9 @@ var getEmitter = function () {
     return Emitter;
   };
 }();
-
 function apply(ctx, method, args) {
   return ctx[method].apply(ctx, args);
 }
-
 function $on() {
   return apply(getEmitter(), '$on', Array.prototype.slice.call(arguments));
 }
@@ -1120,21 +1053,20 @@ function $once() {
 function $emit() {
   return apply(getEmitter(), '$emit', Array.prototype.slice.call(arguments));
 }
-
 var eventApi = /*#__PURE__*/Object.freeze({
   __proto__: null,
   $on: $on,
   $off: $off,
   $once: $once,
-  $emit: $emit });
-
+  $emit: $emit
+});
 
 /**
-                    * 框架内 try-catch
-                    */
+ * 框架内 try-catch
+ */
 /**
-                        * 开发者 try-catch
-                        */
+ * 开发者 try-catch
+ */
 function tryCatch(fn) {
   return function () {
     try {
@@ -1145,7 +1077,6 @@ function tryCatch(fn) {
     }
   };
 }
-
 function getApiCallbacks(params) {
   var apiCallbacks = {};
   for (var name in params) {
@@ -1157,21 +1088,16 @@ function getApiCallbacks(params) {
   }
   return apiCallbacks;
 }
-
 var cid;
 var cidErrMsg;
 var enabled;
-
 function normalizePushMessage(message) {
   try {
     return JSON.parse(message);
   } catch (e) {}
   return message;
 }
-
-function invokePushCallback(
-args)
-{
+function invokePushCallback(args) {
   if (args.type === 'enabled') {
     enabled = true;
   } else if (args.type === 'clientId') {
@@ -1181,8 +1107,8 @@ args)
   } else if (args.type === 'pushMsg') {
     var message = {
       type: 'receive',
-      data: normalizePushMessage(args.message) };
-
+      data: normalizePushMessage(args.message)
+    };
     for (var i = 0; i < onPushMessageCallbacks.length; i++) {
       var callback = onPushMessageCallbacks[i];
       callback(message);
@@ -1195,34 +1121,29 @@ args)
     onPushMessageCallbacks.forEach(function (callback) {
       callback({
         type: 'click',
-        data: normalizePushMessage(args.message) });
-
+        data: normalizePushMessage(args.message)
+      });
     });
   }
 }
-
 var getPushCidCallbacks = [];
-
 function invokeGetPushCidCallbacks(cid, errMsg) {
   getPushCidCallbacks.forEach(function (callback) {
     callback(cid, errMsg);
   });
   getPushCidCallbacks.length = 0;
 }
-
 function getPushClientId(args) {
   if (!isPlainObject(args)) {
     args = {};
-  }var _getApiCallbacks =
-
-
-
-
-  getApiCallbacks(args),success = _getApiCallbacks.success,fail = _getApiCallbacks.fail,complete = _getApiCallbacks.complete;
+  }
+  var _getApiCallbacks = getApiCallbacks(args),
+    success = _getApiCallbacks.success,
+    fail = _getApiCallbacks.fail,
+    complete = _getApiCallbacks.complete;
   var hasSuccess = isFn(success);
   var hasFail = isFn(fail);
   var hasComplete = isFn(complete);
-
   Promise.resolve().then(function () {
     if (typeof enabled === 'undefined') {
       enabled = false;
@@ -1234,13 +1155,13 @@ function getPushClientId(args) {
       if (cid) {
         res = {
           errMsg: 'getPushClientId:ok',
-          cid: cid };
-
+          cid: cid
+        };
         hasSuccess && success(res);
       } else {
         res = {
-          errMsg: 'getPushClientId:fail' + (errMsg ? ' ' + errMsg : '') };
-
+          errMsg: 'getPushClientId:fail' + (errMsg ? ' ' + errMsg : '')
+        };
         hasFail && fail(res);
       }
       hasComplete && complete(res);
@@ -1250,7 +1171,6 @@ function getPushClientId(args) {
     }
   });
 }
-
 var onPushMessageCallbacks = [];
 // 不使用 defineOnApi 实现，是因为 defineOnApi 依赖 UniServiceJSBridge ，该对象目前在小程序上未提供，故简单实现
 var onPushMessage = function onPushMessage(fn) {
@@ -1258,7 +1178,6 @@ var onPushMessage = function onPushMessage(fn) {
     onPushMessageCallbacks.push(fn);
   }
 };
-
 var offPushMessage = function offPushMessage(fn) {
   if (!fn) {
     onPushMessageCallbacks.length = 0;
@@ -1269,27 +1188,143 @@ var offPushMessage = function offPushMessage(fn) {
     }
   }
 };
-
 var api = /*#__PURE__*/Object.freeze({
   __proto__: null,
   getPushClientId: getPushClientId,
   onPushMessage: onPushMessage,
   offPushMessage: offPushMessage,
-  invokePushCallback: invokePushCallback });
+  invokePushCallback: invokePushCallback
+});
+var mocks = ['__route__', '__wxExparserNodeId__', '__wxWebviewId__'];
+function findVmByVueId(vm, vuePid) {
+  var $children = vm.$children;
+  // 优先查找直属(反向查找:https://github.com/dcloudio/uni-app/issues/1200)
+  for (var i = $children.length - 1; i >= 0; i--) {
+    var childVm = $children[i];
+    if (childVm.$scope._$vueId === vuePid) {
+      return childVm;
+    }
+  }
+  // 反向递归查找
+  var parentVm;
+  for (var _i = $children.length - 1; _i >= 0; _i--) {
+    parentVm = findVmByVueId($children[_i], vuePid);
+    if (parentVm) {
+      return parentVm;
+    }
+  }
+}
+function initBehavior(options) {
+  return Behavior(options);
+}
+function isPage() {
+  return !!this.route;
+}
+function initRelation(detail) {
+  this.triggerEvent('__l', detail);
+}
+function selectAllComponents(mpInstance, selector, $refs) {
+  var components = mpInstance.selectAllComponents(selector) || [];
+  components.forEach(function (component) {
+    var ref = component.dataset.ref;
+    $refs[ref] = component.$vm || toSkip(component);
+    {
+      if (component.dataset.vueGeneric === 'scoped') {
+        component.selectAllComponents('.scoped-ref').forEach(function (scopedComponent) {
+          selectAllComponents(scopedComponent, selector, $refs);
+        });
+      }
+    }
+  });
+}
+function syncRefs(refs, newRefs) {
+  var oldKeys = (0, _construct2.default)(Set, (0, _toConsumableArray2.default)(Object.keys(refs)));
+  var newKeys = Object.keys(newRefs);
+  newKeys.forEach(function (key) {
+    var oldValue = refs[key];
+    var newValue = newRefs[key];
+    if (Array.isArray(oldValue) && Array.isArray(newValue) && oldValue.length === newValue.length && newValue.every(function (value) {
+      return oldValue.includes(value);
+    })) {
+      return;
+    }
+    refs[key] = newValue;
+    oldKeys.delete(key);
+  });
+  oldKeys.forEach(function (key) {
+    delete refs[key];
+  });
+  return refs;
+}
+function initRefs(vm) {
+  var mpInstance = vm.$scope;
+  var refs = {};
+  Object.defineProperty(vm, '$refs', {
+    get: function get() {
+      var $refs = {};
+      selectAllComponents(mpInstance, '.vue-ref', $refs);
+      // TODO 暂不考虑 for 中的 scoped
+      var forComponents = mpInstance.selectAllComponents('.vue-ref-in-for') || [];
+      forComponents.forEach(function (component) {
+        var ref = component.dataset.ref;
+        if (!$refs[ref]) {
+          $refs[ref] = [];
+        }
+        $refs[ref].push(component.$vm || toSkip(component));
+      });
+      return syncRefs(refs, $refs);
+    }
+  });
+}
+function handleLink(event) {
+  var _ref3 = event.detail || event.value,
+    vuePid = _ref3.vuePid,
+    vueOptions = _ref3.vueOptions; // detail 是微信,value 是百度(dipatch)
 
-
+  var parentVm;
+  if (vuePid) {
+    parentVm = findVmByVueId(this.$vm, vuePid);
+  }
+  if (!parentVm) {
+    parentVm = this.$vm;
+  }
+  vueOptions.parent = parentVm;
+}
+function markMPComponent(component) {
+  // 在 Vue 中标记为小程序组件
+  var IS_MP = '__v_isMPComponent';
+  Object.defineProperty(component, IS_MP, {
+    configurable: true,
+    enumerable: false,
+    value: true
+  });
+  return component;
+}
+function toSkip(obj) {
+  var OB = '__ob__';
+  var SKIP = '__v_skip';
+  if (isObject(obj) && Object.isExtensible(obj)) {
+    // 避免被 @vue/composition-api 观测
+    Object.defineProperty(obj, OB, {
+      configurable: true,
+      enumerable: false,
+      value: (0, _defineProperty2.default)({}, SKIP, true)
+    });
+  }
+  return obj;
+}
 var MPPage = Page;
 var MPComponent = Component;
-
 var customizeRE = /:/g;
-
 var customize = cached(function (str) {
   return camelize(str.replace(customizeRE, '-'));
 });
-
 function initTriggerEvent(mpInstance) {
   var oldTriggerEvent = mpInstance.triggerEvent;
-  var newTriggerEvent = function newTriggerEvent(event) {for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {args[_key3 - 1] = arguments[_key3];}
+  var newTriggerEvent = function newTriggerEvent(event) {
+    for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      args[_key3 - 1] = arguments[_key3];
+    }
     // 事件名统一转驼峰格式，仅处理：当前组件为 vue 组件、当前组件为 vue 组件子组件
     if (this.$vm || this.dataset && this.dataset.comType) {
       event = customize(event);
@@ -1309,45 +1344,34 @@ function initTriggerEvent(mpInstance) {
     mpInstance._triggerEvent = newTriggerEvent;
   }
 }
-
 function initHook(name, options, isComponent) {
   var oldHook = options[name];
-  if (!oldHook) {
-    options[name] = function () {
-      initTriggerEvent(this);
-    };
-  } else {
-    options[name] = function () {
-      initTriggerEvent(this);for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {args[_key4] = arguments[_key4];}
+  options[name] = function () {
+    markMPComponent(this);
+    initTriggerEvent(this);
+    if (oldHook) {
+      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        args[_key4] = arguments[_key4];
+      }
       return oldHook.apply(this, args);
-    };
-  }
+    }
+  };
 }
 if (!MPPage.__$wrappered) {
   MPPage.__$wrappered = true;
-  Page = function Page() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  Page = function Page() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     initHook('onLoad', options);
     return MPPage(options);
   };
   Page.after = MPPage.after;
-
-  Component = function Component() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  Component = function Component() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     initHook('created', options);
     return MPComponent(options);
   };
 }
-
-var PAGE_EVENT_HOOKS = [
-'onPullDownRefresh',
-'onReachBottom',
-'onAddToFavorites',
-'onShareTimeline',
-'onShareAppMessage',
-'onPageScroll',
-'onResize',
-'onTabItemTap'];
-
-
+var PAGE_EVENT_HOOKS = ['onPullDownRefresh', 'onReachBottom', 'onAddToFavorites', 'onShareTimeline', 'onShareAppMessage', 'onPageScroll', 'onResize', 'onTabItemTap'];
 function initMocks(vm, mocks) {
   var mpInstance = vm.$mp[vm.mpType];
   mocks.forEach(function (mock) {
@@ -1356,39 +1380,33 @@ function initMocks(vm, mocks) {
     }
   });
 }
-
 function hasHook(hook, vueOptions) {
   if (!vueOptions) {
     return true;
   }
-
   if (_vue.default.options && Array.isArray(_vue.default.options[hook])) {
     return true;
   }
-
   vueOptions = vueOptions.default || vueOptions;
-
   if (isFn(vueOptions)) {
     if (isFn(vueOptions.extendOptions[hook])) {
       return true;
     }
-    if (vueOptions.super &&
-    vueOptions.super.options &&
-    Array.isArray(vueOptions.super.options[hook])) {
+    if (vueOptions.super && vueOptions.super.options && Array.isArray(vueOptions.super.options[hook])) {
       return true;
     }
     return false;
   }
-
-  if (isFn(vueOptions[hook])) {
+  if (isFn(vueOptions[hook]) || Array.isArray(vueOptions[hook])) {
     return true;
   }
   var mixins = vueOptions.mixins;
   if (Array.isArray(mixins)) {
-    return !!mixins.find(function (mixin) {return hasHook(hook, mixin);});
+    return !!mixins.find(function (mixin) {
+      return hasHook(hook, mixin);
+    });
   }
 }
-
 function initHooks(mpOptions, hooks, vueOptions) {
   hooks.forEach(function (hook) {
     if (hasHook(hook, vueOptions)) {
@@ -1398,12 +1416,14 @@ function initHooks(mpOptions, hooks, vueOptions) {
     }
   });
 }
-
-function initUnknownHooks(mpOptions, vueOptions) {var excludes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-  findHooks(vueOptions).forEach(function (hook) {return initHook$1(mpOptions, hook, excludes);});
+function initUnknownHooks(mpOptions, vueOptions) {
+  var excludes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+  findHooks(vueOptions).forEach(function (hook) {
+    return initHook$1(mpOptions, hook, excludes);
+  });
 }
-
-function findHooks(vueOptions) {var hooks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+function findHooks(vueOptions) {
+  var hooks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   if (vueOptions) {
     Object.keys(vueOptions).forEach(function (name) {
       if (name.indexOf('on') === 0 && isFn(vueOptions[name])) {
@@ -1413,7 +1433,6 @@ function findHooks(vueOptions) {var hooks = arguments.length > 1 && arguments[1]
   }
   return hooks;
 }
-
 function initHook$1(mpOptions, hook, excludes) {
   if (excludes.indexOf(hook) === -1 && !hasOwn(mpOptions, hook)) {
     mpOptions[hook] = function (args) {
@@ -1421,7 +1440,6 @@ function initHook$1(mpOptions, hook, excludes) {
     };
   }
 }
-
 function initVueComponent(Vue, vueOptions) {
   vueOptions = vueOptions.default || vueOptions;
   var VueComponent;
@@ -1433,7 +1451,6 @@ function initVueComponent(Vue, vueOptions) {
   vueOptions = VueComponent.options;
   return [VueComponent, vueOptions];
 }
-
 function initSlots(vm, vueSlots) {
   if (Array.isArray(vueSlots) && vueSlots.length) {
     var $slots = Object.create(null);
@@ -1443,11 +1460,9 @@ function initSlots(vm, vueSlots) {
     vm.$scopedSlots = vm.$slots = $slots;
   }
 }
-
 function initVueIds(vueIds, mpInstance) {
   vueIds = (vueIds || '').split(',');
   var len = vueIds.length;
-
   if (len === 1) {
     mpInstance._$vueId = vueIds[0];
   } else if (len === 2) {
@@ -1455,16 +1470,14 @@ function initVueIds(vueIds, mpInstance) {
     mpInstance._$vuePid = vueIds[1];
   }
 }
-
 function initData(vueOptions, context) {
   var data = vueOptions.data || {};
   var methods = vueOptions.methods || {};
-
   if (typeof data === 'function') {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1474,22 +1487,17 @@ function initData(vueOptions, context) {
       data = JSON.parse(JSON.stringify(data));
     } catch (e) {}
   }
-
   if (!isPlainObject(data)) {
     data = {};
   }
-
   Object.keys(methods).forEach(function (methodName) {
     if (context.__lifecycle_hooks__.indexOf(methodName) === -1 && !hasOwn(data, methodName)) {
       data[methodName] = methods[methodName];
     }
   });
-
   return data;
 }
-
 var PROP_TYPES = [String, Number, Boolean, Object, Array, null];
-
 function createObserver(name) {
   return function observer(newVal, oldVal) {
     if (this.$vm) {
@@ -1502,13 +1510,10 @@ function initBehaviors(vueOptions, initBehavior) {
   var vueBehaviors = vueOptions.behaviors;
   var vueExtends = vueOptions.extends;
   var vueMixins = vueOptions.mixins;
-
   var vueProps = vueOptions.props;
-
   if (!vueProps) {
     vueOptions.props = vueProps = [];
   }
-
   var behaviors = [];
   if (Array.isArray(vueBehaviors)) {
     vueBehaviors.forEach(function (behavior) {
@@ -1520,37 +1525,32 @@ function initBehaviors(vueOptions, initBehavior) {
         } else {
           vueProps.name = {
             type: String,
-            default: '' };
-
+            default: ''
+          };
           vueProps.value = {
             type: [String, Number, Boolean, Array, Object, Date],
-            default: '' };
-
+            default: ''
+          };
         }
       }
     });
   }
   if (isPlainObject(vueExtends) && vueExtends.props) {
-    behaviors.push(
-    initBehavior({
-      properties: initProperties(vueExtends.props, true) }));
-
-
+    behaviors.push(initBehavior({
+      properties: initProperties(vueExtends.props, true)
+    }));
   }
   if (Array.isArray(vueMixins)) {
     vueMixins.forEach(function (vueMixin) {
       if (isPlainObject(vueMixin) && vueMixin.props) {
-        behaviors.push(
-        initBehavior({
-          properties: initProperties(vueMixin.props, true) }));
-
-
+        behaviors.push(initBehavior({
+          properties: initProperties(vueMixin.props, true)
+        }));
       }
     });
   }
   return behaviors;
 }
-
 function parsePropType(key, type, defaultValue, file) {
   // [String]=>String
   if (Array.isArray(type) && type.length === 1) {
@@ -1558,32 +1558,35 @@ function parsePropType(key, type, defaultValue, file) {
   }
   return type;
 }
-
-function initProperties(props) {var isBehavior = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;var file = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';var options = arguments.length > 3 ? arguments[3] : undefined;
+function initProperties(props) {
+  var isBehavior = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var file = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  var options = arguments.length > 3 ? arguments[3] : undefined;
   var properties = {};
   if (!isBehavior) {
     properties.vueId = {
       type: String,
-      value: '' };
-
+      value: ''
+    };
     {
       if (options.virtualHost) {
         properties.virtualHostStyle = {
           type: null,
-          value: '' };
-
+          value: ''
+        };
         properties.virtualHostClass = {
           type: null,
-          value: '' };
-
+          value: ''
+        };
       }
     }
     // scopedSlotsCompiler auto
     properties.scopedSlotsCompiler = {
       type: String,
-      value: '' };
-
-    properties.vueSlots = { // 小程序不能直接定义 $slots 的 props，所以通过 vueSlots 转换到 $slots
+      value: ''
+    };
+    properties.vueSlots = {
+      // 小程序不能直接定义 $slots 的 props，所以通过 vueSlots 转换到 $slots
       type: null,
       value: [],
       observer: function observer(newVal, oldVal) {
@@ -1592,82 +1595,76 @@ function initProperties(props) {var isBehavior = arguments.length > 1 && argumen
           $slots[slotName] = true;
         });
         this.setData({
-          $slots: $slots });
-
-      } };
-
+          $slots: $slots
+        });
+      }
+    };
   }
-  if (Array.isArray(props)) {// ['title']
+  if (Array.isArray(props)) {
+    // ['title']
     props.forEach(function (key) {
       properties[key] = {
         type: null,
-        observer: createObserver(key) };
-
+        observer: createObserver(key)
+      };
     });
-  } else if (isPlainObject(props)) {// {title:{type:String,default:''},content:String}
+  } else if (isPlainObject(props)) {
+    // {title:{type:String,default:''},content:String}
     Object.keys(props).forEach(function (key) {
       var opts = props[key];
-      if (isPlainObject(opts)) {// title:{type:String,default:''}
+      if (isPlainObject(opts)) {
+        // title:{type:String,default:''}
         var value = opts.default;
         if (isFn(value)) {
           value = value();
         }
-
         opts.type = parsePropType(key, opts.type);
-
         properties[key] = {
           type: PROP_TYPES.indexOf(opts.type) !== -1 ? opts.type : null,
           value: value,
-          observer: createObserver(key) };
-
-      } else {// content:String
+          observer: createObserver(key)
+        };
+      } else {
+        // content:String
         var type = parsePropType(key, opts);
         properties[key] = {
           type: PROP_TYPES.indexOf(type) !== -1 ? type : null,
-          observer: createObserver(key) };
-
+          observer: createObserver(key)
+        };
       }
     });
   }
   return properties;
 }
-
 function wrapper$1(event) {
   // TODO 又得兼容 mpvue 的 mp 对象
   try {
     event.mp = JSON.parse(JSON.stringify(event));
   } catch (e) {}
-
   event.stopPropagation = noop;
   event.preventDefault = noop;
-
   event.target = event.target || {};
-
   if (!hasOwn(event, 'detail')) {
     event.detail = {};
   }
-
   if (hasOwn(event, 'markerId')) {
-    event.detail = typeof event.detail === 'object' ? event.detail : {};
+    event.detail = (0, _typeof2.default)(event.detail) === 'object' ? event.detail : {};
     event.detail.markerId = event.markerId;
   }
-
   if (isPlainObject(event.detail)) {
     event.target = Object.assign({}, event.target, event.detail);
   }
-
   return event;
 }
-
 function getExtraValue(vm, dataPathsArray) {
   var context = vm;
   dataPathsArray.forEach(function (dataPathArray) {
     var dataPath = dataPathArray[0];
     var value = dataPathArray[2];
-    if (dataPath || typeof value !== 'undefined') {// ['','',index,'disable']
+    if (dataPath || typeof value !== 'undefined') {
+      // ['','',index,'disable']
       var propPath = dataPathArray[1];
       var valuePath = dataPathArray[3];
-
       var vFor;
       if (Number.isInteger(dataPath)) {
         vFor = dataPath;
@@ -1680,7 +1677,6 @@ function getExtraValue(vm, dataPathsArray) {
           vFor = vm.__get_value(dataPath, context);
         }
       }
-
       if (Number.isInteger(vFor)) {
         context = value;
       } else if (!propPath) {
@@ -1698,7 +1694,6 @@ function getExtraValue(vm, dataPathsArray) {
           console.error('v-for 暂不支持循环数据：', vFor);
         }
       }
-
       if (valuePath) {
         context = vm.__get_value(valuePath, context);
       }
@@ -1706,32 +1701,33 @@ function getExtraValue(vm, dataPathsArray) {
   });
   return context;
 }
-
 function processEventExtra(vm, extra, event, __args__) {
   var extraObj = {};
-
   if (Array.isArray(extra) && extra.length) {
     /**
-                                              *[
-                                              *    ['data.items', 'data.id', item.data.id],
-                                              *    ['metas', 'id', meta.id]
-                                              *],
-                                              *[
-                                              *    ['data.items', 'data.id', item.data.id],
-                                              *    ['metas', 'id', meta.id]
-                                              *],
-                                              *'test'
-                                              */
+     *[
+     *    ['data.items', 'data.id', item.data.id],
+     *    ['metas', 'id', meta.id]
+     *],
+     *[
+     *    ['data.items', 'data.id', item.data.id],
+     *    ['metas', 'id', meta.id]
+     *],
+     *'test'
+     */
     extra.forEach(function (dataPath, index) {
       if (typeof dataPath === 'string') {
-        if (!dataPath) {// model,prop.sync
+        if (!dataPath) {
+          // model,prop.sync
           extraObj['$' + index] = vm;
         } else {
-          if (dataPath === '$event') {// $event
+          if (dataPath === '$event') {
+            // $event
             extraObj['$' + index] = event;
           } else if (dataPath === 'arguments') {
             extraObj['$' + index] = event.detail ? event.detail.__args__ || __args__ : __args__;
-          } else if (dataPath.indexOf('$event.') === 0) {// $event.target.value
+          } else if (dataPath.indexOf('$event.') === 0) {
+            // $event.target.value
             extraObj['$' + index] = vm.__get_value(dataPath.replace('$event.', ''), event);
           } else {
             extraObj['$' + index] = vm.__get_value(dataPath);
@@ -1742,10 +1738,8 @@ function processEventExtra(vm, extra, event, __args__) {
       }
     });
   }
-
   return extraObj;
 }
-
 function getObjByArray(arr) {
   var obj = {};
   for (var i = 1; i < arr.length; i++) {
@@ -1754,38 +1748,38 @@ function getObjByArray(arr) {
   }
   return obj;
 }
-
-function processEventArgs(vm, event) {var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];var extra = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];var isCustom = arguments.length > 4 ? arguments[4] : undefined;var methodName = arguments.length > 5 ? arguments[5] : undefined;
+function processEventArgs(vm, event) {
+  var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+  var extra = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+  var isCustom = arguments.length > 4 ? arguments[4] : undefined;
+  var methodName = arguments.length > 5 ? arguments[5] : undefined;
   var isCustomMPEvent = false; // wxcomponent 组件，传递原始 event 对象
 
   // fixed 用户直接触发 mpInstance.triggerEvent
-  var __args__ = isPlainObject(event.detail) ?
-  event.detail.__args__ || [event.detail] :
-  [event.detail];
-
-  if (isCustom) {// 自定义事件
-    isCustomMPEvent = event.currentTarget &&
-    event.currentTarget.dataset &&
-    event.currentTarget.dataset.comType === 'wx';
-    if (!args.length) {// 无参数，直接传入 event 或 detail 数组
+  var __args__ = isPlainObject(event.detail) ? event.detail.__args__ || [event.detail] : [event.detail];
+  if (isCustom) {
+    // 自定义事件
+    isCustomMPEvent = event.currentTarget && event.currentTarget.dataset && event.currentTarget.dataset.comType === 'wx';
+    if (!args.length) {
+      // 无参数，直接传入 event 或 detail 数组
       if (isCustomMPEvent) {
         return [event];
       }
       return __args__;
     }
   }
-
   var extraObj = processEventExtra(vm, extra, event, __args__);
-
   var ret = [];
   args.forEach(function (arg) {
     if (arg === '$event') {
-      if (methodName === '__set_model' && !isCustom) {// input v-model value
+      if (methodName === '__set_model' && !isCustom) {
+        // input v-model value
         ret.push(event.target.value);
       } else {
         if (isCustom && !isCustomMPEvent) {
           ret.push(__args__[0]);
-        } else {// wxcomponent 组件或内置组件
+        } else {
+          // wxcomponent 组件或内置组件
           ret.push(event);
         }
       }
@@ -1799,24 +1793,13 @@ function processEventArgs(vm, event) {var args = arguments.length > 2 && argumen
       }
     }
   });
-
   return ret;
 }
-
 var ONCE = '~';
 var CUSTOM = '^';
-
 function isMatchEventType(eventType, optType) {
-  return eventType === optType ||
-
-  optType === 'regionchange' && (
-
-  eventType === 'begin' ||
-  eventType === 'end');
-
-
+  return eventType === optType || optType === 'regionchange' && (eventType === 'begin' || eventType === 'end');
 }
-
 function getContextVm(vm) {
   var $parent = vm.$parent;
   // 父组件是 scoped slots 或者其他自定义组件时继续查找
@@ -1825,8 +1808,8 @@ function getContextVm(vm) {
   }
   return $parent && $parent.$parent;
 }
-
-function handleEvent(event) {var _this2 = this;
+function handleEvent(event) {
+  var _this2 = this;
   event = wrapper$1(event);
 
   // [['tap',[['handle',[1,2,a]],['handle1',[1,2,a]]]]]
@@ -1841,36 +1824,25 @@ function handleEvent(event) {var _this2 = this;
 
   // [['handle',[1,2,a]],['handle1',[1,2,a]]]
   var eventType = event.type;
-
   var ret = [];
-
   eventOpts.forEach(function (eventOpt) {
     var type = eventOpt[0];
     var eventsArray = eventOpt[1];
-
     var isCustom = type.charAt(0) === CUSTOM;
     type = isCustom ? type.slice(1) : type;
     var isOnce = type.charAt(0) === ONCE;
     type = isOnce ? type.slice(1) : type;
-
     if (eventsArray && isMatchEventType(eventType, type)) {
       eventsArray.forEach(function (eventArray) {
         var methodName = eventArray[0];
         if (methodName) {
           var handlerCtx = _this2.$vm;
-          if (handlerCtx.$options.generic) {// mp-weixin,mp-toutiao 抽象节点模拟 scoped slots
+          if (handlerCtx.$options.generic) {
+            // mp-weixin,mp-toutiao 抽象节点模拟 scoped slots
             handlerCtx = getContextVm(handlerCtx) || handlerCtx;
           }
           if (methodName === '$emit') {
-            handlerCtx.$emit.apply(handlerCtx,
-            processEventArgs(
-            _this2.$vm,
-            event,
-            eventArray[1],
-            eventArray[2],
-            isCustom,
-            methodName));
-
+            handlerCtx.$emit.apply(handlerCtx, processEventArgs(_this2.$vm, event, eventArray[1], eventArray[2], isCustom, methodName));
             return;
           }
           var handler = handlerCtx[methodName];
@@ -1885,14 +1857,7 @@ function handleEvent(event) {var _this2 = this;
             }
             handler.once = true;
           }
-          var params = processEventArgs(
-          _this2.$vm,
-          event,
-          eventArray[1],
-          eventArray[2],
-          isCustom,
-          methodName);
-
+          var params = processEventArgs(_this2.$vm, event, eventArray[1], eventArray[2], isCustom, methodName);
           params = Array.isArray(params) ? params : [];
           // 参数尾部增加原始事件对象用于复杂表达式内获取额外数据
           if (/=\s*\S+\.eventParams\s*\|\|\s*\S+\[['"]event-params['"]\]/.test(handler.toString())) {
@@ -1904,20 +1869,12 @@ function handleEvent(event) {var _this2 = this;
       });
     }
   });
-
-  if (
-  eventType === 'input' &&
-  ret.length === 1 &&
-  typeof ret[0] !== 'undefined')
-  {
+  if (eventType === 'input' && ret.length === 1 && typeof ret[0] !== 'undefined') {
     return ret[0];
   }
 }
-
 var eventChannels = {};
-
 var eventChannelStack = [];
-
 function getEventChannel(id) {
   if (id) {
     var eventChannel = eventChannels[id];
@@ -1926,16 +1883,7 @@ function getEventChannel(id) {
   }
   return eventChannelStack.shift();
 }
-
-var hooks = [
-'onShow',
-'onHide',
-'onError',
-'onPageNotFound',
-'onThemeChange',
-'onUnhandledRejection'];
-
-
+var hooks = ['onShow', 'onHide', 'onError', 'onPageNotFound', 'onThemeChange', 'onUnhandledRejection'];
 function initEventChannel() {
   _vue.default.prototype.getOpenerEventChannel = function () {
     // 微信小程序使用自身getOpenerEventChannel
@@ -1952,11 +1900,9 @@ function initEventChannel() {
     return callHook.call(this, hook, args);
   };
 }
-
 function initScopedSlotsParams() {
   var center = {};
   var parents = {};
-
   _vue.default.prototype.$hasScopedSlotsParams = function (vueId) {
     var has = center[vueId];
     if (!has) {
@@ -1967,7 +1913,6 @@ function initScopedSlotsParams() {
     }
     return has;
   };
-
   _vue.default.prototype.$getScopedSlotsParams = function (vueId, name, key) {
     var data = center[vueId];
     if (data) {
@@ -1980,7 +1925,6 @@ function initScopedSlotsParams() {
       });
     }
   };
-
   _vue.default.prototype.$setScopedSlotsParams = function (name, value) {
     var vueIds = this.$options.propsData.vueId;
     if (vueIds) {
@@ -1992,7 +1936,6 @@ function initScopedSlotsParams() {
       }
     }
   };
-
   _vue.default.mixin({
     destroyed: function destroyed() {
       var propsData = this.$options.propsData;
@@ -2001,14 +1944,12 @@ function initScopedSlotsParams() {
         delete center[vueId];
         delete parents[vueId];
       }
-    } });
-
+    }
+  });
 }
-
-function parseBaseApp(vm, _ref3)
-
-
-{var mocks = _ref3.mocks,initRefs = _ref3.initRefs;
+function parseBaseApp(vm, _ref4) {
+  var mocks = _ref4.mocks,
+    initRefs = _ref4.initRefs;
   initEventChannel();
   {
     initScopedSlotsParams();
@@ -2017,27 +1958,21 @@ function parseBaseApp(vm, _ref3)
     _vue.default.prototype.$store = vm.$options.store;
   }
   uniIdMixin(_vue.default);
-
   _vue.default.prototype.mpHost = "mp-weixin";
-
   _vue.default.mixin({
     beforeCreate: function beforeCreate() {
       if (!this.$options.mpType) {
         return;
       }
-
       this.mpType = this.$options.mpType;
-
-      this.$mp = _defineProperty({
-        data: {} },
-      this.mpType, this.$options.mpInstance);
-
-
+      this.$mp = (0, _defineProperty2.default)({
+        data: {}
+      }, this.mpType, this.$options.mpInstance);
       this.$scope = this.$options.mpInstance;
-
       delete this.$options.mpType;
       delete this.$options.mpInstance;
-      if (this.mpType === 'page' && typeof getApp === 'function') {// hack vue-i18n
+      if (this.mpType === 'page' && typeof getApp === 'function') {
+        // hack vue-i18n
         var app = getApp();
         if (app.$vm && app.$vm.$i18n) {
           this._i18n = app.$vm.$i18n;
@@ -2047,36 +1982,32 @@ function parseBaseApp(vm, _ref3)
         initRefs(this);
         initMocks(this, mocks);
       }
-    } });
-
-
+    }
+  });
   var appOptions = {
     onLaunch: function onLaunch(args) {
-      if (this.$vm) {// 已经初始化过了，主要是为了百度，百度 onShow 在 onLaunch 之前
+      if (this.$vm) {
+        // 已经初始化过了，主要是为了百度，百度 onShow 在 onLaunch 之前
         return;
       }
       {
-        if (wx.canIUse && !wx.canIUse('nextTick')) {// 事实 上2.2.3 即可，简单使用 2.3.0 的 nextTick 判断
+        if (wx.canIUse && !wx.canIUse('nextTick')) {
+          // 事实 上2.2.3 即可，简单使用 2.3.0 的 nextTick 判断
           console.error('当前微信基础库版本过低，请将 微信开发者工具-详情-项目设置-调试基础库版本 更换为`2.3.0`以上');
         }
       }
-
       this.$vm = vm;
-
       this.$vm.$mp = {
-        app: this };
-
-
+        app: this
+      };
       this.$vm.$scope = this;
       // vm 上也挂载 globalData
       this.$vm.globalData = this.globalData;
-
       this.$vm._isMounted = true;
       this.$vm.__call_hook('mounted', args);
-
       this.$vm.__call_hook('onLaunch', args);
-    } };
-
+    }
+  };
 
   // 兼容旧版本 globalData
   appOptions.globalData = vm.$options.globalData || {};
@@ -2087,137 +2018,43 @@ function parseBaseApp(vm, _ref3)
       appOptions[name] = methods[name];
     });
   }
-
   initAppLocale(_vue.default, vm, normalizeLocale(wx.getSystemInfoSync().language) || LOCALE_EN);
-
   initHooks(appOptions, hooks);
   initUnknownHooks(appOptions, vm.$options);
-
   return appOptions;
 }
-
-var mocks = ['__route__', '__wxExparserNodeId__', '__wxWebviewId__'];
-
-function findVmByVueId(vm, vuePid) {
-  var $children = vm.$children;
-  // 优先查找直属(反向查找:https://github.com/dcloudio/uni-app/issues/1200)
-  for (var i = $children.length - 1; i >= 0; i--) {
-    var childVm = $children[i];
-    if (childVm.$scope._$vueId === vuePid) {
-      return childVm;
-    }
-  }
-  // 反向递归查找
-  var parentVm;
-  for (var _i = $children.length - 1; _i >= 0; _i--) {
-    parentVm = findVmByVueId($children[_i], vuePid);
-    if (parentVm) {
-      return parentVm;
-    }
-  }
-}
-
-function initBehavior(options) {
-  return Behavior(options);
-}
-
-function isPage() {
-  return !!this.route;
-}
-
-function initRelation(detail) {
-  this.triggerEvent('__l', detail);
-}
-
-function selectAllComponents(mpInstance, selector, $refs) {
-  var components = mpInstance.selectAllComponents(selector);
-  components.forEach(function (component) {
-    var ref = component.dataset.ref;
-    $refs[ref] = component.$vm || component;
-    {
-      if (component.dataset.vueGeneric === 'scoped') {
-        component.selectAllComponents('.scoped-ref').forEach(function (scopedComponent) {
-          selectAllComponents(scopedComponent, selector, $refs);
-        });
-      }
-    }
-  });
-}
-
-function initRefs(vm) {
-  var mpInstance = vm.$scope;
-  Object.defineProperty(vm, '$refs', {
-    get: function get() {
-      var $refs = {};
-      selectAllComponents(mpInstance, '.vue-ref', $refs);
-      // TODO 暂不考虑 for 中的 scoped
-      var forComponents = mpInstance.selectAllComponents('.vue-ref-in-for');
-      forComponents.forEach(function (component) {
-        var ref = component.dataset.ref;
-        if (!$refs[ref]) {
-          $refs[ref] = [];
-        }
-        $refs[ref].push(component.$vm || component);
-      });
-      return $refs;
-    } });
-
-}
-
-function handleLink(event) {var _ref4 =
-
-
-
-  event.detail || event.value,vuePid = _ref4.vuePid,vueOptions = _ref4.vueOptions; // detail 是微信,value 是百度(dipatch)
-
-  var parentVm;
-
-  if (vuePid) {
-    parentVm = findVmByVueId(this.$vm, vuePid);
-  }
-
-  if (!parentVm) {
-    parentVm = this.$vm;
-  }
-
-  vueOptions.parent = parentVm;
-}
-
 function parseApp(vm) {
   return parseBaseApp(vm, {
     mocks: mocks,
-    initRefs: initRefs });
-
+    initRefs: initRefs
+  });
 }
-
 function createApp(vm) {
   App(parseApp(vm));
   return vm;
 }
-
 var encodeReserveRE = /[!'()*]/g;
-var encodeReserveReplacer = function encodeReserveReplacer(c) {return '%' + c.charCodeAt(0).toString(16);};
+var encodeReserveReplacer = function encodeReserveReplacer(c) {
+  return '%' + c.charCodeAt(0).toString(16);
+};
 var commaRE = /%2C/g;
 
 // fixed encodeURIComponent which is more conformant to RFC3986:
 // - escapes [!'()*]
 // - preserve commas
-var encode = function encode(str) {return encodeURIComponent(str).
-  replace(encodeReserveRE, encodeReserveReplacer).
-  replace(commaRE, ',');};
-
-function stringifyQuery(obj) {var encodeStr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : encode;
+var encode = function encode(str) {
+  return encodeURIComponent(str).replace(encodeReserveRE, encodeReserveReplacer).replace(commaRE, ',');
+};
+function stringifyQuery(obj) {
+  var encodeStr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : encode;
   var res = obj ? Object.keys(obj).map(function (key) {
     var val = obj[key];
-
     if (val === undefined) {
       return '';
     }
-
     if (val === null) {
       return encodeStr(key);
     }
-
     if (Array.isArray(val)) {
       var result = [];
       val.forEach(function (val2) {
@@ -2232,31 +2069,31 @@ function stringifyQuery(obj) {var encodeStr = arguments.length > 1 && arguments[
       });
       return result.join('&');
     }
-
     return encodeStr(key) + '=' + encodeStr(val);
-  }).filter(function (x) {return x.length > 0;}).join('&') : null;
+  }).filter(function (x) {
+    return x.length > 0;
+  }).join('&') : null;
   return res ? "?".concat(res) : '';
 }
-
-function parseBaseComponent(vueComponentOptions)
-
-
-{var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},isPage = _ref5.isPage,initRelation = _ref5.initRelation;var _initVueComponent =
-  initVueComponent(_vue.default, vueComponentOptions),_initVueComponent2 = _slicedToArray(_initVueComponent, 2),VueComponent = _initVueComponent2[0],vueOptions = _initVueComponent2[1];
-
+function parseBaseComponent(vueComponentOptions) {
+  var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+    isPage = _ref5.isPage,
+    initRelation = _ref5.initRelation;
+  var needVueOptions = arguments.length > 2 ? arguments[2] : undefined;
+  var _initVueComponent = initVueComponent(_vue.default, vueComponentOptions),
+    _initVueComponent2 = (0, _slicedToArray2.default)(_initVueComponent, 2),
+    VueComponent = _initVueComponent2[0],
+    vueOptions = _initVueComponent2[1];
   var options = _objectSpread({
     multipleSlots: true,
-    addGlobalClass: true },
-  vueOptions.options || {});
-
-
+    addGlobalClass: true
+  }, vueOptions.options || {});
   {
     // 微信 multipleSlots 部分情况有 bug，导致内容顺序错乱 如 u-list，提供覆盖选项
     if (vueOptions['mp-weixin'] && vueOptions['mp-weixin'].options) {
       Object.assign(options, vueOptions['mp-weixin'].options);
     }
   }
-
   var componentOptions = {
     options: options,
     data: initData(vueOptions, _vue.default.prototype),
@@ -2265,20 +2102,18 @@ function parseBaseComponent(vueComponentOptions)
     lifetimes: {
       attached: function attached() {
         var properties = this.properties;
-
         var options = {
           mpType: isPage.call(this) ? 'page' : 'component',
           mpInstance: this,
-          propsData: properties };
-
-
+          propsData: properties
+        };
         initVueIds(properties.vueId, this);
 
         // 处理父子关系
         initRelation.call(this, {
           vuePid: this._$vuePid,
-          vueOptions: options });
-
+          vueOptions: options
+        });
 
         // 初始化 vue 实例
         this.$vm = new VueComponent(options);
@@ -2300,8 +2135,8 @@ function parseBaseComponent(vueComponentOptions)
       },
       detached: function detached() {
         this.$vm && this.$vm.$destroy();
-      } },
-
+      }
+    },
     pageLifetimes: {
       show: function show(args) {
         this.$vm && this.$vm.__call_hook('onPageShow', args);
@@ -2311,18 +2146,17 @@ function parseBaseComponent(vueComponentOptions)
       },
       resize: function resize(size) {
         this.$vm && this.$vm.__call_hook('onPageResize', size);
-      } },
-
+      }
+    },
     methods: {
       __l: handleLink,
-      __e: handleEvent } };
-
-
+      __e: handleEvent
+    }
+  };
   // externalClasses
   if (vueOptions.externalClasses) {
     componentOptions.externalClasses = vueOptions.externalClasses;
   }
-
   if (Array.isArray(vueOptions.wxsCallMethods)) {
     vueOptions.wxsCallMethods.forEach(function (callMethod) {
       componentOptions.methods[callMethod] = function (args) {
@@ -2330,77 +2164,61 @@ function parseBaseComponent(vueComponentOptions)
       };
     });
   }
-
+  if (needVueOptions) {
+    return [componentOptions, vueOptions, VueComponent];
+  }
   if (isPage) {
     return componentOptions;
   }
   return [componentOptions, VueComponent];
 }
-
-function parseComponent(vueComponentOptions) {
+function parseComponent(vueComponentOptions, needVueOptions) {
   return parseBaseComponent(vueComponentOptions, {
     isPage: isPage,
-    initRelation: initRelation });
-
+    initRelation: initRelation
+  }, needVueOptions);
 }
-
-var hooks$1 = [
-'onShow',
-'onHide',
-'onUnload'];
-
-
+var hooks$1 = ['onShow', 'onHide', 'onUnload'];
 hooks$1.push.apply(hooks$1, PAGE_EVENT_HOOKS);
-
-function parseBasePage(vuePageOptions, _ref6)
-
-
-{var isPage = _ref6.isPage,initRelation = _ref6.initRelation;
-  var pageOptions = parseComponent(vuePageOptions);
-
-  initHooks(pageOptions.methods, hooks$1, vuePageOptions);
-
+function parseBasePage(vuePageOptions) {
+  var _parseComponent = parseComponent(vuePageOptions, true),
+    _parseComponent2 = (0, _slicedToArray2.default)(_parseComponent, 2),
+    pageOptions = _parseComponent2[0],
+    vueOptions = _parseComponent2[1];
+  initHooks(pageOptions.methods, hooks$1, vueOptions);
   pageOptions.methods.onLoad = function (query) {
     this.options = query;
     var copyQuery = Object.assign({}, query);
     delete copyQuery.__id__;
     this.$page = {
-      fullPath: '/' + (this.route || this.is) + stringifyQuery(copyQuery) };
-
+      fullPath: '/' + (this.route || this.is) + stringifyQuery(copyQuery)
+    };
     this.$vm.$mp.query = query; // 兼容 mpvue
     this.$vm.__call_hook('onLoad', query);
   };
   {
     initUnknownHooks(pageOptions.methods, vuePageOptions, ['onReady']);
   }
-
   return pageOptions;
 }
-
 function parsePage(vuePageOptions) {
-  return parseBasePage(vuePageOptions, {
-    isPage: isPage,
-    initRelation: initRelation });
-
+  return parseBasePage(vuePageOptions);
 }
-
 function createPage(vuePageOptions) {
   {
     return Component(parsePage(vuePageOptions));
   }
 }
-
 function createComponent(vueOptions) {
   {
     return Component(parseComponent(vueOptions));
   }
 }
-
 function createSubpackageApp(vm) {
   var appOptions = parseApp(vm);
   var app = getApp({
-    allowDefault: true });
-
+    allowDefault: true
+  });
   vm.$scope = app;
   var globalData = app.globalData;
   if (globalData) {
@@ -2416,12 +2234,18 @@ function createSubpackageApp(vm) {
     }
   });
   if (isFn(appOptions.onShow) && wx.onAppShow) {
-    wx.onAppShow(function () {for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {args[_key5] = arguments[_key5];}
+    wx.onAppShow(function () {
+      for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        args[_key5] = arguments[_key5];
+      }
       vm.__call_hook('onShow', args);
     });
   }
   if (isFn(appOptions.onHide) && wx.onAppHide) {
-    wx.onAppHide(function () {for (var _len6 = arguments.length, args = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {args[_key6] = arguments[_key6];}
+    wx.onAppHide(function () {
+      for (var _len6 = arguments.length, args = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+        args[_key6] = arguments[_key6];
+      }
       vm.__call_hook('onHide', args);
     });
   }
@@ -2431,16 +2255,21 @@ function createSubpackageApp(vm) {
   }
   return vm;
 }
-
 function createPlugin(vm) {
   var appOptions = parseApp(vm);
   if (isFn(appOptions.onShow) && wx.onAppShow) {
-    wx.onAppShow(function () {for (var _len7 = arguments.length, args = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {args[_key7] = arguments[_key7];}
+    wx.onAppShow(function () {
+      for (var _len7 = arguments.length, args = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
+        args[_key7] = arguments[_key7];
+      }
       vm.__call_hook('onShow', args);
     });
   }
   if (isFn(appOptions.onHide) && wx.onAppHide) {
-    wx.onAppHide(function () {for (var _len8 = arguments.length, args = new Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {args[_key8] = arguments[_key8];}
+    wx.onAppHide(function () {
+      for (var _len8 = arguments.length, args = new Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {
+        args[_key8] = arguments[_key8];
+      }
       vm.__call_hook('onHide', args);
     });
   }
@@ -2450,21 +2279,16 @@ function createPlugin(vm) {
   }
   return vm;
 }
-
 todos.forEach(function (todoApi) {
   protocols[todoApi] = false;
 });
-
 canIUses.forEach(function (canIUseApi) {
-  var apiName = protocols[canIUseApi] && protocols[canIUseApi].name ? protocols[canIUseApi].name :
-  canIUseApi;
+  var apiName = protocols[canIUseApi] && protocols[canIUseApi].name ? protocols[canIUseApi].name : canIUseApi;
   if (!wx.canIUse(apiName)) {
     protocols[canIUseApi] = false;
   }
 });
-
 var uni = {};
-
 if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
   uni = new Proxy({}, {
     get: function get(target, name) {
@@ -2488,7 +2312,7 @@ if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
       if (eventApi[name]) {
         return eventApi[name];
       }
-      if (!hasOwn(wx, name) && !hasOwn(protocols, name)) {
+      if (typeof wx[name] !== 'function' && !hasOwn(protocols, name)) {
         return;
       }
       return promisify(name, wrapper(name, wx[name]));
@@ -2496,13 +2320,12 @@ if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
     set: function set(target, name, value) {
       target[name] = value;
       return true;
-    } });
-
+    }
+  });
 } else {
   Object.keys(baseApi).forEach(function (name) {
     uni[name] = baseApi[name];
   });
-
   {
     Object.keys(todoApis).forEach(function (name) {
       uni[name] = promisify(name, todoApis[name]);
@@ -2511,165 +2334,30 @@ if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
       uni[name] = promisify(name, todoApis[name]);
     });
   }
-
   Object.keys(eventApi).forEach(function (name) {
     uni[name] = eventApi[name];
   });
-
   Object.keys(api).forEach(function (name) {
     uni[name] = promisify(name, api[name]);
   });
-
   Object.keys(wx).forEach(function (name) {
     if (hasOwn(wx, name) || hasOwn(protocols, name)) {
       uni[name] = promisify(name, wrapper(name, wx[name]));
     }
   });
 }
-
 wx.createApp = createApp;
 wx.createPage = createPage;
 wx.createComponent = createComponent;
 wx.createSubpackageApp = createSubpackageApp;
 wx.createPlugin = createPlugin;
-
-var uni$1 = uni;var _default =
-
-uni$1;exports.default = _default;
+var uni$1 = uni;
+var _default = uni$1;
+exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-
-/***/ 11:
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
-/***/ 2:
+/* 2 */
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -2699,19 +2387,343 @@ module.exports = g;
 
 
 /***/ }),
-
-/***/ 26:
-/*!********************************************************!*\
-  !*** F:/新冠监测/covid-control/libs/qqmap-wx-jssdk.min.js ***!
-  \********************************************************/
+/* 3 */
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var ERROR_CONF = { KEY_ERR: 311, KEY_ERR_MSG: 'key格式错误', PARAM_ERR: 310, PARAM_ERR_MSG: '请求参数信息有误', SYSTEM_ERR: 600, SYSTEM_ERR_MSG: '系统错误', WX_ERR_CODE: 1000, WX_OK_CODE: 200 };var BASE_URL = 'https://apis.map.qq.com/ws/';var URL_SEARCH = BASE_URL + 'place/v1/search';var URL_SUGGESTION = BASE_URL + 'place/v1/suggestion';var URL_GET_GEOCODER = BASE_URL + 'geocoder/v1/';var URL_CITY_LIST = BASE_URL + 'district/v1/list';var URL_AREA_LIST = BASE_URL + 'district/v1/getchildren';var URL_DISTANCE = BASE_URL + 'distance/v1/';var URL_DIRECTION = BASE_URL + 'direction/v1/';var MODE = { driving: 'driving', transit: 'transit' };var EARTH_RADIUS = 6378136.49;var Utils = { safeAdd: function safeAdd(x, y) {var lsw = (x & 0xffff) + (y & 0xffff);var msw = (x >> 16) + (y >> 16) + (lsw >> 16);return msw << 16 | lsw & 0xffff;}, bitRotateLeft: function bitRotateLeft(num, cnt) {return num << cnt | num >>> 32 - cnt;}, md5cmn: function md5cmn(q, a, b, x, s, t) {return this.safeAdd(this.bitRotateLeft(this.safeAdd(this.safeAdd(a, q), this.safeAdd(x, t)), s), b);}, md5ff: function md5ff(a, b, c, d, x, s, t) {return this.md5cmn(b & c | ~b & d, a, b, x, s, t);}, md5gg: function md5gg(a, b, c, d, x, s, t) {return this.md5cmn(b & d | c & ~d, a, b, x, s, t);}, md5hh: function md5hh(a, b, c, d, x, s, t) {return this.md5cmn(b ^ c ^ d, a, b, x, s, t);}, md5ii: function md5ii(a, b, c, d, x, s, t) {return this.md5cmn(c ^ (b | ~d), a, b, x, s, t);}, binlMD5: function binlMD5(x, len) {x[len >> 5] |= 0x80 << len % 32;x[(len + 64 >>> 9 << 4) + 14] = len;var i;var olda;var oldb;var oldc;var oldd;var a = 1732584193;var b = -271733879;var c = -1732584194;var d = 271733878;for (i = 0; i < x.length; i += 16) {olda = a;oldb = b;oldc = c;oldd = d;a = this.md5ff(a, b, c, d, x[i], 7, -680876936);d = this.md5ff(d, a, b, c, x[i + 1], 12, -389564586);c = this.md5ff(c, d, a, b, x[i + 2], 17, 606105819);b = this.md5ff(b, c, d, a, x[i + 3], 22, -1044525330);a = this.md5ff(a, b, c, d, x[i + 4], 7, -176418897);d = this.md5ff(d, a, b, c, x[i + 5], 12, 1200080426);c = this.md5ff(c, d, a, b, x[i + 6], 17, -1473231341);b = this.md5ff(b, c, d, a, x[i + 7], 22, -45705983);a = this.md5ff(a, b, c, d, x[i + 8], 7, 1770035416);d = this.md5ff(d, a, b, c, x[i + 9], 12, -1958414417);c = this.md5ff(c, d, a, b, x[i + 10], 17, -42063);b = this.md5ff(b, c, d, a, x[i + 11], 22, -1990404162);a = this.md5ff(a, b, c, d, x[i + 12], 7, 1804603682);d = this.md5ff(d, a, b, c, x[i + 13], 12, -40341101);c = this.md5ff(c, d, a, b, x[i + 14], 17, -1502002290);b = this.md5ff(b, c, d, a, x[i + 15], 22, 1236535329);a = this.md5gg(a, b, c, d, x[i + 1], 5, -165796510);d = this.md5gg(d, a, b, c, x[i + 6], 9, -1069501632);c = this.md5gg(c, d, a, b, x[i + 11], 14, 643717713);b = this.md5gg(b, c, d, a, x[i], 20, -373897302);a = this.md5gg(a, b, c, d, x[i + 5], 5, -701558691);d = this.md5gg(d, a, b, c, x[i + 10], 9, 38016083);c = this.md5gg(c, d, a, b, x[i + 15], 14, -660478335);b = this.md5gg(b, c, d, a, x[i + 4], 20, -405537848);a = this.md5gg(a, b, c, d, x[i + 9], 5, 568446438);d = this.md5gg(d, a, b, c, x[i + 14], 9, -1019803690);c = this.md5gg(c, d, a, b, x[i + 3], 14, -187363961);b = this.md5gg(b, c, d, a, x[i + 8], 20, 1163531501);a = this.md5gg(a, b, c, d, x[i + 13], 5, -1444681467);d = this.md5gg(d, a, b, c, x[i + 2], 9, -51403784);c = this.md5gg(c, d, a, b, x[i + 7], 14, 1735328473);b = this.md5gg(b, c, d, a, x[i + 12], 20, -1926607734);a = this.md5hh(a, b, c, d, x[i + 5], 4, -378558);d = this.md5hh(d, a, b, c, x[i + 8], 11, -2022574463);c = this.md5hh(c, d, a, b, x[i + 11], 16, 1839030562);b = this.md5hh(b, c, d, a, x[i + 14], 23, -35309556);a = this.md5hh(a, b, c, d, x[i + 1], 4, -1530992060);d = this.md5hh(d, a, b, c, x[i + 4], 11, 1272893353);c = this.md5hh(c, d, a, b, x[i + 7], 16, -155497632);b = this.md5hh(b, c, d, a, x[i + 10], 23, -1094730640);a = this.md5hh(a, b, c, d, x[i + 13], 4, 681279174);d = this.md5hh(d, a, b, c, x[i], 11, -358537222);c = this.md5hh(c, d, a, b, x[i + 3], 16, -722521979);b = this.md5hh(b, c, d, a, x[i + 6], 23, 76029189);a = this.md5hh(a, b, c, d, x[i + 9], 4, -640364487);d = this.md5hh(d, a, b, c, x[i + 12], 11, -421815835);c = this.md5hh(c, d, a, b, x[i + 15], 16, 530742520);b = this.md5hh(b, c, d, a, x[i + 2], 23, -995338651);a = this.md5ii(a, b, c, d, x[i], 6, -198630844);d = this.md5ii(d, a, b, c, x[i + 7], 10, 1126891415);c = this.md5ii(c, d, a, b, x[i + 14], 15, -1416354905);b = this.md5ii(b, c, d, a, x[i + 5], 21, -57434055);a = this.md5ii(a, b, c, d, x[i + 12], 6, 1700485571);d = this.md5ii(d, a, b, c, x[i + 3], 10, -1894986606);c = this.md5ii(c, d, a, b, x[i + 10], 15, -1051523);b = this.md5ii(b, c, d, a, x[i + 1], 21, -2054922799);a = this.md5ii(a, b, c, d, x[i + 8], 6, 1873313359);d = this.md5ii(d, a, b, c, x[i + 15], 10, -30611744);c = this.md5ii(c, d, a, b, x[i + 6], 15, -1560198380);b = this.md5ii(b, c, d, a, x[i + 13], 21, 1309151649);a = this.md5ii(a, b, c, d, x[i + 4], 6, -145523070);d = this.md5ii(d, a, b, c, x[i + 11], 10, -1120210379);c = this.md5ii(c, d, a, b, x[i + 2], 15, 718787259);b = this.md5ii(b, c, d, a, x[i + 9], 21, -343485551);a = this.safeAdd(a, olda);b = this.safeAdd(b, oldb);c = this.safeAdd(c, oldc);d = this.safeAdd(d, oldd);}return [a, b, c, d];}, binl2rstr: function binl2rstr(input) {var i;var output = '';var length32 = input.length * 32;for (i = 0; i < length32; i += 8) {output += String.fromCharCode(input[i >> 5] >>> i % 32 & 0xff);}return output;}, rstr2binl: function rstr2binl(input) {var i;var output = [];output[(input.length >> 2) - 1] = undefined;for (i = 0; i < output.length; i += 1) {output[i] = 0;}var length8 = input.length * 8;for (i = 0; i < length8; i += 8) {output[i >> 5] |= (input.charCodeAt(i / 8) & 0xff) << i % 32;}return output;}, rstrMD5: function rstrMD5(s) {return this.binl2rstr(this.binlMD5(this.rstr2binl(s), s.length * 8));}, rstrHMACMD5: function rstrHMACMD5(key, data) {var i;var bkey = this.rstr2binl(key);var ipad = [];var opad = [];var hash;ipad[15] = opad[15] = undefined;if (bkey.length > 16) {bkey = this.binlMD5(bkey, key.length * 8);}for (i = 0; i < 16; i += 1) {ipad[i] = bkey[i] ^ 0x36363636;opad[i] = bkey[i] ^ 0x5c5c5c5c;}hash = this.binlMD5(ipad.concat(this.rstr2binl(data)), 512 + data.length * 8);return this.binl2rstr(this.binlMD5(opad.concat(hash), 512 + 128));}, rstr2hex: function rstr2hex(input) {var hexTab = '0123456789abcdef';var output = '';var x;var i;for (i = 0; i < input.length; i += 1) {x = input.charCodeAt(i);output += hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f);}return output;}, str2rstrUTF8: function str2rstrUTF8(input) {return unescape(encodeURIComponent(input));}, rawMD5: function rawMD5(s) {return this.rstrMD5(this.str2rstrUTF8(s));}, hexMD5: function hexMD5(s) {return this.rstr2hex(this.rawMD5(s));}, rawHMACMD5: function rawHMACMD5(k, d) {return this.rstrHMACMD5(this.str2rstrUTF8(k), str2rstrUTF8(d));}, hexHMACMD5: function hexHMACMD5(k, d) {return this.rstr2hex(this.rawHMACMD5(k, d));}, md5: function md5(string, key, raw) {if (!key) {if (!raw) {return this.hexMD5(string);}return this.rawMD5(string);}if (!raw) {return this.hexHMACMD5(key, string);}return this.rawHMACMD5(key, string);}, getSig: function getSig(requestParam, sk, feature, mode) {var sig = null;var requestArr = [];Object.keys(requestParam).sort().forEach(function (key) {requestArr.push(key + '=' + requestParam[key]);});if (feature == 'search') {sig = '/ws/place/v1/search?' + requestArr.join('&') + sk;}if (feature == 'suggest') {sig = '/ws/place/v1/suggestion?' + requestArr.join('&') + sk;}if (feature == 'reverseGeocoder') {sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk;}if (feature == 'geocoder') {sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk;}if (feature == 'getCityList') {sig = '/ws/district/v1/list?' + requestArr.join('&') + sk;}if (feature == 'getDistrictByCityId') {sig = '/ws/district/v1/getchildren?' + requestArr.join('&') + sk;}if (feature == 'calculateDistance') {sig = '/ws/distance/v1/?' + requestArr.join('&') + sk;}if (feature == 'direction') {sig = '/ws/direction/v1/' + mode + '?' + requestArr.join('&') + sk;}sig = this.md5(sig);return sig;}, location2query: function location2query(data) {if (typeof data == 'string') {return data;}var query = '';for (var i = 0; i < data.length; i++) {var d = data[i];if (!!query) {query += ';';}if (d.location) {query = query + d.location.lat + ',' + d.location.lng;}if (d.latitude && d.longitude) {query = query + d.latitude + ',' + d.longitude;}}return query;}, rad: function rad(d) {return d * Math.PI / 180.0;}, getEndLocation: function getEndLocation(location) {var to = location.split(';');var endLocation = [];for (var i = 0; i < to.length; i++) {endLocation.push({ lat: parseFloat(to[i].split(',')[0]), lng: parseFloat(to[i].split(',')[1]) });}return endLocation;}, getDistance: function getDistance(latFrom, lngFrom, latTo, lngTo) {var radLatFrom = this.rad(latFrom);var radLatTo = this.rad(latTo);var a = radLatFrom - radLatTo;var b = this.rad(lngFrom) - this.rad(lngTo);var distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLatFrom) * Math.cos(radLatTo) * Math.pow(Math.sin(b / 2), 2)));distance = distance * EARTH_RADIUS;distance = Math.round(distance * 10000) / 10000;return parseFloat(distance.toFixed(0));}, getWXLocation: function getWXLocation(success, fail, complete) {wx.getLocation({ type: 'gcj02', success: success, fail: fail, complete: complete });}, getLocationParam: function getLocationParam(location) {if (typeof location == 'string') {var locationArr = location.split(',');if (locationArr.length === 2) {location = { latitude: location.split(',')[0], longitude: location.split(',')[1] };} else {location = {};}}return location;}, polyfillParam: function polyfillParam(param) {param.success = param.success || function () {};param.fail = param.fail || function () {};param.complete = param.complete || function () {};}, checkParamKeyEmpty: function checkParamKeyEmpty(param, key) {if (!param[key]) {var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + key + '参数格式有误');param.fail(errconf);param.complete(errconf);return true;}return false;}, checkKeyword: function checkKeyword(param) {return !this.checkParamKeyEmpty(param, 'keyword');}, checkLocation: function checkLocation(param) {var location = this.getLocationParam(param.location);if (!location || !location.latitude || !location.longitude) {var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + ' location参数格式有误');param.fail(errconf);param.complete(errconf);return false;}return true;}, buildErrorConfig: function buildErrorConfig(errCode, errMsg) {return { status: errCode, message: errMsg };}, handleData: function handleData(param, data, feature) {if (feature == 'search') {var searchResult = data.data;var searchSimplify = [];for (var i = 0; i < searchResult.length; i++) {searchSimplify.push({ id: searchResult[i].id || null, title: searchResult[i].title || null, latitude: searchResult[i].location && searchResult[i].location.lat || null, longitude: searchResult[i].location && searchResult[i].location.lng || null, address: searchResult[i].address || null, category: searchResult[i].category || null, tel: searchResult[i].tel || null, adcode: searchResult[i].ad_info && searchResult[i].ad_info.adcode || null, city: searchResult[i].ad_info && searchResult[i].ad_info.city || null, district: searchResult[i].ad_info && searchResult[i].ad_info.district || null, province: searchResult[i].ad_info && searchResult[i].ad_info.province || null });}param.success(data, { searchResult: searchResult, searchSimplify: searchSimplify });} else if (feature == 'suggest') {var suggestResult = data.data;var suggestSimplify = [];for (var i = 0; i < suggestResult.length; i++) {suggestSimplify.push({ adcode: suggestResult[i].adcode || null, address: suggestResult[i].address || null, category: suggestResult[i].category || null, city: suggestResult[i].city || null, district: suggestResult[i].district || null, id: suggestResult[i].id || null, latitude: suggestResult[i].location && suggestResult[i].location.lat || null, longitude: suggestResult[i].location && suggestResult[i].location.lng || null, province: suggestResult[i].province || null, title: suggestResult[i].title || null, type: suggestResult[i].type || null });}param.success(data, { suggestResult: suggestResult, suggestSimplify: suggestSimplify });} else if (feature == 'reverseGeocoder') {var reverseGeocoderResult = data.result;var reverseGeocoderSimplify = { address: reverseGeocoderResult.address || null, latitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lat || null, longitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lng || null, adcode: reverseGeocoderResult.ad_info && reverseGeocoderResult.ad_info.adcode || null, city: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.city || null, district: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.district || null, nation: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.nation || null, province: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.province || null, street: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street || null, street_number: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street_number || null, recommend: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.recommend || null, rough: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.rough || null };if (reverseGeocoderResult.pois) {var pois = reverseGeocoderResult.pois;var poisSimplify = [];for (var i = 0; i < pois.length; i++) {poisSimplify.push({ id: pois[i].id || null, title: pois[i].title || null, latitude: pois[i].location && pois[i].location.lat || null, longitude: pois[i].location && pois[i].location.lng || null, address: pois[i].address || null, category: pois[i].category || null, adcode: pois[i].ad_info && pois[i].ad_info.adcode || null, city: pois[i].ad_info && pois[i].ad_info.city || null, district: pois[i].ad_info && pois[i].ad_info.district || null, province: pois[i].ad_info && pois[i].ad_info.province || null });}param.success(data, { reverseGeocoderResult: reverseGeocoderResult, reverseGeocoderSimplify: reverseGeocoderSimplify, pois: pois, poisSimplify: poisSimplify });} else {param.success(data, { reverseGeocoderResult: reverseGeocoderResult, reverseGeocoderSimplify: reverseGeocoderSimplify });}} else if (feature == 'geocoder') {var geocoderResult = data.result;var geocoderSimplify = { title: geocoderResult.title || null, latitude: geocoderResult.location && geocoderResult.location.lat || null, longitude: geocoderResult.location && geocoderResult.location.lng || null, adcode: geocoderResult.ad_info && geocoderResult.ad_info.adcode || null, province: geocoderResult.address_components && geocoderResult.address_components.province || null, city: geocoderResult.address_components && geocoderResult.address_components.city || null, district: geocoderResult.address_components && geocoderResult.address_components.district || null, street: geocoderResult.address_components && geocoderResult.address_components.street || null, street_number: geocoderResult.address_components && geocoderResult.address_components.street_number || null, level: geocoderResult.level || null };param.success(data, { geocoderResult: geocoderResult, geocoderSimplify: geocoderSimplify });} else if (feature == 'getCityList') {var provinceResult = data.result[0];var cityResult = data.result[1];var districtResult = data.result[2];param.success(data, { provinceResult: provinceResult, cityResult: cityResult, districtResult: districtResult });} else if (feature == 'getDistrictByCityId') {var districtByCity = data.result[0];param.success(data, districtByCity);} else if (feature == 'calculateDistance') {var calculateDistanceResult = data.result.elements;var distance = [];for (var i = 0; i < calculateDistanceResult.length; i++) {distance.push(calculateDistanceResult[i].distance);}param.success(data, { calculateDistanceResult: calculateDistanceResult, distance: distance });} else if (feature == 'direction') {var direction = data.result.routes;param.success(data, direction);} else {param.success(data);}}, buildWxRequestConfig: function buildWxRequestConfig(param, options, feature) {var that = this;options.header = { "content-type": "application/json" };options.method = 'GET';options.success = function (res) {var data = res.data;if (data.status === 0) {that.handleData(param, data, feature);} else {param.fail(data);}};options.fail = function (res) {res.statusCode = ERROR_CONF.WX_ERR_CODE;param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));};options.complete = function (res) {var statusCode = +res.statusCode;switch (statusCode) {case ERROR_CONF.WX_ERR_CODE:{param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));break;}case ERROR_CONF.WX_OK_CODE:{var data = res.data;if (data.status === 0) {param.complete(data);} else {param.complete(that.buildErrorConfig(data.status, data.message));}break;}default:{param.complete(that.buildErrorConfig(ERROR_CONF.SYSTEM_ERR, ERROR_CONF.SYSTEM_ERR_MSG));}}};return options;}, locationProcess: function locationProcess(param, locationsuccess, locationfail, locationcomplete) {var that = this;locationfail = locationfail || function (res) {res.statusCode = ERROR_CONF.WX_ERR_CODE;param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));};locationcomplete = locationcomplete || function (res) {if (res.statusCode == ERROR_CONF.WX_ERR_CODE) {param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));}};if (!param.location) {that.getWXLocation(locationsuccess, locationfail, locationcomplete);} else if (that.checkLocation(param)) {var location = Utils.getLocationParam(param.location);locationsuccess(location);}} };var QQMapWX = /*#__PURE__*/function () {"use strict";function QQMapWX(options) {_classCallCheck(this, QQMapWX);if (!options.key) {throw Error('key值不能为空');}this.key = options.key;}_createClass(QQMapWX, [{ key: "search", value: function search(options) {var that = this;options = options || {};Utils.polyfillParam(options);if (!Utils.checkKeyword(options)) {return;}var requestParam = { keyword: options.keyword, orderby: options.orderby || '_distance', page_size: options.page_size || 10, page_index: options.page_index || 1, output: 'json', key: that.key };if (options.address_format) {requestParam.address_format = options.address_format;}if (options.filter) {requestParam.filter = options.filter;}var distance = options.distance || "1000";var auto_extend = options.auto_extend || 1;var region = null;var rectangle = null;if (options.region) {region = options.region;}if (options.rectangle) {rectangle = options.rectangle;}var locationsuccess = function locationsuccess(result) {if (region && !rectangle) {requestParam.boundary = "region(" + region + "," + auto_extend + "," + result.latitude + "," + result.longitude + ")";if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'search');}} else if (rectangle && !region) {requestParam.boundary = "rectangle(" + rectangle + ")";if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'search');}} else {requestParam.boundary = "nearby(" + result.latitude + "," + result.longitude + "," + distance + "," + auto_extend + ")";if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'search');}}wx.request(Utils.buildWxRequestConfig(options, { url: URL_SEARCH, data: requestParam }, 'search'));};Utils.locationProcess(options, locationsuccess);} }, { key: "getSuggestion", value: function getSuggestion(options) {var that = this;options = options || {};Utils.polyfillParam(options);if (!Utils.checkKeyword(options)) {return;}var requestParam = { keyword: options.keyword, region: options.region || '全国', region_fix: options.region_fix || 0, policy: options.policy || 0, page_size: options.page_size || 10, page_index: options.page_index || 1, get_subpois: options.get_subpois || 0, output: 'json', key: that.key };if (options.address_format) {requestParam.address_format = options.address_format;}if (options.filter) {requestParam.filter = options.filter;}if (options.location) {var locationsuccess = function locationsuccess(result) {requestParam.location = result.latitude + ',' + result.longitude;if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_SUGGESTION, data: requestParam }, "suggest"));};Utils.locationProcess(options, locationsuccess);} else {if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_SUGGESTION, data: requestParam }, "suggest"));}} }, { key: "reverseGeocoder", value: function reverseGeocoder(options) {var that = this;options = options || {};Utils.polyfillParam(options);var requestParam = { coord_type: options.coord_type || 5, get_poi: options.get_poi || 0, output: 'json', key: that.key };if (options.poi_options) {requestParam.poi_options = options.poi_options;}var locationsuccess = function locationsuccess(result) {requestParam.location = result.latitude + ',' + result.longitude;if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'reverseGeocoder');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_GET_GEOCODER, data: requestParam }, 'reverseGeocoder'));};Utils.locationProcess(options, locationsuccess);} }, { key: "geocoder", value: function geocoder(options) {var that = this;options = options || {};Utils.polyfillParam(options);if (Utils.checkParamKeyEmpty(options, 'address')) {return;}var requestParam = { address: options.address, output: 'json', key: that.key };if (options.region) {requestParam.region = options.region;}if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'geocoder');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_GET_GEOCODER, data: requestParam }, 'geocoder'));} }, { key: "getCityList", value: function getCityList(options) {var that = this;options = options || {};Utils.polyfillParam(options);var requestParam = { output: 'json', key: that.key };if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'getCityList');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_CITY_LIST, data: requestParam }, 'getCityList'));} }, { key: "getDistrictByCityId", value: function getDistrictByCityId(options) {var that = this;options = options || {};Utils.polyfillParam(options);if (Utils.checkParamKeyEmpty(options, 'id')) {return;}var requestParam = { id: options.id || '', output: 'json', key: that.key };if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'getDistrictByCityId');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_AREA_LIST, data: requestParam }, 'getDistrictByCityId'));} }, { key: "calculateDistance", value: function calculateDistance(options) {var that = this;options = options || {};Utils.polyfillParam(options);if (Utils.checkParamKeyEmpty(options, 'to')) {return;}var requestParam = { mode: options.mode || 'walking', to: Utils.location2query(options.to), output: 'json', key: that.key };if (options.from) {options.location = options.from;}if (requestParam.mode == 'straight') {var locationsuccess = function locationsuccess(result) {var locationTo = Utils.getEndLocation(requestParam.to);var data = { message: "query ok", result: { elements: [] }, status: 0 };for (var i = 0; i < locationTo.length; i++) {data.result.elements.push({ distance: Utils.getDistance(result.latitude, result.longitude, locationTo[i].lat, locationTo[i].lng), duration: 0, from: { lat: result.latitude, lng: result.longitude }, to: { lat: locationTo[i].lat, lng: locationTo[i].lng } });}var calculateResult = data.result.elements;var distanceResult = [];for (var i = 0; i < calculateResult.length; i++) {distanceResult.push(calculateResult[i].distance);}return options.success(data, { calculateResult: calculateResult, distanceResult: distanceResult });};Utils.locationProcess(options, locationsuccess);} else {var locationsuccess = function locationsuccess(result) {requestParam.from = result.latitude + ',' + result.longitude;if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'calculateDistance');}wx.request(Utils.buildWxRequestConfig(options, { url: URL_DISTANCE, data: requestParam }, 'calculateDistance'));};Utils.locationProcess(options, locationsuccess);}} }, { key: "direction", value: function direction(options) {var that = this;options = options || {};Utils.polyfillParam(options);if (Utils.checkParamKeyEmpty(options, 'to')) {return;}var requestParam = { output: 'json', key: that.key };if (typeof options.to == 'string') {requestParam.to = options.to;} else {requestParam.to = options.to.latitude + ',' + options.to.longitude;}var SET_URL_DIRECTION = null;options.mode = options.mode || MODE.driving;SET_URL_DIRECTION = URL_DIRECTION + options.mode;if (options.from) {options.location = options.from;}if (options.mode == MODE.driving) {if (options.from_poi) {requestParam.from_poi = options.from_poi;}if (options.heading) {requestParam.heading = options.heading;}if (options.speed) {requestParam.speed = options.speed;}if (options.accuracy) {requestParam.accuracy = options.accuracy;}if (options.road_type) {requestParam.road_type = options.road_type;}if (options.to_poi) {requestParam.to_poi = options.to_poi;}if (options.from_track) {requestParam.from_track = options.from_track;}if (options.waypoints) {requestParam.waypoints = options.waypoints;}if (options.policy) {requestParam.policy = options.policy;}if (options.plate_number) {requestParam.plate_number = options.plate_number;}}if (options.mode == MODE.transit) {if (options.departure_time) {requestParam.departure_time = options.departure_time;}if (options.policy) {requestParam.policy = options.policy;}}var locationsuccess = function locationsuccess(result) {requestParam.from = result.latitude + ',' + result.longitude;if (options.sig) {requestParam.sig = Utils.getSig(requestParam, options.sig, 'direction', options.mode);}wx.request(Utils.buildWxRequestConfig(options, { url: SET_URL_DIRECTION, data: requestParam }, 'direction'));};Utils.locationProcess(options, locationsuccess);} }]);return QQMapWX;}();;module.exports = QQMapWX;
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
+/* 4 */
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 3:
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 5);
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 6);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 7);
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 9);
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 5 */
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 6 */
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+  if (null != _i) {
+    var _s,
+      _e,
+      _x,
+      _r,
+      _arr = [],
+      _n = !0,
+      _d = !1;
+    try {
+      if (_x = (_i = _i.call(arr)).next, 0 === i) {
+        if (Object(_i) !== _i) return;
+        _n = !1;
+      } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) {
+        ;
+      }
+    } catch (err) {
+      _d = !0, _e = err;
+    } finally {
+      try {
+        if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return;
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+}
+module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 7 */
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 8);
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 8 */
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+  return arr2;
+}
+module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 9 */
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 10 */
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ 11);
+function _defineProperty(obj, key, value) {
+  key = toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 11 */
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toPropertyKey.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 12)["default"];
+var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ 13);
+function _toPropertyKey(arg) {
+  var key = toPrimitive(arg, "string");
+  return _typeof(key) === "symbol" ? key : String(key);
+}
+module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 12 */
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 13 */
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toPrimitive.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 12)["default"];
+function _toPrimitive(input, hint) {
+  if (_typeof(input) !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (_typeof(res) !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 14 */
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/construct.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 15);
+var isNativeReflectConstruct = __webpack_require__(/*! ./isNativeReflectConstruct.js */ 16);
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    module.exports = _construct = Reflect.construct.bind(), module.exports.__esModule = true, module.exports["default"] = module.exports;
+  } else {
+    module.exports = _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) setPrototypeOf(instance, Class.prototype);
+      return instance;
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  }
+  return _construct.apply(null, arguments);
+}
+module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 15 */
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _setPrototypeOf(o, p);
+}
+module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 16 */
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+module.exports = _isNativeReflectConstruct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 17 */
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ 18);
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ 19);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 7);
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ 20);
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 18 */
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ 8);
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 19 */
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 20 */
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 21 */
 /*!*************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
   \*************************************************************/
@@ -2719,14 +2731,39 @@ function _classCallCheck(instance, Constructor) {if (!(instance instanceof Const
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, global) {Object.defineProperty(exports, "__esModule", { value: true });exports.compileI18nJsonStr = compileI18nJsonStr;exports.hasI18nJson = hasI18nJson;exports.initVueI18n = initVueI18n;exports.isI18nStr = isI18nStr;exports.normalizeLocale = normalizeLocale;exports.parseI18nJson = parseI18nJson;exports.resolveLocale = resolveLocale;exports.isString = exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var isArray = Array.isArray;
-var isObject = function isObject(val) {return val !== null && typeof val === 'object';};
-var defaultDelimiters = ['{', '}'];var
-BaseFormatter = /*#__PURE__*/function () {
-  function BaseFormatter() {_classCallCheck(this, BaseFormatter);
+/* WEBPACK VAR INJECTION */(function(uni, global) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 3);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.LOCALE_ZH_HANT = exports.LOCALE_ZH_HANS = exports.LOCALE_FR = exports.LOCALE_ES = exports.LOCALE_EN = exports.I18n = exports.Formatter = void 0;
+exports.compileI18nJsonStr = compileI18nJsonStr;
+exports.hasI18nJson = hasI18nJson;
+exports.initVueI18n = initVueI18n;
+exports.isI18nStr = isI18nStr;
+exports.isString = void 0;
+exports.normalizeLocale = normalizeLocale;
+exports.parseI18nJson = parseI18nJson;
+exports.resolveLocale = resolveLocale;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 4));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 22));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 23));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 12));
+var isArray = Array.isArray;
+var isObject = function isObject(val) {
+  return val !== null && (0, _typeof2.default)(val) === 'object';
+};
+var defaultDelimiters = ['{', '}'];
+var BaseFormatter = /*#__PURE__*/function () {
+  function BaseFormatter() {
+    (0, _classCallCheck2.default)(this, BaseFormatter);
     this._caches = Object.create(null);
-  }_createClass(BaseFormatter, [{ key: "interpolate", value: function interpolate(
-    message, values) {var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
+  }
+  (0, _createClass2.default)(BaseFormatter, [{
+    key: "interpolate",
+    value: function interpolate(message, values) {
+      var delimiters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : defaultDelimiters;
       if (!values) {
         return [message];
       }
@@ -2736,11 +2773,17 @@ BaseFormatter = /*#__PURE__*/function () {
         this._caches[message] = tokens;
       }
       return compile(tokens, values);
-    } }]);return BaseFormatter;}();exports.Formatter = BaseFormatter;
-
+    }
+  }]);
+  return BaseFormatter;
+}();
+exports.Formatter = BaseFormatter;
 var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
 var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
-function parse(format, _ref) {var _ref2 = _slicedToArray(_ref, 2),startDelimiter = _ref2[0],endDelimiter = _ref2[1];
+function parse(format, _ref) {
+  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+    startDelimiter = _ref2[0],
+    endDelimiter = _ref2[1];
   var tokens = [];
   var position = 0;
   var text = '';
@@ -2748,7 +2791,10 @@ function parse(format, _ref) {var _ref2 = _slicedToArray(_ref, 2),startDelimiter
     var char = format[position++];
     if (char === startDelimiter) {
       if (text) {
-        tokens.push({ type: 'text', value: text });
+        tokens.push({
+          type: 'text',
+          value: text
+        });
       }
       text = '';
       var sub = '';
@@ -2758,12 +2804,11 @@ function parse(format, _ref) {var _ref2 = _slicedToArray(_ref, 2),startDelimiter
         char = format[position++];
       }
       var isClosed = char === endDelimiter;
-      var type = RE_TOKEN_LIST_VALUE.test(sub) ?
-      'list' :
-      isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ?
-      'named' :
-      'unknown';
-      tokens.push({ value: sub, type: type });
+      var type = RE_TOKEN_LIST_VALUE.test(sub) ? 'list' : isClosed && RE_TOKEN_NAMED_VALUE.test(sub) ? 'named' : 'unknown';
+      tokens.push({
+        value: sub,
+        type: type
+      });
     }
     //  else if (char === '%') {
     //   // when found rails i18n syntax, skip text capture
@@ -2772,20 +2817,19 @@ function parse(format, _ref) {var _ref2 = _slicedToArray(_ref, 2),startDelimiter
     //   }
     // }
     else {
-        text += char;
-      }
+      text += char;
+    }
   }
-  text && tokens.push({ type: 'text', value: text });
+  text && tokens.push({
+    type: 'text',
+    value: text
+  });
   return tokens;
 }
 function compile(tokens, values) {
   var compiled = [];
   var index = 0;
-  var mode = isArray(values) ?
-  'list' :
-  isObject(values) ?
-  'named' :
-  'unknown';
+  var mode = isArray(values) ? 'list' : isObject(values) ? 'named' : 'unknown';
   if (mode === 'unknown') {
     return compiled;
   }
@@ -2801,8 +2845,7 @@ function compile(tokens, values) {
       case 'named':
         if (mode === 'named') {
           compiled.push(values[token.value]);
-        } else
-        {
+        } else {
           if (true) {
             console.warn("Type of token '".concat(token.type, "' and format of value '").concat(mode, "' don't match!"));
           }
@@ -2812,26 +2855,36 @@ function compile(tokens, values) {
         if (true) {
           console.warn("Detect 'unknown' type of token!");
         }
-        break;}
-
+        break;
+    }
     index++;
   }
   return compiled;
 }
-
-var LOCALE_ZH_HANS = 'zh-Hans';exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
-var LOCALE_ZH_HANT = 'zh-Hant';exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
-var LOCALE_EN = 'en';exports.LOCALE_EN = LOCALE_EN;
-var LOCALE_FR = 'fr';exports.LOCALE_FR = LOCALE_FR;
-var LOCALE_ES = 'es';exports.LOCALE_ES = LOCALE_ES;
+var LOCALE_ZH_HANS = 'zh-Hans';
+exports.LOCALE_ZH_HANS = LOCALE_ZH_HANS;
+var LOCALE_ZH_HANT = 'zh-Hant';
+exports.LOCALE_ZH_HANT = LOCALE_ZH_HANT;
+var LOCALE_EN = 'en';
+exports.LOCALE_EN = LOCALE_EN;
+var LOCALE_FR = 'fr';
+exports.LOCALE_FR = LOCALE_FR;
+var LOCALE_ES = 'es';
+exports.LOCALE_ES = LOCALE_ES;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
-var hasOwn = function hasOwn(val, key) {return hasOwnProperty.call(val, key);};
+var hasOwn = function hasOwn(val, key) {
+  return hasOwnProperty.call(val, key);
+};
 var defaultFormatter = new BaseFormatter();
 function include(str, parts) {
-  return !!parts.find(function (part) {return str.indexOf(part) !== -1;});
+  return !!parts.find(function (part) {
+    return str.indexOf(part) !== -1;
+  });
 }
 function startsWith(str, parts) {
-  return parts.find(function (part) {return str.indexOf(part) === 0;});
+  return parts.find(function (part) {
+    return str.indexOf(part) === 0;
+  });
 }
 function normalizeLocale(locale, messages) {
   if (!locale) {
@@ -2858,9 +2911,15 @@ function normalizeLocale(locale, messages) {
   if (lang) {
     return lang;
   }
-}var
-I18n = /*#__PURE__*/function () {
-  function I18n(_ref3) {var locale = _ref3.locale,fallbackLocale = _ref3.fallbackLocale,messages = _ref3.messages,watcher = _ref3.watcher,formater = _ref3.formater;_classCallCheck(this, I18n);
+}
+var I18n = /*#__PURE__*/function () {
+  function I18n(_ref3) {
+    var locale = _ref3.locale,
+      fallbackLocale = _ref3.fallbackLocale,
+      messages = _ref3.messages,
+      watcher = _ref3.watcher,
+      formater = _ref3.formater;
+    (0, _classCallCheck2.default)(this, I18n);
     this.locale = LOCALE_EN;
     this.fallbackLocale = LOCALE_EN;
     this.message = {};
@@ -2875,8 +2934,11 @@ I18n = /*#__PURE__*/function () {
     if (watcher) {
       this.watchLocale(watcher);
     }
-  }_createClass(I18n, [{ key: "setLocale", value: function setLocale(
-    locale) {var _this = this;
+  }
+  (0, _createClass2.default)(I18n, [{
+    key: "setLocale",
+    value: function setLocale(locale) {
+      var _this = this;
       var oldLocale = this.locale;
       this.locale = normalizeLocale(locale, this.messages) || this.fallbackLocale;
       if (!this.messages[this.locale]) {
@@ -2890,44 +2952,53 @@ I18n = /*#__PURE__*/function () {
           watcher(_this.locale, oldLocale);
         });
       }
-    } }, { key: "getLocale", value: function getLocale()
-    {
+    }
+  }, {
+    key: "getLocale",
+    value: function getLocale() {
       return this.locale;
-    } }, { key: "watchLocale", value: function watchLocale(
-    fn) {var _this2 = this;
+    }
+  }, {
+    key: "watchLocale",
+    value: function watchLocale(fn) {
+      var _this2 = this;
       var index = this.watchers.push(fn) - 1;
       return function () {
         _this2.watchers.splice(index, 1);
       };
-    } }, { key: "add", value: function add(
-    locale, message) {var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    }
+  }, {
+    key: "add",
+    value: function add(locale, message) {
+      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       var curMessages = this.messages[locale];
       if (curMessages) {
         if (override) {
           Object.assign(curMessages, message);
-        } else
-        {
+        } else {
           Object.keys(message).forEach(function (key) {
             if (!hasOwn(curMessages, key)) {
               curMessages[key] = message[key];
             }
           });
         }
-      } else
-      {
+      } else {
         this.messages[locale] = message;
       }
-    } }, { key: "f", value: function f(
-    message, values, delimiters) {
+    }
+  }, {
+    key: "f",
+    value: function f(message, values, delimiters) {
       return this.formater.interpolate(message, values, delimiters).join('');
-    } }, { key: "t", value: function t(
-    key, locale, values) {
+    }
+  }, {
+    key: "t",
+    value: function t(key, locale, values) {
       var message = this.message;
       if (typeof locale === 'string') {
         locale = normalizeLocale(locale, this.messages);
         locale && (message = this.messages[locale]);
-      } else
-      {
+      } else {
         values = locale;
       }
       if (!hasOwn(message, key)) {
@@ -2935,9 +3006,11 @@ I18n = /*#__PURE__*/function () {
         return key;
       }
       return this.formater.interpolate(message[key], values).join('');
-    } }]);return I18n;}();exports.I18n = I18n;
-
-
+    }
+  }]);
+  return I18n;
+}();
+exports.I18n = I18n;
 function watchAppLocale(appVm, i18n) {
   // 需要保证 watch 的触发在组件渲染之前
   if (appVm.$watchLocale) {
@@ -2945,9 +3018,10 @@ function watchAppLocale(appVm, i18n) {
     appVm.$watchLocale(function (newLocale) {
       i18n.setLocale(newLocale);
     });
-  } else
-  {
-    appVm.$watch(function () {return appVm.$locale;}, function (newLocale) {
+  } else {
+    appVm.$watch(function () {
+      return appVm.$locale;
+    }, function (newLocale) {
       i18n.setLocale(newLocale);
     });
   }
@@ -2962,29 +3036,29 @@ function getDefaultLocale() {
   }
   return LOCALE_EN;
 }
-function initVueI18n(locale) {var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;var watcher = arguments.length > 3 ? arguments[3] : undefined;
+function initVueI18n(locale) {
+  var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var fallbackLocale = arguments.length > 2 ? arguments[2] : undefined;
+  var watcher = arguments.length > 3 ? arguments[3] : undefined;
   // 兼容旧版本入参
-  if (typeof locale !== 'string') {var _ref4 =
-    [
-    messages,
-    locale];locale = _ref4[0];messages = _ref4[1];
-
+  if (typeof locale !== 'string') {
+    var _ref4 = [messages, locale];
+    locale = _ref4[0];
+    messages = _ref4[1];
   }
   if (typeof locale !== 'string') {
     // 因为小程序平台，uni-i18n 和 uni 互相引用，导致此时访问 uni 时，为 undefined
     locale = getDefaultLocale();
   }
   if (typeof fallbackLocale !== 'string') {
-    fallbackLocale =
-    typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale ||
-    LOCALE_EN;
+    fallbackLocale = typeof __uniConfig !== 'undefined' && __uniConfig.fallbackLocale || LOCALE_EN;
   }
   var i18n = new I18n({
     locale: locale,
     fallbackLocale: fallbackLocale,
     messages: messages,
-    watcher: watcher });
-
+    watcher: watcher
+  });
   var _t = function t(key, values) {
     if (typeof getApp !== 'function') {
       // app view
@@ -2992,8 +3066,7 @@ function initVueI18n(locale) {var messages = arguments.length > 1 && arguments[1
       _t = function t(key, values) {
         return i18n.t(key, values);
       };
-    } else
-    {
+    } else {
       var isWatchedAppLocale = false;
       _t = function t(key, values) {
         var appVm = getApp().$vm;
@@ -3031,7 +3104,8 @@ function initVueI18n(locale) {var messages = arguments.length > 1 && arguments[1
     t: function t(key, values) {
       return _t(key, values);
     },
-    add: function add(locale, message) {var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+    add: function add(locale, message) {
+      var override = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       return i18n.add(locale, message, override);
     },
     watch: function watch(fn) {
@@ -3042,11 +3116,13 @@ function initVueI18n(locale) {var messages = arguments.length > 1 && arguments[1
     },
     setLocale: function setLocale(newLocale) {
       return i18n.setLocale(newLocale);
-    } };
-
+    }
+  };
 }
-
-var isString = function isString(val) {return typeof val === 'string';};exports.isString = isString;
+var isString = function isString(val) {
+  return typeof val === 'string';
+};
+exports.isString = isString;
 var formater;
 function hasI18nJson(jsonObj, delimiters) {
   if (!formater) {
@@ -3058,8 +3134,7 @@ function hasI18nJson(jsonObj, delimiters) {
       if (isI18nStr(value, delimiters)) {
         return true;
       }
-    } else
-    {
+    } else {
       return hasI18nJson(value, delimiters);
     }
   });
@@ -3074,14 +3149,16 @@ function parseI18nJson(jsonObj, values, delimiters) {
       if (isI18nStr(value, delimiters)) {
         jsonObj[key] = compileStr(value, values, delimiters);
       }
-    } else
-    {
+    } else {
       parseI18nJson(value, values, delimiters);
     }
   });
   return jsonObj;
 }
-function compileI18nJsonStr(jsonStr, _ref5) {var locale = _ref5.locale,locales = _ref5.locales,delimiters = _ref5.delimiters;
+function compileI18nJsonStr(jsonStr, _ref5) {
+  var locale = _ref5.locale,
+    locales = _ref5.locales,
+    delimiters = _ref5.delimiters;
   if (!isI18nStr(jsonStr, delimiters)) {
     return jsonStr;
   }
@@ -3093,15 +3170,17 @@ function compileI18nJsonStr(jsonStr, _ref5) {var locale = _ref5.locale,locales =
     if (name !== locale) {
       localeValues.push({
         locale: name,
-        values: locales[name] });
-
+        values: locales[name]
+      });
     }
   });
-  localeValues.unshift({ locale: locale, values: locales[locale] });
+  localeValues.unshift({
+    locale: locale,
+    values: locales[locale]
+  });
   try {
     return JSON.stringify(compileJsonObj(JSON.parse(jsonStr), localeValues, delimiters), null, 2);
-  }
-  catch (e) {}
+  } catch (e) {}
   return jsonStr;
 }
 function isI18nStr(value, delimiters) {
@@ -3124,8 +3203,7 @@ function compileValue(jsonObj, key, localeValues, delimiters) {
         });
       }
     }
-  } else
-  {
+  } else {
     compileJsonObj(value, localeValues, delimiters);
   }
 }
@@ -3142,8 +3220,7 @@ function walkJsonObj(jsonObj, walk) {
         return true;
       }
     }
-  } else
-  if (isObject(jsonObj)) {
+  } else if (isObject(jsonObj)) {
     for (var key in jsonObj) {
       if (walk(jsonObj, key)) {
         return true;
@@ -3152,14 +3229,15 @@ function walkJsonObj(jsonObj, walk) {
   }
   return false;
 }
-
 function resolveLocale(locales) {
   return function (locale) {
     if (!locale) {
       return locale;
     }
     locale = normalizeLocale(locale) || locale;
-    return resolveLocaleChain(locale).find(function (locale) {return locales.indexOf(locale) > -1;});
+    return resolveLocaleChain(locale).find(function (locale) {
+      return locales.indexOf(locale) > -1;
+    });
   };
 }
 function resolveLocaleChain(locale) {
@@ -3174,8 +3252,50 @@ function resolveLocaleChain(locale) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
+/* 22 */
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-/***/ 4:
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 23 */
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ 11);
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, toPropertyKey(descriptor.key), descriptor);
+  }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 24 */
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -4177,7 +4297,8 @@ function observe (value, asRootData) {
     !isServerRendering() &&
     (Array.isArray(value) || isPlainObject(value)) &&
     Object.isExtensible(value) &&
-    !value._isVue
+    !value._isVue &&
+    !value.__v_isMPComponent
   ) {
     ob = new Observer(value);
   }
@@ -8595,6 +8716,8 @@ Vue.version = '2.6.11';
  */
 var ARRAYTYPE = '[object Array]';
 var OBJECTTYPE = '[object Object]';
+var NULLTYPE = '[object Null]';
+var UNDEFINEDTYPE = '[object Undefined]';
 // const FUNCTIONTYPE = '[object Function]'
 
 function diff(current, pre) {
@@ -8628,6 +8751,16 @@ function syncKeys(current, pre) {
     }
 }
 
+function nullOrUndefined(currentType, preType) {
+    if(
+        (currentType === NULLTYPE || currentType === UNDEFINEDTYPE) && 
+        (preType === NULLTYPE || preType === UNDEFINEDTYPE)
+    ) {
+        return false
+    }
+    return true
+}
+
 function _diff(current, pre, path, result) {
     if (current === pre) { return }
     var rootCurrentType = type(current);
@@ -8642,7 +8775,7 @@ function _diff(current, pre, path, result) {
                 var currentType = type(currentValue);
                 var preType = type(preValue);
                 if (currentType != ARRAYTYPE && currentType != OBJECTTYPE) {
-                    if (currentValue !== pre[key]) {
+                    if (currentValue !== pre[key] && nullOrUndefined(currentType, preType)) {
                         setResult(result, (path == '' ? '' : path + ".") + key, currentValue);
                     }
                 } else if (currentType == ARRAYTYPE) {
@@ -8701,7 +8834,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8722,14 +8855,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8759,6 +8892,16 @@ function nextTick$1(vm, cb) {
 }
 
 /*  */
+
+function clearInstance(key, value) {
+  // 简易去除 Vue 和小程序组件实例
+  if (value) {
+    if (value._isVue || value.__v_isMPComponent) {
+      return {}
+    }
+  }
+  return value
+}
 
 function cloneWithData(vm) {
   // 确保当前 vm 所有数据被同步
@@ -8791,7 +8934,7 @@ function cloneWithData(vm) {
     ret['value'] = vm.value;
   }
 
-  return JSON.parse(JSON.stringify(ret))
+  return JSON.parse(JSON.stringify(ret, clearInstance))
 }
 
 var patch = function(oldVnode, vnode) {
@@ -8815,7 +8958,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"covid-control","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9003,9 +9146,13 @@ function internalMixin(Vue) {
     if (this.$scope && event) {
       var triggerEvent = this.$scope['_triggerEvent'] || this.$scope['triggerEvent'];
       if (triggerEvent) {
-        triggerEvent.call(this.$scope, event, {
-          __args__: toArray(arguments, 1)
-        });
+        try {
+          triggerEvent.call(this.$scope, event, {
+            __args__: toArray(arguments, 1)
+          });
+        } catch (error) {
+
+        }
       }
     }
     return oldEmit.apply(this, arguments)
@@ -9228,8 +9375,7 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-
-/***/ 5:
+/* 25 */
 /*!****************************************!*\
   !*** F:/新冠监测/covid-control/pages.json ***!
   \****************************************/
@@ -9238,7 +9384,1065 @@ internalMixin(Vue);
 
 
 
-/***/ })
+/***/ }),
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-}]);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */
+/*!********************************************************!*\
+  !*** F:/新冠监测/covid-control/libs/qqmap-wx-jssdk.min.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _classCallCheck = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 22);
+var _createClass = __webpack_require__(/*! @babel/runtime/helpers/createClass */ 23);
+var ERROR_CONF = {
+  KEY_ERR: 311,
+  KEY_ERR_MSG: 'key格式错误',
+  PARAM_ERR: 310,
+  PARAM_ERR_MSG: '请求参数信息有误',
+  SYSTEM_ERR: 600,
+  SYSTEM_ERR_MSG: '系统错误',
+  WX_ERR_CODE: 1000,
+  WX_OK_CODE: 200
+};
+var BASE_URL = 'https://apis.map.qq.com/ws/';
+var URL_SEARCH = BASE_URL + 'place/v1/search';
+var URL_SUGGESTION = BASE_URL + 'place/v1/suggestion';
+var URL_GET_GEOCODER = BASE_URL + 'geocoder/v1/';
+var URL_CITY_LIST = BASE_URL + 'district/v1/list';
+var URL_AREA_LIST = BASE_URL + 'district/v1/getchildren';
+var URL_DISTANCE = BASE_URL + 'distance/v1/';
+var URL_DIRECTION = BASE_URL + 'direction/v1/';
+var MODE = {
+  driving: 'driving',
+  transit: 'transit'
+};
+var EARTH_RADIUS = 6378136.49;
+var Utils = {
+  safeAdd: function safeAdd(x, y) {
+    var lsw = (x & 0xffff) + (y & 0xffff);
+    var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    return msw << 16 | lsw & 0xffff;
+  },
+  bitRotateLeft: function bitRotateLeft(num, cnt) {
+    return num << cnt | num >>> 32 - cnt;
+  },
+  md5cmn: function md5cmn(q, a, b, x, s, t) {
+    return this.safeAdd(this.bitRotateLeft(this.safeAdd(this.safeAdd(a, q), this.safeAdd(x, t)), s), b);
+  },
+  md5ff: function md5ff(a, b, c, d, x, s, t) {
+    return this.md5cmn(b & c | ~b & d, a, b, x, s, t);
+  },
+  md5gg: function md5gg(a, b, c, d, x, s, t) {
+    return this.md5cmn(b & d | c & ~d, a, b, x, s, t);
+  },
+  md5hh: function md5hh(a, b, c, d, x, s, t) {
+    return this.md5cmn(b ^ c ^ d, a, b, x, s, t);
+  },
+  md5ii: function md5ii(a, b, c, d, x, s, t) {
+    return this.md5cmn(c ^ (b | ~d), a, b, x, s, t);
+  },
+  binlMD5: function binlMD5(x, len) {
+    x[len >> 5] |= 0x80 << len % 32;
+    x[(len + 64 >>> 9 << 4) + 14] = len;
+    var i;
+    var olda;
+    var oldb;
+    var oldc;
+    var oldd;
+    var a = 1732584193;
+    var b = -271733879;
+    var c = -1732584194;
+    var d = 271733878;
+    for (i = 0; i < x.length; i += 16) {
+      olda = a;
+      oldb = b;
+      oldc = c;
+      oldd = d;
+      a = this.md5ff(a, b, c, d, x[i], 7, -680876936);
+      d = this.md5ff(d, a, b, c, x[i + 1], 12, -389564586);
+      c = this.md5ff(c, d, a, b, x[i + 2], 17, 606105819);
+      b = this.md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
+      a = this.md5ff(a, b, c, d, x[i + 4], 7, -176418897);
+      d = this.md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
+      c = this.md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
+      b = this.md5ff(b, c, d, a, x[i + 7], 22, -45705983);
+      a = this.md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
+      d = this.md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
+      c = this.md5ff(c, d, a, b, x[i + 10], 17, -42063);
+      b = this.md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
+      a = this.md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
+      d = this.md5ff(d, a, b, c, x[i + 13], 12, -40341101);
+      c = this.md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
+      b = this.md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
+      a = this.md5gg(a, b, c, d, x[i + 1], 5, -165796510);
+      d = this.md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
+      c = this.md5gg(c, d, a, b, x[i + 11], 14, 643717713);
+      b = this.md5gg(b, c, d, a, x[i], 20, -373897302);
+      a = this.md5gg(a, b, c, d, x[i + 5], 5, -701558691);
+      d = this.md5gg(d, a, b, c, x[i + 10], 9, 38016083);
+      c = this.md5gg(c, d, a, b, x[i + 15], 14, -660478335);
+      b = this.md5gg(b, c, d, a, x[i + 4], 20, -405537848);
+      a = this.md5gg(a, b, c, d, x[i + 9], 5, 568446438);
+      d = this.md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
+      c = this.md5gg(c, d, a, b, x[i + 3], 14, -187363961);
+      b = this.md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
+      a = this.md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
+      d = this.md5gg(d, a, b, c, x[i + 2], 9, -51403784);
+      c = this.md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
+      b = this.md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
+      a = this.md5hh(a, b, c, d, x[i + 5], 4, -378558);
+      d = this.md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
+      c = this.md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
+      b = this.md5hh(b, c, d, a, x[i + 14], 23, -35309556);
+      a = this.md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
+      d = this.md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
+      c = this.md5hh(c, d, a, b, x[i + 7], 16, -155497632);
+      b = this.md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
+      a = this.md5hh(a, b, c, d, x[i + 13], 4, 681279174);
+      d = this.md5hh(d, a, b, c, x[i], 11, -358537222);
+      c = this.md5hh(c, d, a, b, x[i + 3], 16, -722521979);
+      b = this.md5hh(b, c, d, a, x[i + 6], 23, 76029189);
+      a = this.md5hh(a, b, c, d, x[i + 9], 4, -640364487);
+      d = this.md5hh(d, a, b, c, x[i + 12], 11, -421815835);
+      c = this.md5hh(c, d, a, b, x[i + 15], 16, 530742520);
+      b = this.md5hh(b, c, d, a, x[i + 2], 23, -995338651);
+      a = this.md5ii(a, b, c, d, x[i], 6, -198630844);
+      d = this.md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
+      c = this.md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
+      b = this.md5ii(b, c, d, a, x[i + 5], 21, -57434055);
+      a = this.md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
+      d = this.md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
+      c = this.md5ii(c, d, a, b, x[i + 10], 15, -1051523);
+      b = this.md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
+      a = this.md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
+      d = this.md5ii(d, a, b, c, x[i + 15], 10, -30611744);
+      c = this.md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
+      b = this.md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
+      a = this.md5ii(a, b, c, d, x[i + 4], 6, -145523070);
+      d = this.md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
+      c = this.md5ii(c, d, a, b, x[i + 2], 15, 718787259);
+      b = this.md5ii(b, c, d, a, x[i + 9], 21, -343485551);
+      a = this.safeAdd(a, olda);
+      b = this.safeAdd(b, oldb);
+      c = this.safeAdd(c, oldc);
+      d = this.safeAdd(d, oldd);
+    }
+    return [a, b, c, d];
+  },
+  binl2rstr: function binl2rstr(input) {
+    var i;
+    var output = '';
+    var length32 = input.length * 32;
+    for (i = 0; i < length32; i += 8) {
+      output += String.fromCharCode(input[i >> 5] >>> i % 32 & 0xff);
+    }
+    return output;
+  },
+  rstr2binl: function rstr2binl(input) {
+    var i;
+    var output = [];
+    output[(input.length >> 2) - 1] = undefined;
+    for (i = 0; i < output.length; i += 1) {
+      output[i] = 0;
+    }
+    var length8 = input.length * 8;
+    for (i = 0; i < length8; i += 8) {
+      output[i >> 5] |= (input.charCodeAt(i / 8) & 0xff) << i % 32;
+    }
+    return output;
+  },
+  rstrMD5: function rstrMD5(s) {
+    return this.binl2rstr(this.binlMD5(this.rstr2binl(s), s.length * 8));
+  },
+  rstrHMACMD5: function rstrHMACMD5(key, data) {
+    var i;
+    var bkey = this.rstr2binl(key);
+    var ipad = [];
+    var opad = [];
+    var hash;
+    ipad[15] = opad[15] = undefined;
+    if (bkey.length > 16) {
+      bkey = this.binlMD5(bkey, key.length * 8);
+    }
+    for (i = 0; i < 16; i += 1) {
+      ipad[i] = bkey[i] ^ 0x36363636;
+      opad[i] = bkey[i] ^ 0x5c5c5c5c;
+    }
+    hash = this.binlMD5(ipad.concat(this.rstr2binl(data)), 512 + data.length * 8);
+    return this.binl2rstr(this.binlMD5(opad.concat(hash), 512 + 128));
+  },
+  rstr2hex: function rstr2hex(input) {
+    var hexTab = '0123456789abcdef';
+    var output = '';
+    var x;
+    var i;
+    for (i = 0; i < input.length; i += 1) {
+      x = input.charCodeAt(i);
+      output += hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f);
+    }
+    return output;
+  },
+  str2rstrUTF8: function str2rstrUTF8(input) {
+    return unescape(encodeURIComponent(input));
+  },
+  rawMD5: function rawMD5(s) {
+    return this.rstrMD5(this.str2rstrUTF8(s));
+  },
+  hexMD5: function hexMD5(s) {
+    return this.rstr2hex(this.rawMD5(s));
+  },
+  rawHMACMD5: function rawHMACMD5(k, d) {
+    return this.rstrHMACMD5(this.str2rstrUTF8(k), str2rstrUTF8(d));
+  },
+  hexHMACMD5: function hexHMACMD5(k, d) {
+    return this.rstr2hex(this.rawHMACMD5(k, d));
+  },
+  md5: function md5(string, key, raw) {
+    if (!key) {
+      if (!raw) {
+        return this.hexMD5(string);
+      }
+      return this.rawMD5(string);
+    }
+    if (!raw) {
+      return this.hexHMACMD5(key, string);
+    }
+    return this.rawHMACMD5(key, string);
+  },
+  getSig: function getSig(requestParam, sk, feature, mode) {
+    var sig = null;
+    var requestArr = [];
+    Object.keys(requestParam).sort().forEach(function (key) {
+      requestArr.push(key + '=' + requestParam[key]);
+    });
+    if (feature == 'search') {
+      sig = '/ws/place/v1/search?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'suggest') {
+      sig = '/ws/place/v1/suggestion?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'reverseGeocoder') {
+      sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'geocoder') {
+      sig = '/ws/geocoder/v1/?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'getCityList') {
+      sig = '/ws/district/v1/list?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'getDistrictByCityId') {
+      sig = '/ws/district/v1/getchildren?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'calculateDistance') {
+      sig = '/ws/distance/v1/?' + requestArr.join('&') + sk;
+    }
+    if (feature == 'direction') {
+      sig = '/ws/direction/v1/' + mode + '?' + requestArr.join('&') + sk;
+    }
+    sig = this.md5(sig);
+    return sig;
+  },
+  location2query: function location2query(data) {
+    if (typeof data == 'string') {
+      return data;
+    }
+    var query = '';
+    for (var i = 0; i < data.length; i++) {
+      var d = data[i];
+      if (!!query) {
+        query += ';';
+      }
+      if (d.location) {
+        query = query + d.location.lat + ',' + d.location.lng;
+      }
+      if (d.latitude && d.longitude) {
+        query = query + d.latitude + ',' + d.longitude;
+      }
+    }
+    return query;
+  },
+  rad: function rad(d) {
+    return d * Math.PI / 180.0;
+  },
+  getEndLocation: function getEndLocation(location) {
+    var to = location.split(';');
+    var endLocation = [];
+    for (var i = 0; i < to.length; i++) {
+      endLocation.push({
+        lat: parseFloat(to[i].split(',')[0]),
+        lng: parseFloat(to[i].split(',')[1])
+      });
+    }
+    return endLocation;
+  },
+  getDistance: function getDistance(latFrom, lngFrom, latTo, lngTo) {
+    var radLatFrom = this.rad(latFrom);
+    var radLatTo = this.rad(latTo);
+    var a = radLatFrom - radLatTo;
+    var b = this.rad(lngFrom) - this.rad(lngTo);
+    var distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLatFrom) * Math.cos(radLatTo) * Math.pow(Math.sin(b / 2), 2)));
+    distance = distance * EARTH_RADIUS;
+    distance = Math.round(distance * 10000) / 10000;
+    return parseFloat(distance.toFixed(0));
+  },
+  getWXLocation: function getWXLocation(success, fail, complete) {
+    wx.getLocation({
+      type: 'gcj02',
+      success: success,
+      fail: fail,
+      complete: complete
+    });
+  },
+  getLocationParam: function getLocationParam(location) {
+    if (typeof location == 'string') {
+      var locationArr = location.split(',');
+      if (locationArr.length === 2) {
+        location = {
+          latitude: location.split(',')[0],
+          longitude: location.split(',')[1]
+        };
+      } else {
+        location = {};
+      }
+    }
+    return location;
+  },
+  polyfillParam: function polyfillParam(param) {
+    param.success = param.success || function () {};
+    param.fail = param.fail || function () {};
+    param.complete = param.complete || function () {};
+  },
+  checkParamKeyEmpty: function checkParamKeyEmpty(param, key) {
+    if (!param[key]) {
+      var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + key + '参数格式有误');
+      param.fail(errconf);
+      param.complete(errconf);
+      return true;
+    }
+    return false;
+  },
+  checkKeyword: function checkKeyword(param) {
+    return !this.checkParamKeyEmpty(param, 'keyword');
+  },
+  checkLocation: function checkLocation(param) {
+    var location = this.getLocationParam(param.location);
+    if (!location || !location.latitude || !location.longitude) {
+      var errconf = this.buildErrorConfig(ERROR_CONF.PARAM_ERR, ERROR_CONF.PARAM_ERR_MSG + ' location参数格式有误');
+      param.fail(errconf);
+      param.complete(errconf);
+      return false;
+    }
+    return true;
+  },
+  buildErrorConfig: function buildErrorConfig(errCode, errMsg) {
+    return {
+      status: errCode,
+      message: errMsg
+    };
+  },
+  handleData: function handleData(param, data, feature) {
+    if (feature == 'search') {
+      var searchResult = data.data;
+      var searchSimplify = [];
+      for (var i = 0; i < searchResult.length; i++) {
+        searchSimplify.push({
+          id: searchResult[i].id || null,
+          title: searchResult[i].title || null,
+          latitude: searchResult[i].location && searchResult[i].location.lat || null,
+          longitude: searchResult[i].location && searchResult[i].location.lng || null,
+          address: searchResult[i].address || null,
+          category: searchResult[i].category || null,
+          tel: searchResult[i].tel || null,
+          adcode: searchResult[i].ad_info && searchResult[i].ad_info.adcode || null,
+          city: searchResult[i].ad_info && searchResult[i].ad_info.city || null,
+          district: searchResult[i].ad_info && searchResult[i].ad_info.district || null,
+          province: searchResult[i].ad_info && searchResult[i].ad_info.province || null
+        });
+      }
+      param.success(data, {
+        searchResult: searchResult,
+        searchSimplify: searchSimplify
+      });
+    } else if (feature == 'suggest') {
+      var suggestResult = data.data;
+      var suggestSimplify = [];
+      for (var i = 0; i < suggestResult.length; i++) {
+        suggestSimplify.push({
+          adcode: suggestResult[i].adcode || null,
+          address: suggestResult[i].address || null,
+          category: suggestResult[i].category || null,
+          city: suggestResult[i].city || null,
+          district: suggestResult[i].district || null,
+          id: suggestResult[i].id || null,
+          latitude: suggestResult[i].location && suggestResult[i].location.lat || null,
+          longitude: suggestResult[i].location && suggestResult[i].location.lng || null,
+          province: suggestResult[i].province || null,
+          title: suggestResult[i].title || null,
+          type: suggestResult[i].type || null
+        });
+      }
+      param.success(data, {
+        suggestResult: suggestResult,
+        suggestSimplify: suggestSimplify
+      });
+    } else if (feature == 'reverseGeocoder') {
+      var reverseGeocoderResult = data.result;
+      var reverseGeocoderSimplify = {
+        address: reverseGeocoderResult.address || null,
+        latitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lat || null,
+        longitude: reverseGeocoderResult.location && reverseGeocoderResult.location.lng || null,
+        adcode: reverseGeocoderResult.ad_info && reverseGeocoderResult.ad_info.adcode || null,
+        city: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.city || null,
+        district: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.district || null,
+        nation: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.nation || null,
+        province: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.province || null,
+        street: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street || null,
+        street_number: reverseGeocoderResult.address_component && reverseGeocoderResult.address_component.street_number || null,
+        recommend: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.recommend || null,
+        rough: reverseGeocoderResult.formatted_addresses && reverseGeocoderResult.formatted_addresses.rough || null
+      };
+      if (reverseGeocoderResult.pois) {
+        var pois = reverseGeocoderResult.pois;
+        var poisSimplify = [];
+        for (var i = 0; i < pois.length; i++) {
+          poisSimplify.push({
+            id: pois[i].id || null,
+            title: pois[i].title || null,
+            latitude: pois[i].location && pois[i].location.lat || null,
+            longitude: pois[i].location && pois[i].location.lng || null,
+            address: pois[i].address || null,
+            category: pois[i].category || null,
+            adcode: pois[i].ad_info && pois[i].ad_info.adcode || null,
+            city: pois[i].ad_info && pois[i].ad_info.city || null,
+            district: pois[i].ad_info && pois[i].ad_info.district || null,
+            province: pois[i].ad_info && pois[i].ad_info.province || null
+          });
+        }
+        param.success(data, {
+          reverseGeocoderResult: reverseGeocoderResult,
+          reverseGeocoderSimplify: reverseGeocoderSimplify,
+          pois: pois,
+          poisSimplify: poisSimplify
+        });
+      } else {
+        param.success(data, {
+          reverseGeocoderResult: reverseGeocoderResult,
+          reverseGeocoderSimplify: reverseGeocoderSimplify
+        });
+      }
+    } else if (feature == 'geocoder') {
+      var geocoderResult = data.result;
+      var geocoderSimplify = {
+        title: geocoderResult.title || null,
+        latitude: geocoderResult.location && geocoderResult.location.lat || null,
+        longitude: geocoderResult.location && geocoderResult.location.lng || null,
+        adcode: geocoderResult.ad_info && geocoderResult.ad_info.adcode || null,
+        province: geocoderResult.address_components && geocoderResult.address_components.province || null,
+        city: geocoderResult.address_components && geocoderResult.address_components.city || null,
+        district: geocoderResult.address_components && geocoderResult.address_components.district || null,
+        street: geocoderResult.address_components && geocoderResult.address_components.street || null,
+        street_number: geocoderResult.address_components && geocoderResult.address_components.street_number || null,
+        level: geocoderResult.level || null
+      };
+      param.success(data, {
+        geocoderResult: geocoderResult,
+        geocoderSimplify: geocoderSimplify
+      });
+    } else if (feature == 'getCityList') {
+      var provinceResult = data.result[0];
+      var cityResult = data.result[1];
+      var districtResult = data.result[2];
+      param.success(data, {
+        provinceResult: provinceResult,
+        cityResult: cityResult,
+        districtResult: districtResult
+      });
+    } else if (feature == 'getDistrictByCityId') {
+      var districtByCity = data.result[0];
+      param.success(data, districtByCity);
+    } else if (feature == 'calculateDistance') {
+      var calculateDistanceResult = data.result.elements;
+      var distance = [];
+      for (var i = 0; i < calculateDistanceResult.length; i++) {
+        distance.push(calculateDistanceResult[i].distance);
+      }
+      param.success(data, {
+        calculateDistanceResult: calculateDistanceResult,
+        distance: distance
+      });
+    } else if (feature == 'direction') {
+      var direction = data.result.routes;
+      param.success(data, direction);
+    } else {
+      param.success(data);
+    }
+  },
+  buildWxRequestConfig: function buildWxRequestConfig(param, options, feature) {
+    var that = this;
+    options.header = {
+      "content-type": "application/json"
+    };
+    options.method = 'GET';
+    options.success = function (res) {
+      var data = res.data;
+      if (data.status === 0) {
+        that.handleData(param, data, feature);
+      } else {
+        param.fail(data);
+      }
+    };
+    options.fail = function (res) {
+      res.statusCode = ERROR_CONF.WX_ERR_CODE;
+      param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));
+    };
+    options.complete = function (res) {
+      var statusCode = +res.statusCode;
+      switch (statusCode) {
+        case ERROR_CONF.WX_ERR_CODE:
+          {
+            param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));
+            break;
+          }
+        case ERROR_CONF.WX_OK_CODE:
+          {
+            var data = res.data;
+            if (data.status === 0) {
+              param.complete(data);
+            } else {
+              param.complete(that.buildErrorConfig(data.status, data.message));
+            }
+            break;
+          }
+        default:
+          {
+            param.complete(that.buildErrorConfig(ERROR_CONF.SYSTEM_ERR, ERROR_CONF.SYSTEM_ERR_MSG));
+          }
+      }
+    };
+    return options;
+  },
+  locationProcess: function locationProcess(param, locationsuccess, locationfail, locationcomplete) {
+    var that = this;
+    locationfail = locationfail || function (res) {
+      res.statusCode = ERROR_CONF.WX_ERR_CODE;
+      param.fail(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));
+    };
+    locationcomplete = locationcomplete || function (res) {
+      if (res.statusCode == ERROR_CONF.WX_ERR_CODE) {
+        param.complete(that.buildErrorConfig(ERROR_CONF.WX_ERR_CODE, res.errMsg));
+      }
+    };
+    if (!param.location) {
+      that.getWXLocation(locationsuccess, locationfail, locationcomplete);
+    } else if (that.checkLocation(param)) {
+      var location = Utils.getLocationParam(param.location);
+      locationsuccess(location);
+    }
+  }
+};
+var QQMapWX = /*#__PURE__*/function () {
+  "use strict";
+
+  function QQMapWX(options) {
+    _classCallCheck(this, QQMapWX);
+    if (!options.key) {
+      throw Error('key值不能为空');
+    }
+    this.key = options.key;
+  }
+  _createClass(QQMapWX, [{
+    key: "search",
+    value: function search(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      if (!Utils.checkKeyword(options)) {
+        return;
+      }
+      var requestParam = {
+        keyword: options.keyword,
+        orderby: options.orderby || '_distance',
+        page_size: options.page_size || 10,
+        page_index: options.page_index || 1,
+        output: 'json',
+        key: that.key
+      };
+      if (options.address_format) {
+        requestParam.address_format = options.address_format;
+      }
+      if (options.filter) {
+        requestParam.filter = options.filter;
+      }
+      var distance = options.distance || "1000";
+      var auto_extend = options.auto_extend || 1;
+      var region = null;
+      var rectangle = null;
+      if (options.region) {
+        region = options.region;
+      }
+      if (options.rectangle) {
+        rectangle = options.rectangle;
+      }
+      var locationsuccess = function locationsuccess(result) {
+        if (region && !rectangle) {
+          requestParam.boundary = "region(" + region + "," + auto_extend + "," + result.latitude + "," + result.longitude + ")";
+          if (options.sig) {
+            requestParam.sig = Utils.getSig(requestParam, options.sig, 'search');
+          }
+        } else if (rectangle && !region) {
+          requestParam.boundary = "rectangle(" + rectangle + ")";
+          if (options.sig) {
+            requestParam.sig = Utils.getSig(requestParam, options.sig, 'search');
+          }
+        } else {
+          requestParam.boundary = "nearby(" + result.latitude + "," + result.longitude + "," + distance + "," + auto_extend + ")";
+          if (options.sig) {
+            requestParam.sig = Utils.getSig(requestParam, options.sig, 'search');
+          }
+        }
+        wx.request(Utils.buildWxRequestConfig(options, {
+          url: URL_SEARCH,
+          data: requestParam
+        }, 'search'));
+      };
+      Utils.locationProcess(options, locationsuccess);
+    }
+  }, {
+    key: "getSuggestion",
+    value: function getSuggestion(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      if (!Utils.checkKeyword(options)) {
+        return;
+      }
+      var requestParam = {
+        keyword: options.keyword,
+        region: options.region || '全国',
+        region_fix: options.region_fix || 0,
+        policy: options.policy || 0,
+        page_size: options.page_size || 10,
+        page_index: options.page_index || 1,
+        get_subpois: options.get_subpois || 0,
+        output: 'json',
+        key: that.key
+      };
+      if (options.address_format) {
+        requestParam.address_format = options.address_format;
+      }
+      if (options.filter) {
+        requestParam.filter = options.filter;
+      }
+      if (options.location) {
+        var locationsuccess = function locationsuccess(result) {
+          requestParam.location = result.latitude + ',' + result.longitude;
+          if (options.sig) {
+            requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest');
+          }
+          wx.request(Utils.buildWxRequestConfig(options, {
+            url: URL_SUGGESTION,
+            data: requestParam
+          }, "suggest"));
+        };
+        Utils.locationProcess(options, locationsuccess);
+      } else {
+        if (options.sig) {
+          requestParam.sig = Utils.getSig(requestParam, options.sig, 'suggest');
+        }
+        wx.request(Utils.buildWxRequestConfig(options, {
+          url: URL_SUGGESTION,
+          data: requestParam
+        }, "suggest"));
+      }
+    }
+  }, {
+    key: "reverseGeocoder",
+    value: function reverseGeocoder(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      var requestParam = {
+        coord_type: options.coord_type || 5,
+        get_poi: options.get_poi || 0,
+        output: 'json',
+        key: that.key
+      };
+      if (options.poi_options) {
+        requestParam.poi_options = options.poi_options;
+      }
+      var locationsuccess = function locationsuccess(result) {
+        requestParam.location = result.latitude + ',' + result.longitude;
+        if (options.sig) {
+          requestParam.sig = Utils.getSig(requestParam, options.sig, 'reverseGeocoder');
+        }
+        wx.request(Utils.buildWxRequestConfig(options, {
+          url: URL_GET_GEOCODER,
+          data: requestParam
+        }, 'reverseGeocoder'));
+      };
+      Utils.locationProcess(options, locationsuccess);
+    }
+  }, {
+    key: "geocoder",
+    value: function geocoder(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      if (Utils.checkParamKeyEmpty(options, 'address')) {
+        return;
+      }
+      var requestParam = {
+        address: options.address,
+        output: 'json',
+        key: that.key
+      };
+      if (options.region) {
+        requestParam.region = options.region;
+      }
+      if (options.sig) {
+        requestParam.sig = Utils.getSig(requestParam, options.sig, 'geocoder');
+      }
+      wx.request(Utils.buildWxRequestConfig(options, {
+        url: URL_GET_GEOCODER,
+        data: requestParam
+      }, 'geocoder'));
+    }
+  }, {
+    key: "getCityList",
+    value: function getCityList(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      var requestParam = {
+        output: 'json',
+        key: that.key
+      };
+      if (options.sig) {
+        requestParam.sig = Utils.getSig(requestParam, options.sig, 'getCityList');
+      }
+      wx.request(Utils.buildWxRequestConfig(options, {
+        url: URL_CITY_LIST,
+        data: requestParam
+      }, 'getCityList'));
+    }
+  }, {
+    key: "getDistrictByCityId",
+    value: function getDistrictByCityId(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      if (Utils.checkParamKeyEmpty(options, 'id')) {
+        return;
+      }
+      var requestParam = {
+        id: options.id || '',
+        output: 'json',
+        key: that.key
+      };
+      if (options.sig) {
+        requestParam.sig = Utils.getSig(requestParam, options.sig, 'getDistrictByCityId');
+      }
+      wx.request(Utils.buildWxRequestConfig(options, {
+        url: URL_AREA_LIST,
+        data: requestParam
+      }, 'getDistrictByCityId'));
+    }
+  }, {
+    key: "calculateDistance",
+    value: function calculateDistance(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      if (Utils.checkParamKeyEmpty(options, 'to')) {
+        return;
+      }
+      var requestParam = {
+        mode: options.mode || 'walking',
+        to: Utils.location2query(options.to),
+        output: 'json',
+        key: that.key
+      };
+      if (options.from) {
+        options.location = options.from;
+      }
+      if (requestParam.mode == 'straight') {
+        var locationsuccess = function locationsuccess(result) {
+          var locationTo = Utils.getEndLocation(requestParam.to);
+          var data = {
+            message: "query ok",
+            result: {
+              elements: []
+            },
+            status: 0
+          };
+          for (var i = 0; i < locationTo.length; i++) {
+            data.result.elements.push({
+              distance: Utils.getDistance(result.latitude, result.longitude, locationTo[i].lat, locationTo[i].lng),
+              duration: 0,
+              from: {
+                lat: result.latitude,
+                lng: result.longitude
+              },
+              to: {
+                lat: locationTo[i].lat,
+                lng: locationTo[i].lng
+              }
+            });
+          }
+          var calculateResult = data.result.elements;
+          var distanceResult = [];
+          for (var i = 0; i < calculateResult.length; i++) {
+            distanceResult.push(calculateResult[i].distance);
+          }
+          return options.success(data, {
+            calculateResult: calculateResult,
+            distanceResult: distanceResult
+          });
+        };
+        Utils.locationProcess(options, locationsuccess);
+      } else {
+        var locationsuccess = function locationsuccess(result) {
+          requestParam.from = result.latitude + ',' + result.longitude;
+          if (options.sig) {
+            requestParam.sig = Utils.getSig(requestParam, options.sig, 'calculateDistance');
+          }
+          wx.request(Utils.buildWxRequestConfig(options, {
+            url: URL_DISTANCE,
+            data: requestParam
+          }, 'calculateDistance'));
+        };
+        Utils.locationProcess(options, locationsuccess);
+      }
+    }
+  }, {
+    key: "direction",
+    value: function direction(options) {
+      var that = this;
+      options = options || {};
+      Utils.polyfillParam(options);
+      if (Utils.checkParamKeyEmpty(options, 'to')) {
+        return;
+      }
+      var requestParam = {
+        output: 'json',
+        key: that.key
+      };
+      if (typeof options.to == 'string') {
+        requestParam.to = options.to;
+      } else {
+        requestParam.to = options.to.latitude + ',' + options.to.longitude;
+      }
+      var SET_URL_DIRECTION = null;
+      options.mode = options.mode || MODE.driving;
+      SET_URL_DIRECTION = URL_DIRECTION + options.mode;
+      if (options.from) {
+        options.location = options.from;
+      }
+      if (options.mode == MODE.driving) {
+        if (options.from_poi) {
+          requestParam.from_poi = options.from_poi;
+        }
+        if (options.heading) {
+          requestParam.heading = options.heading;
+        }
+        if (options.speed) {
+          requestParam.speed = options.speed;
+        }
+        if (options.accuracy) {
+          requestParam.accuracy = options.accuracy;
+        }
+        if (options.road_type) {
+          requestParam.road_type = options.road_type;
+        }
+        if (options.to_poi) {
+          requestParam.to_poi = options.to_poi;
+        }
+        if (options.from_track) {
+          requestParam.from_track = options.from_track;
+        }
+        if (options.waypoints) {
+          requestParam.waypoints = options.waypoints;
+        }
+        if (options.policy) {
+          requestParam.policy = options.policy;
+        }
+        if (options.plate_number) {
+          requestParam.plate_number = options.plate_number;
+        }
+      }
+      if (options.mode == MODE.transit) {
+        if (options.departure_time) {
+          requestParam.departure_time = options.departure_time;
+        }
+        if (options.policy) {
+          requestParam.policy = options.policy;
+        }
+      }
+      var locationsuccess = function locationsuccess(result) {
+        requestParam.from = result.latitude + ',' + result.longitude;
+        if (options.sig) {
+          requestParam.sig = Utils.getSig(requestParam, options.sig, 'direction', options.mode);
+        }
+        wx.request(Utils.buildWxRequestConfig(options, {
+          url: SET_URL_DIRECTION,
+          data: requestParam
+        }, 'direction'));
+      };
+      Utils.locationProcess(options, locationsuccess);
+    }
+  }]);
+  return QQMapWX;
+}();
+;
+module.exports = QQMapWX;
+
+/***/ })
+]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

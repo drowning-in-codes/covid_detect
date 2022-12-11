@@ -52,8 +52,5 @@
   "requiredPrivateInfos": [
     "getLocation"
   ],
-  "unipush": {
-    "enable": false
-  },
   "usingComponents": {}
 }

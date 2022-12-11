@@ -27,22 +27,30 @@
 						</view>
 					</view>
 					<view class="basic-info-right">
-						<view class="geo-top"><text>地理位置</text></view>
-						<view class="geo-bottom"></view>
+						<view class="geo-top"><view class="img-box"><image class="geoimg" src="../../static/geo.png"></image></view><text>地理位置</text></view>
+						<view class="geo-bottom">
+							<view class="center">国家:{{country}}</view>
+							<view>{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text class="iconfont icon-youjiantou"></text>{{district}}</view>
+						</view>
 					</view>
 				</view>
 
 				<view class="basic-info-bottom">
-					<view class="title">请选择您的体温(℃)</view>
+					<view class="bottom-left">
+						<image src="../../static/temperature2.png" class="tmpimg"></image>
+					</view>
+					<view class="bottom-right">
+					<view class="tmptitle">今日体温(℃)</view>
 					<picker @change="bindPickerChange" :value="index" :range="temperature" range-key="val">
 						<view style="padding: 20rpx;background-color: #ededed;">{{ temperature[index].val }}</view>
 					</picker>
+					</view>
 				</view>
 			</view>
+			<text class="query">是否有如下情况<text class="red">*</text></text>
 			<view class="ext-info">
-				<text>选择您24过去小时以内感染的症状</text>
 				<view class="uni-list">
-					<checkbox-group @change="checkboxChange">
+					<checkbox-group @change="checkboxChange" class="checkgroups">
 						<view class="uni-list-cell" v-for="item in symptoms" :key="item.value">
 							<view>
 								<checkbox :value="item.value" :checked="item.checked" />
@@ -286,6 +294,56 @@
 </script>
 
 <style lang="scss" scoped>
+	@import '../../static/iconfont.css';
+	
+	.red {
+		color: red;
+		font-weight: 700;
+		margin-left: 5rpx;
+	}
+	.query {
+		font-weight: 700;
+		font-size: 50rpx;
+	}
+	.title {
+		margin-bottom: 10rpx;
+		font-weight: 700;
+	}
+	.basic-info {
+		margin-bottom: 25rpx;
+	}
+	.tmptitle {
+		color: rgb(189, 49, 36);
+		font-weight: 700;
+		margin-bottom: 10rpx;
+	}
+	.center {
+		margin-top: 15rpx;
+		text-align: center;
+	}
+	.basic-info-bottom {
+		display: flex;
+		gap: 50rpx;
+		align-items: center;
+		margin-top: 15rpx;
+		box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+		padding: 15rpx;
+		border-radius: 15rpx;
+	}
+	.geo-top {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-bottom: #8f8f94 solid;
+	}
+	.tmpimg {
+		width: 350rpx;
+		height: 350rpx;
+	}
+	.geoimg {
+		width: 150rpx;
+		height: 150rpx;
+	}
 	.picker {
 		padding: 20rpx;
 		background-color: #ededed;
@@ -293,8 +351,16 @@
 
 	.basic-info-top {
 		display: flex;
+		justify-content: space-around;
 	}
-
+	.basic-info-right {
+		width:50vw;
+		display: flex;
+		flex-direction: column;
+		box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+		padding: 15rpx;
+		border-radius: 15rpx;
+	}
 	.basic-info-left {
 		display: flex;
 		flex-direction: column;
@@ -318,32 +384,27 @@
 
 	.uni-list {
 		margin: 0 auto;
-		width: 90%;
 	}
 
 	.box-label {
-		margin-left: 50rpx;
+		margin-left: 30rpx;
 	}
 
 	.uni-list-cell {
 		display: flex;
-		justify-items: center;
-	}
-
-	.uni-list-cell {
+		align-items: center;
 		margin-top: 15rpx;
+		width: 50%;
 	}
 
-	.basic-info,
 	.ext-info {
 		padding: 30rpx;
-		box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-	}
-
-	.ext-info {
-		margin-top: 50rpx;
+		border-radius: 15rpx;
+		box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+		margin-top: 30rpx;
 		margin-bottom: 40rpx;
 	}
+
 
 	.uni-btn-v {
 		display: flex;

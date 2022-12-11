@@ -61,11 +61,8 @@
             "scope.userLocation" : {
                 "desc" : "你的位置信息将用于小程序位置显示"
             }
-			 
         },
-		"requiredPrivateInfos": [
-		       "getLocation"
-		   ],
+        "requiredPrivateInfos" : [ "getLocation" ],
         "unipush" : {
             "enable" : false
         }

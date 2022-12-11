@@ -1,54 +1,59 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/detect/index",
-        "pages/prediction/index",
-        "pages/feedback/index"
-    ],
-    "subPackages": [],
-    "window": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "新冠症状监测",
-        "navigationBarBackgroundColor": "#F8F8F8",
-        "backgroundColor": "#F8F8F8"
-    },
-    "tabBar": {
-        "color": "#7A7E83",
-        "selectedColor": "#3cc51f",
-        "borderStyle": "black",
-        "backgroundColor": "#ffffff",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "static/tabBar/首页.png",
-                "selectedIconPath": "static/tabBar/首页选中.png",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/detect/index",
-                "iconPath": "static/tabBar/填写.png",
-                "selectedIconPath": "static/tabBar/填写报告.png",
-                "text": "症状填写"
-            },
-            {
-                "pagePath": "pages/prediction/index",
-                "iconPath": "static/tabBar/预测.png",
-                "selectedIconPath": "static/tabBar/报告管理.png",
-                "text": "情况预测"
-            },
-            {
-                "pagePath": "pages/feedback/index",
-                "iconPath": "static/tabBar/意见反馈.png",
-                "selectedIconPath": "static/tabBar/意见反馈filled.png",
-                "text": "反馈"
-            }
-        ]
-    },
-    "permission": {
-        "scope.userLocation": {
-            "desc": "获取位置"
-        }
-    },
-    "usingComponents": {},
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/index/index",
+    "pages/detect/index",
+    "pages/prediction/index",
+    "pages/feedback/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "新冠症状监测",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabBar/首页.png",
+        "selectedIconPath": "static/tabBar/首页选中.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/detect/index",
+        "iconPath": "static/tabBar/填写.png",
+        "selectedIconPath": "static/tabBar/填写报告.png",
+        "text": "症状填写"
+      },
+      {
+        "pagePath": "pages/prediction/index",
+        "iconPath": "static/tabBar/预测.png",
+        "selectedIconPath": "static/tabBar/报告管理.png",
+        "text": "情况预测"
+      },
+      {
+        "pagePath": "pages/feedback/index",
+        "iconPath": "static/tabBar/意见反馈.png",
+        "selectedIconPath": "static/tabBar/意见反馈filled.png",
+        "text": "反馈"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置显示"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "unipush": {
+    "enable": false
+  },
+  "usingComponents": {}
 }
