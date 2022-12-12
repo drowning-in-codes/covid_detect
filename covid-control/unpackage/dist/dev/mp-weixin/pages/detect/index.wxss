@@ -43,11 +43,23 @@
 .icon-diliweizhi1.data-v-45e3c05f:before {
   content: "\e607";
 }
+.tip-img-box.data-v-45e3c05f {
+  display: flex;
+  align-items: center;
+}
+.covid-confirm.data-v-45e3c05f, .covid-heal.data-v-45e3c05f {
+  border-radius: 16rpx;
+  border: 3rpx solid #bbbbbb;
+  padding: 12rpx;
+}
+.covid-gap.data-v-45e3c05f {
+  margin-bottom: 8rpx;
+}
 uni-modal .uni-modal__bd.data-v-45e3c05f {
   white-space: pre-wrap;
 }
 .miniimg.data-v-45e3c05f {
-  margin-left: 10rpx;
+  margin-left: 7rpx;
   width: 40rpx;
   height: 40rpx;
 }
@@ -194,7 +206,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
 .basic-info-left.data-v-45e3c05f {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .sex-label.data-v-45e3c05f {
   margin-top: 8rpx;

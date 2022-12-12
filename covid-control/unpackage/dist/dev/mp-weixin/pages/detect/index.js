@@ -149,8 +149,8 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 var _default = {
   data: function data() {
-    var _ref;
-    return _ref = {
+    return (0, _defineProperty2.default)({
+      flag: false,
       lastUpdateTime: null,
       totalConfirm: null,
       totalHeal: null,
@@ -264,7 +264,7 @@ var _default = {
       province: null,
       city: null,
       district: null
-    }, (0, _defineProperty2.default)(_ref, "sex", null), (0, _defineProperty2.default)(_ref, "flag", false), _ref;
+    }, "sex", null);
   },
   onLoad: function onLoad() {
     this.agerange = new Array();
@@ -329,49 +329,64 @@ var _default = {
         url: requesturl,
         dataType: "json",
         success: function success(res) {
-          var result = res.data.data.areaTree;
-          var _iterator = _createForOfIteratorHelper(result),
-            _step;
-          try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var country = _step.value;
-              if (country.name == _this.country) {
-                var _iterator2 = _createForOfIteratorHelper(country.children),
-                  _step2;
-                try {
-                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                    var province = _step2.value;
-                    if (province.name == _this.processCityData(_this.province)) {
-                      // 获取累计数据
-                      _this.totalConfirm = province.total.confirm;
-                      _this.totalHeal = province.total.heal;
-                      // 获取新增数据
-                      _this.todayConfirm = province.today.confirm;
-                      _this.todayHeal = province.today.heal;
-                      // 更新时间
-                      _this.lastUpdateTime = province.lastUpdateTime;
-                      failflag = false;
-                      console.log('完成');
-                      uni.hideLoading();
-                      break;
-                    } else {
-                      continue;
+          if (!_this.flag) {
+            var result = res.data.data.chinaTotal;
+            // 获取累计数据
+            _this.totalConfirm = result.total.confirm;
+            _this.totalHeal = result.total.heal;
+            // 获取新增数据
+            _this.todayConfirm = result.today.confirm;
+            _this.todayHeal = result.today.heal;
+            // 更新时间
+            _this.lastUpdateTime = res.data.data.lastUpdateTime;
+            failflag = false;
+            console.log('完成');
+            uni.hideLoading();
+          } else {
+            var _result = res.data.data.areaTree;
+            var _iterator = _createForOfIteratorHelper(_result),
+              _step;
+            try {
+              for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                var country = _step.value;
+                if (country.name == _this.country) {
+                  var _iterator2 = _createForOfIteratorHelper(country.children),
+                    _step2;
+                  try {
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                      var province = _step2.value;
+                      if (province.name == _this.processCityData(_this.province)) {
+                        // 获取累计数据
+                        _this.totalConfirm = province.total.confirm;
+                        _this.totalHeal = province.total.heal;
+                        // 获取新增数据
+                        _this.todayConfirm = province.today.confirm;
+                        _this.todayHeal = province.today.heal;
+                        // 更新时间
+                        _this.lastUpdateTime = province.lastUpdateTime;
+                        failflag = false;
+                        console.log('完成');
+                        uni.hideLoading();
+                        break;
+                      } else {
+                        continue;
+                      }
                     }
+                  } catch (err) {
+                    _iterator2.e(err);
+                  } finally {
+                    _iterator2.f();
                   }
-                } catch (err) {
-                  _iterator2.e(err);
-                } finally {
-                  _iterator2.f();
+                  break;
+                } else {
+                  continue;
                 }
-                break;
-              } else {
-                continue;
               }
+            } catch (err) {
+              _iterator.e(err);
+            } finally {
+              _iterator.f();
             }
-          } catch (err) {
-            _iterator.e(err);
-          } finally {
-            _iterator.f();
           }
           if (failflag) {
             _this.loadError();

@@ -25,8 +25,9 @@
 					</view>
 					<view class="basic-info-right">
 						<view class="geo-top">
-							<view class="wrapper" @click="showdatamsg">数据信息<image  class="miniimg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+"></image></view>
-							<view class="geo-top-wrapper"><view class="covid-confirm">
+							<view class="wrapper covid-gap" @click="showdatamsg"><view v-if="!flag">全国疫情数据</view><view v-else>{{province}}疫情数据</view><view class="tip-img-box"><image class="miniimg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+"></image></view></view>
+							<view class="geo-top-wrapper">
+								<view class="covid-confirm">
 								<view class="covid-bold">累计确诊</view>
 								<view class="covid-confirm-total boldred">{{totalConfirm}}</view>
 								<view class="covid-confirm-add">较昨日<text class="add-confirm">+{{todayConfirm}}</text></view>
@@ -35,7 +36,8 @@
 								<view class="covid-bold">累计治愈</view>
 								<view class="covid-heal-total green">{{todayHeal}}</view>
 								<view class="covid-heal-add">较昨日<text class="add-heal">+{{todayHeal}}</text></view>
-								</view></view>
+								</view>
+							</view>
 							
 						</view>
 						<view class="geo-bottom" v-if="flag">
@@ -125,6 +127,7 @@
 	export default {
 		data() {
 			return {
+				flag:false,
 				lastUpdateTime:null,
 				totalConfirm:null,
 				totalHeal:null,
@@ -239,7 +242,6 @@
 				city: null,
 				district: null,
 				sex: null,
-				flag:false,
 			};
 		},
 		onLoad() {
@@ -307,34 +309,52 @@
 					url: requesturl,
 					dataType: "json",
 					success: (res) => {
-						let result = res.data.data.areaTree;
-						for (let country of result) {
-							if (country.name == this.country) {
-								for (let province of country.children) {
-									if (province.name == this.processCityData(this.province)) {
-										// 获取累计数据
-										this.totalConfirm = province.total.confirm;
-										this.totalHeal = province.total.heal;
-										// 获取新增数据
-										this.todayConfirm = province.today.confirm;
-										this.todayHeal = province.today.heal;
-										// 更新时间
-										this.lastUpdateTime = province.lastUpdateTime;
-										failflag = false;
-										console.log('完成')
-										uni.hideLoading();
-										break;
+						if(!this.flag)
+						{
+							let result = res.data.data.chinaTotal;
+							// 获取累计数据
+							this.totalConfirm = result.total.confirm;
+							this.totalHeal = result.total.heal;
+							// 获取新增数据
+							this.todayConfirm = result.today.confirm;
+							this.todayHeal = result.today.heal;
+							// 更新时间
+							this.lastUpdateTime = res.data.data.lastUpdateTime;
+							failflag = false;
+							console.log('完成')
+							uni.hideLoading();
+						}
+						else
+						{
+							let result = res.data.data.areaTree;
+							for (let country of result) {
+								if (country.name == this.country) {
+									for (let province of country.children) {
+										if (province.name == this.processCityData(this.province)) {
+											// 获取累计数据
+											this.totalConfirm = province.total.confirm;
+											this.totalHeal = province.total.heal;
+											// 获取新增数据
+											this.todayConfirm = province.today.confirm;
+											this.todayHeal = province.today.heal;
+											// 更新时间
+											this.lastUpdateTime = province.lastUpdateTime;
+											failflag = false;
+											console.log('完成')
+											uni.hideLoading();
+											break;
+										}
+										else
+										{
+											continue;
+										}
 									}
-									else
-									{
-										continue;
-									}
+									break;
 								}
-								break;
-							}
-							else
-							{
-								continue;
+								else
+								{
+									continue;
+								}
 							}
 						}
 						if(failflag)
@@ -497,11 +517,23 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
+	.tip-img-box {
+		display: flex;
+		align-items: center;
+	}
+	.covid-confirm,.covid-heal {
+		border-radius: 16rpx;
+		border: 3rpx solid rgba(187, 187, 187, 1);
+		padding: 12rpx;
+	}
+	.covid-gap {
+		margin-bottom:8rpx;
+	}
 	uni-modal .uni-modal__bd{      
 	    white-space: pre-wrap;      
 	}
 	.miniimg {
-		margin-left: 10rpx;
+		margin-left: 7rpx;
 		width: 40rpx;
 		height: 40rpx;
 	}
@@ -665,7 +697,7 @@
 	.basic-info-left {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: space-evenly;
 	}
 
 	.sex-label {

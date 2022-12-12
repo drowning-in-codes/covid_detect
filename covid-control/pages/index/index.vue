@@ -88,11 +88,13 @@
 					content: '填写情况监测您的病程',
 				});
 			},
+			// 传递openid
 			topredict() {
 				uni.navigateTo({
 					url: "/pages/detect/index"
 				})
 			},
+			// 传递openid
 			torecovery() {
 				uni.navigateTo({
 					url: "/pages/prediction/index"

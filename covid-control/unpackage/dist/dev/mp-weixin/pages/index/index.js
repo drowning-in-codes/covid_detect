@@ -246,11 +246,13 @@ var _default = {
         content: '填写情况监测您的病程'
       });
     },
+    // 传递openid
     topredict: function topredict() {
       uni.navigateTo({
         url: "/pages/detect/index"
       });
     },
+    // 传递openid
     torecovery: function torecovery() {
       uni.navigateTo({
         url: "/pages/prediction/index"
