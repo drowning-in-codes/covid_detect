@@ -1,5 +1,4 @@
 {
   "navigationBarTitleText": "预测结果显示",
-  "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "enablePullDownRefresh": true
 }
