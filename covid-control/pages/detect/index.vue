@@ -1,8 +1,5 @@
 <template>
 	<view class="detect-container">
-		<view class="detect-title">
-			请填写您的信息
-		</view>
 		<form  @reset="formReset" class="detect-form">
 			<view class="basic-info">
 				<view class="basic-info-top">
@@ -35,17 +32,20 @@
 							</view>
 							<view>地理位置</view>
 						</view>
-						<view class="geo-bottom">
+						<view class="geo-bottom" v-if="flag">
 							<view class="center">国家:{{country}}</view>
 							<view class="center">{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text
 									class="iconfont icon-youjiantou"></text>{{district}}</view>
+						</view>
+						<view class="geo-bottom" v-else>
+							<view class="center">已拒绝获取地理位置授权</view>
 						</view>
 					</view>
 				</view>
 
 				<view class="basic-info-bottom">
 					<view class="bottom-left">
-						<image src="../../static/temperature2.png" class="tmpimg"></image>
+						<image src="../../static/temperature.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
 						<view class="tmptitle">今日体温:</view>
@@ -100,8 +100,8 @@
 				</picker>
 			</view>
 			<view class="uni-btn-v">
-				<button  type="primary" @click="submit">感染预测</button>
-				<button type="default" form-type="reset" @click="reset">重置</button>
+				<button  type="primary" @click="submit" class="uni-button">感染预测</button>
+				<!-- <button type="default" form-type="reset" @click="reset">重置</button> -->
 			</view>
 		</form>
 	</view>
@@ -221,6 +221,7 @@
 				city: null,
 				district: null,
 				sex: null,
+				flag:false,
 			};
 		},
 		onLoad() {
@@ -310,6 +311,7 @@
 									success: (res) => {
 										let loginAddress = res.result.ad_info.name
 										console.log(loginAddress)
+										this.flag = true;
 										// 获取信息
 										this.country = loginAddress.split(',')[0];
 										this.province = loginAddress.split(',')[1];
@@ -340,7 +342,9 @@
 					fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
 				})
 			},
-			submit() {},
+			submit() {
+				
+			},
 			reset() {
 				// 重置年龄
 				this.ageindex = null;
@@ -422,7 +426,10 @@
 		font-weight: 700;
 		font-family: SourceHanSansSC-regular;
 	}
-
+		
+	.uni-button {
+		width: 70vw;
+	}
 	.checkgroups {
 		display: flex;
 		justify-content: space-around;
@@ -437,7 +444,7 @@
 
 	.query {
 		font-weight: 700;
-		font-size: 50rpx;
+		font-size: 35rpx;
 	}
 
 	.title {
@@ -555,8 +562,9 @@
 
 	.uni-btn-v {
 		display: flex;
-		justify-content: space-between;
-		gap: 20rpx;
+		// justify-content: space-between;
+		// gap: 20rpx;
+		margin: 0 auto;
 	}
 
 	.uni-input {

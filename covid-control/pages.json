@@ -10,13 +10,13 @@
 		{
 			"path": "pages/detect/index",
 			"style": {
-				"navigationBarTitleText": "症状填写"
+				"navigationBarTitleText": "感染预测"
 			}
 		},
 		{
 			"path": "pages/prediction/index",
 			"style": {
-				"navigationBarTitleText": "后续预测"
+				"navigationBarTitleText": "康复预测"
 			}
 		},
 		{
@@ -59,7 +59,7 @@
 			"pagePath": "pages/feedback/index",
 			"iconPath": "static/tabBar/意见反馈.png",
 			"selectedIconPath": "static/tabBar/意见反馈filled.png",
-			"text": "反馈"
+			"text": "我的"
 		}]
 	},
 	"globalStyle": {
