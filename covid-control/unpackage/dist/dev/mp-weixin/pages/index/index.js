@@ -228,7 +228,7 @@ var _default = {
       autoplay: true,
       interval: 2000,
       duration: 500,
-      imgs: ['http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221211124823.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg']
+      imgs: ['http://rmkt29hqy.hn-bkt.clouddn.com/logo%E9%85%8D%E8%89%B2%E5%9B%BE.png', 'http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221212201555.png', 'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg', 'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg']
     };
   },
   components: {},
@@ -243,7 +243,7 @@ var _default = {
     showmsg2: function showmsg2() {
       uni.showModal({
         title: '提示',
-        content: '填写情况预测您的病程'
+        content: '填写情况监测您的病程'
       });
     },
     topredict: function topredict() {

@@ -31,7 +31,7 @@
 					<text class="button-info">阳了</text>
 				</view>
 				<view class="right-button">
-					<button type="primary" @click="torecovery">新冠病程预测</button>
+					<button type="primary" @click="torecovery">新冠病程监测</button>
 				</view>
 			</view>
 		</view>
@@ -64,7 +64,8 @@
 				interval: 2000,
 				duration: 500,
 				imgs: [
-					'http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221211124823.jpg',
+					'http://rmkt29hqy.hn-bkt.clouddn.com/logo%E9%85%8D%E8%89%B2%E5%9B%BE.png',
+					'http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221212201555.png',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg',
@@ -72,7 +73,8 @@
 			}
 		},
 		components: {},
-		onLoad() {},
+		onLoad() {
+		},
 		methods: {
 			showmsg1() {
 				uni.showModal({
@@ -83,20 +85,17 @@
 			showmsg2() {
 				uni.showModal({
 					title: '提示',
-					content: '填写情况预测您的病程',
+					content: '填写情况监测您的病程',
 				});
 			},
-			topredict()
-			{
+			topredict() {
 				uni.navigateTo({
-					url:"/pages/detect/index"
+					url: "/pages/detect/index"
 				})
-			}
-			,
-			torecovery()
-			{
+			},
+			torecovery() {
 				uni.navigateTo({
-					url:"/pages/prediction/index"
+					url: "/pages/prediction/index"
 				})
 			}
 		}
@@ -105,8 +104,8 @@
 
 <style lang="scss" scoped>
 	.img-resize {
-		width: 100rpx;
-		height: 100rpx;
+		width: 80rpx;
+		height: 80rpx;
 	}
 
 	.info-title-text {
@@ -151,7 +150,7 @@
 
 	.covid-button {
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-		width: 80%;
+		width: 90%;
 		display: flex;
 		margin: 0 auto;
 		justify-content: space-evenly;

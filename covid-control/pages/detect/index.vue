@@ -25,16 +25,29 @@
 					</view>
 					<view class="basic-info-right">
 						<view class="geo-top">
-							<view class="img-box">
-								<image class="geoimg"
-									src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0yNC40ODUgMjMuMTUyTDE2IDMxLjYzN2wtOC40ODUtOC40ODVBMTEuOTYyIDExLjk2MiAwIDAgMSA0IDE0LjY2N2MwLTYuNjI3IDUuMzczLTEyIDEyLTEyczEyIDUuMzczIDEyIDEyYzAgMy4zMTQtMS4zNDMgNi4zMTQtMy41MTUgOC40ODV6TTE2IDE3LjMzM2EyLjY2NyAyLjY2NyAwIDEgMCAwLTUuMzM0IDIuNjY3IDIuNjY3IDAgMSAwIDAgNS4zMzR6IiBmaWxsPSJyZ2JhKDU1LjA4LDEyNi45OSwxMjYuOTksMSkiLz48L3N2Zz4=">
-								</image>
+							<view class="wrapper" @click="showdatamsg">数据信息<image  class="miniimg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+"></image></view>
+							<view class="geo-top-wrapper"><view class="covid-confirm">
+								<view class="covid-bold">累计确诊</view>
+								<view class="covid-confirm-total boldred">{{totalConfirm}}</view>
+								<view class="covid-confirm-add">较昨日<text class="add-confirm">+{{todayConfirm}}</text></view>
 							</view>
-							<view>地理位置</view>
+							<view class="covid-heal">
+								<view class="covid-bold">累计治愈</view>
+								<view class="covid-heal-total green">{{todayHeal}}</view>
+								<view class="covid-heal-add">较昨日<text class="add-heal">+{{todayHeal}}</text></view>
+								</view></view>
+							
 						</view>
 						<view class="geo-bottom" v-if="flag">
-							<view class="center">国家:{{country}}</view>
-							<view class="center">{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text
+							<view class="geo-wrappr">
+								<view class="img-box">
+										<image class="geoimg"
+											src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0yNC40ODUgMjMuMTUyTDE2IDMxLjYzN2wtOC40ODUtOC40ODVBMTEuOTYyIDExLjk2MiAwIDAgMSA0IDE0LjY2N2MwLTYuNjI3IDUuMzczLTEyIDEyLTEyczEyIDUuMzczIDEyIDEyYzAgMy4zMTQtMS4zNDMgNi4zMTQtMy41MTUgOC40ODV6TTE2IDE3LjMzM2EyLjY2NyAyLjY2NyAwIDEgMCAwLTUuMzM0IDIuNjY3IDIuNjY3IDAgMSAwIDAgNS4zMzR6IiBmaWxsPSJyZ2JhKDU1LjA4LDEyNi45OSwxMjYuOTksMSkiLz48L3N2Zz4=">
+										</image>
+									</view>
+								<view class="center">国家:{{country}}</view>
+							</view>
+							<view class="center geo-bottom-bottom">{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text
 									class="iconfont icon-youjiantou"></text>{{district}}</view>
 						</view>
 						<view class="geo-bottom" v-else>
@@ -112,6 +125,11 @@
 	export default {
 		data() {
 			return {
+				lastUpdateTime:null,
+				totalConfirm:null,
+				totalHeal:null,
+				todayConfirm:null,
+				todayHeal:null,
 				dayindex: null,
 				days: [],
 				day: null,
@@ -249,6 +267,87 @@
 			this.getUserLocation();
 		},
 		methods: {
+			showdatamsg()
+			{
+				uni.hideLoading();
+				uni.showModal({
+					title: '数据信息',
+					content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间'+this.lastUpdateTime,
+				});
+			},
+			loadError()
+			{
+				uni.hideLoading();
+				uni.showModal({
+					title: '出错了',
+					content: '疫情数据加载失败,请尝试刷新',
+				});
+			},
+			processCityData(city)
+			{
+				let index = 0,result = city;
+				if(city.indexOf("省")!=-1)
+				{
+					 index = city.indexOf('省');
+					 result = city.substring(0,index);
+				}
+				if(city.indexOf("市")!=-1)
+				{	
+					index = city.indexOf('市');
+					result = city.substring(0,index);
+				}
+				return result;
+			}
+			,
+			getCovidData()
+			{
+				let requesturl = 'https://c.m.163.com/ug/api/wuhan/app/data/list-total';
+				let failflag = true;
+				uni.request({
+					url: requesturl,
+					dataType: "json",
+					success: (res) => {
+						let result = res.data.data.areaTree;
+						for (let country of result) {
+							if (country.name == this.country) {
+								for (let province of country.children) {
+									if (province.name == this.processCityData(this.province)) {
+										// 获取累计数据
+										this.totalConfirm = province.total.confirm;
+										this.totalHeal = province.total.heal;
+										// 获取新增数据
+										this.todayConfirm = province.today.confirm;
+										this.todayHeal = province.today.heal;
+										// 更新时间
+										this.lastUpdateTime = province.lastUpdateTime;
+										failflag = false;
+										console.log('完成')
+										uni.hideLoading();
+										break;
+									}
+									else
+									{
+										continue;
+									}
+								}
+								break;
+							}
+							else
+							{
+								continue;
+							}
+						}
+						if(failflag)
+						{
+						this.loadError();
+						}
+					},
+					fail: (res) => {
+						this.loadError();
+						console.log(res);
+					}
+				})
+			},
 			showmsg()
 			{
 				uni.showModal({
@@ -317,6 +416,10 @@
 										this.province = loginAddress.split(',')[1];
 										this.city = loginAddress.split(',')[2];
 										this.district = loginAddress.split(',')[3];
+										uni.showLoading({
+											title: '加载疫情数据中'
+										});
+										this.getCovidData();
 									},
 									fail: (res) => {
 										uni.showModal({
@@ -394,6 +497,38 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
+	uni-modal .uni-modal__bd{      
+	    white-space: pre-wrap;      
+	}
+	.miniimg {
+		margin-left: 10rpx;
+		width: 40rpx;
+		height: 40rpx;
+	}
+	.geo-bottom-bottom {
+		margin-bottom: 10rpx;	
+		}
+	.add-confirm {
+		color:#a31d13;
+	}
+	.add-heal {
+		color:#34aa70;
+	}
+	.covid-bold {
+		color:#333;
+		font-weight: 600;
+		text-align: center;
+	}
+	.boldred {
+		text-align: center;
+		color:#a31d13;
+		font-size: 40rpx;
+	}
+	.green {
+		text-align: center;
+		color:#34aa70;
+		font-size: 40rpx;
+	}
 	.resizeimg {
 		width: 80rpx;
 		height: 80rpx;
@@ -413,7 +548,13 @@
 	.block {
 		display: block;
 	}
-
+	.geo-wrappr {
+		margin-top: 10rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 25rpx;
+	}
 	.wrapper {
 		display: flex;
 		align-items: center;
@@ -476,13 +617,19 @@
 		padding: 15rpx;
 		border-radius: 15rpx;
 	}
-
+		
 	.geo-top {
+		display:flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.geo-top-wrapper {
 		display: flex;
 		justify-content: center;
-		gap: 35rpx;
+		gap: 40rpx;
 		align-items: center;
 		border-bottom: #F2F2F7 solid;
+		padding-bottom: 10rpx;
 	}
 
 	.tmpimg {
@@ -491,8 +638,8 @@
 	}
 
 	.geoimg {
-		width: 120rpx;
-		height: 120rpx;
+		width: 60rpx;
+		height: 60rpx;
 	}
 
 	.picker {
@@ -518,6 +665,7 @@
 	.basic-info-left {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-around;
 	}
 
 	.sex-label {

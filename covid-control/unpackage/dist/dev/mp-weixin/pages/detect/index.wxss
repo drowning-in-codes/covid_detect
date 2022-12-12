@@ -43,6 +43,38 @@
 .icon-diliweizhi1.data-v-45e3c05f:before {
   content: "\e607";
 }
+uni-modal .uni-modal__bd.data-v-45e3c05f {
+  white-space: pre-wrap;
+}
+.miniimg.data-v-45e3c05f {
+  margin-left: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.geo-bottom-bottom.data-v-45e3c05f {
+  margin-bottom: 10rpx;
+}
+.add-confirm.data-v-45e3c05f {
+  color: #a31d13;
+}
+.add-heal.data-v-45e3c05f {
+  color: #34aa70;
+}
+.covid-bold.data-v-45e3c05f {
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+}
+.boldred.data-v-45e3c05f {
+  text-align: center;
+  color: #a31d13;
+  font-size: 40rpx;
+}
+.green.data-v-45e3c05f {
+  text-align: center;
+  color: #34aa70;
+  font-size: 40rpx;
+}
 .resizeimg.data-v-45e3c05f {
   width: 80rpx;
   height: 80rpx;
@@ -60,6 +92,13 @@
 }
 .block.data-v-45e3c05f {
   display: block;
+}
+.geo-wrappr.data-v-45e3c05f {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25rpx;
 }
 .wrapper.data-v-45e3c05f {
   display: flex;
@@ -116,18 +155,24 @@
 }
 .geo-top.data-v-45e3c05f {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.geo-top-wrapper.data-v-45e3c05f {
+  display: flex;
   justify-content: center;
-  gap: 35rpx;
+  gap: 40rpx;
   align-items: center;
   border-bottom: #F2F2F7 solid;
+  padding-bottom: 10rpx;
 }
 .tmpimg.data-v-45e3c05f {
   width: 300rpx;
   height: 300rpx;
 }
 .geoimg.data-v-45e3c05f {
-  width: 120rpx;
-  height: 120rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .picker.data-v-45e3c05f {
   padding: 20rpx;
@@ -149,6 +194,7 @@
 .basic-info-left.data-v-45e3c05f {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 .sex-label.data-v-45e3c05f {
   margin-top: 8rpx;

@@ -144,119 +144,18 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 10));
 var _qqmapWxJssdkMin = _interopRequireDefault(__webpack_require__(/*! @/libs/qqmap-wx-jssdk.min.js */ 46));
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 var _default = {
   data: function data() {
     var _ref;
     return _ref = {
+      lastUpdateTime: null,
+      totalConfirm: null,
+      totalHeal: null,
+      todayConfirm: null,
+      todayHeal: null,
       dayindex: null,
       days: [],
       day: null,
@@ -395,6 +294,95 @@ var _default = {
     this.getUserLocation();
   },
   methods: {
+    showdatamsg: function showdatamsg() {
+      uni.hideLoading();
+      uni.showModal({
+        title: '数据信息',
+        content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间' + this.lastUpdateTime
+      });
+    },
+    loadError: function loadError() {
+      uni.hideLoading();
+      uni.showModal({
+        title: '出错了',
+        content: '疫情数据加载失败,请尝试刷新'
+      });
+    },
+    processCityData: function processCityData(city) {
+      var index = 0,
+        result = city;
+      if (city.indexOf("省") != -1) {
+        index = city.indexOf('省');
+        result = city.substring(0, index);
+      }
+      if (city.indexOf("市") != -1) {
+        index = city.indexOf('市');
+        result = city.substring(0, index);
+      }
+      return result;
+    },
+    getCovidData: function getCovidData() {
+      var _this = this;
+      var requesturl = 'https://c.m.163.com/ug/api/wuhan/app/data/list-total';
+      var failflag = true;
+      uni.request({
+        url: requesturl,
+        dataType: "json",
+        success: function success(res) {
+          var result = res.data.data.areaTree;
+          var _iterator = _createForOfIteratorHelper(result),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var country = _step.value;
+              if (country.name == _this.country) {
+                var _iterator2 = _createForOfIteratorHelper(country.children),
+                  _step2;
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var province = _step2.value;
+                    if (province.name == _this.processCityData(_this.province)) {
+                      // 获取累计数据
+                      _this.totalConfirm = province.total.confirm;
+                      _this.totalHeal = province.total.heal;
+                      // 获取新增数据
+                      _this.todayConfirm = province.today.confirm;
+                      _this.todayHeal = province.today.heal;
+                      // 更新时间
+                      _this.lastUpdateTime = province.lastUpdateTime;
+                      failflag = false;
+                      console.log('完成');
+                      uni.hideLoading();
+                      break;
+                    } else {
+                      continue;
+                    }
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+                break;
+              } else {
+                continue;
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+          if (failflag) {
+            _this.loadError();
+          }
+        },
+        fail: function fail(res) {
+          _this.loadError();
+          console.log(res);
+        }
+      });
+    },
     showmsg: function showmsg() {
       uni.showModal({
         title: '提示',
@@ -405,12 +393,12 @@ var _default = {
       console.log('清空数据');
     },
     getUserLocation: function getUserLocation() {
-      var _this = this;
+      var _this2 = this;
       uni.getSetting({
         success: function success(res) {
           if (res.authSetting && res.authSetting.hasOwnProperty("scope.userLocation")) {
             if (res.authSetting["scope.userLocation"]) {
-              _this.getCityInfo();
+              _this2.getCityInfo();
             } else {
               uni.showModal({
                 title: "提示",
@@ -419,7 +407,7 @@ var _default = {
                   if (res.confirm) {
                     uni.openSetting({
                       success: function success() {
-                        return _this.getCityInfo();
+                        return _this2.getCityInfo();
                       }
                     });
                   } else {
@@ -431,13 +419,13 @@ var _default = {
           } else {
             console.log('正确');
             console.log(res);
-            _this.getCityInfo();
+            _this2.getCityInfo();
           }
         }
       });
     },
     getCityInfo: function getCityInfo() {
-      var _this2 = this;
+      var _this3 = this;
       console.log('调用getCityInfo');
       uni.authorize({
         scope: "scope.userLocation",
@@ -454,17 +442,21 @@ var _default = {
                 latitude: latitude,
                 longitude: longitude
               };
-              _this2.qqmapsdk.reverseGeocoder({
+              _this3.qqmapsdk.reverseGeocoder({
                 location: location,
                 success: function success(res) {
                   var loginAddress = res.result.ad_info.name;
                   console.log(loginAddress);
-                  _this2.flag = true;
+                  _this3.flag = true;
                   // 获取信息
-                  _this2.country = loginAddress.split(',')[0];
-                  _this2.province = loginAddress.split(',')[1];
-                  _this2.city = loginAddress.split(',')[2];
-                  _this2.district = loginAddress.split(',')[3];
+                  _this3.country = loginAddress.split(',')[0];
+                  _this3.province = loginAddress.split(',')[1];
+                  _this3.city = loginAddress.split(',')[2];
+                  _this3.district = loginAddress.split(',')[3];
+                  uni.showLoading({
+                    title: '加载疫情数据中'
+                  });
+                  _this3.getCovidData();
                 },
                 fail: function fail(res) {
                   uni.showModal({
