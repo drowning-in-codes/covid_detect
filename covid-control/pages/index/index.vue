@@ -59,6 +59,8 @@
 	export default {
 		data() {
 			return {
+				appId:'wxf2ff04695fb4db53',
+				appsecret:'5adc8870c93e92aeabb23625ae50ab38',
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
@@ -74,8 +76,19 @@
 		},
 		components: {},
 		onLoad() {
+			this.wxlogin();
 		},
 		methods: {
+			wxlogin()
+			{
+				uni.login({
+				  success: res => {
+				    //code值(5分钟失效)
+				    console.info(res.code);
+					// https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
+				  }
+				});
+			},
 			showmsg1() {
 				uni.showModal({
 					title: '提示',

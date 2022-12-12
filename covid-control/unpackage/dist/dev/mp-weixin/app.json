@@ -3,9 +3,10 @@
     "pages/index/index",
     "pages/detect/index",
     "pages/prediction/index",
-    "pages/feedback/index",
+    "pages/myinfo/index",
     "pages/predictionresult/predictionresult",
-    "pages/recoveryresult/recoveryresult"
+    "pages/recoveryresult/recoveryresult",
+    "pages/recovery/recovery"
   ],
   "subPackages": [],
   "window": {
@@ -23,13 +24,19 @@
       {
         "pagePath": "pages/index/index",
         "iconPath": "static/tabBar/首页.png",
-        "selectedIconPath": "static/tabBar/首页选中.png",
+        "selectedIconPath": "static/tabBar/首页1.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/feedback/index",
-        "iconPath": "static/tabBar/意见反馈.png",
-        "selectedIconPath": "static/tabBar/意见反馈filled.png",
+        "pagePath": "pages/recovery/recovery",
+        "iconPath": "static/tabBar/康复手册.png",
+        "selectedIconPath": "static/tabBar/康复手册-filled.png",
+        "text": "康复手册"
+      },
+      {
+        "pagePath": "pages/myinfo/index",
+        "iconPath": "static/tabBar/我的.png",
+        "selectedIconPath": "static/tabBar/我的-filled.png",
         "text": "我的"
       }
     ]
