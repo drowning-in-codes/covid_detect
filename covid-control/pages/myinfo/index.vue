@@ -90,6 +90,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.weui-input {
+		margin-right: -30rpx;
+	}
 	.name-wrapper {
 		display: flex;
 		align-items: center;
@@ -99,6 +102,7 @@
 		width: 30rpx;
 		height: 30rpx;
 		margin-right: 60rpx;
+		margin-left: -100rpx;
 	}
 	.info-box {
 		margin-top: 50rpx;
@@ -124,7 +128,7 @@
 	{
 		background-color: white;
 		border:none;
-		width:200rpx;
+		width: 240rpx;
 		height:200rpx;
 		display: flex;
 		align-items: center;
