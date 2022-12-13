@@ -109,7 +109,7 @@
 				</view>
 				<picker @change="binddayChange" class="form-item-picker" :value="dayindex" :range="days" range-key="val">
 					<view v-if="dayindex!=null" class="picker">
-						{{ days[dayindex].val }}(天)
+						{{ days[dayindex].val }}
 					</view>
 					<view class="picker" v-else>请选择第几天</view>
 				</picker>
