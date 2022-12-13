@@ -1,12 +1,14 @@
 <template>
 	<view class="detect-container">
 		<form  @reset="formReset" class="detect-form">
+
 			<view class="basic-info">
 				<view class="basic-info-top">
 					<view class="basic-info-left">
 						<view class="uni-column">
 							<view class="title">年龄</view>
-							<picker @change="bindageChange" :value="ageindex" :range="agerange" range-key="val">
+							<picker @change="bindageChange" :value="ageindex" v-model="formvalue.age" :range="agerange"
+								range-key="val">
 								<view v-if="ageindex!=null" class="picker">
 									{{ agerange[ageindex].val }}(岁)
 								</view>
@@ -25,24 +27,51 @@
 					</view>
 					<view class="basic-info-right">
 						<view class="geo-top">
-							<view class="img-box">
-								<image class="geoimg"
-									src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0yNC40ODUgMjMuMTUyTDE2IDMxLjYzN2wtOC40ODUtOC40ODVBMTEuOTYyIDExLjk2MiAwIDAgMSA0IDE0LjY2N2MwLTYuNjI3IDUuMzczLTEyIDEyLTEyczEyIDUuMzczIDEyIDEyYzAgMy4zMTQtMS4zNDMgNi4zMTQtMy41MTUgOC40ODV6TTE2IDE3LjMzM2EyLjY2NyAyLjY2NyAwIDEgMCAwLTUuMzM0IDIuNjY3IDIuNjY3IDAgMSAwIDAgNS4zMzR6IiBmaWxsPSJyZ2JhKDU1LjA4LDEyNi45OSwxMjYuOTksMSkiLz48L3N2Zz4=">
-								</image>
+							<view class="wrapper covid-gap" @click="showdatamsg">
+								<view v-if="!flag">全国疫情数据</view>
+								<view v-else>{{province}}疫情数据</view>
+								<view class="tip-img-box">
+									<image class="miniimg"
+										src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+">
+									</image>
+								</view>
 							</view>
-							<view>地理位置</view>
+							<view class="geo-top-wrapper">
+								<view class="covid-confirm">
+									<view class="covid-bold">累计确诊</view>
+									<view class="covid-confirm-total boldred">{{totalConfirm}}</view>
+									<view class="covid-confirm-add">较昨日<text
+											class="add-confirm">+{{todayConfirm}}</text></view>
+								</view>
+								<view class="covid-heal">
+									<view class="covid-bold">累计治愈</view>
+									<view class="covid-heal-total green">{{todayHeal}}</view>
+									<view class="covid-heal-add">较昨日<text class="add-heal">+{{todayHeal}}</text></view>
+								</view>
+							</view>
+
 						</view>
-						<view class="geo-bottom">
-							<view class="center">国家:{{country}}</view>
-							<view class="center">{{province}}<text class="iconfont icon-youjiantou"></text>{{city}}<text
+						<view class="geo-bottom" v-if="flag">
+							<view class="geo-wrappr">
+								<view class="img-box">
+									<image class="geoimg"
+										src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0yNC40ODUgMjMuMTUyTDE2IDMxLjYzN2wtOC40ODUtOC40ODVBMTEuOTYyIDExLjk2MiAwIDAgMSA0IDE0LjY2N2MwLTYuNjI3IDUuMzczLTEyIDEyLTEyczEyIDUuMzczIDEyIDEyYzAgMy4zMTQtMS4zNDMgNi4zMTQtMy41MTUgOC40ODV6TTE2IDE3LjMzM2EyLjY2NyAyLjY2NyAwIDEgMCAwLTUuMzM0IDIuNjY3IDIuNjY3IDAgMSAwIDAgNS4zMzR6IiBmaWxsPSJyZ2JhKDU1LjA4LDEyNi45OSwxMjYuOTksMSkiLz48L3N2Zz4=" />
+								</view>
+								<view class="center">国家:{{country}}</view>
+							</view>
+							<view class="center geo-bottom-bottom">{{province}}<text
+									class="iconfont icon-youjiantou"></text>{{city}}<text
 									class="iconfont icon-youjiantou"></text>{{district}}</view>
+						</view>
+						<view class="geo-bottom" v-else>
+							<view class="center">已拒绝获取地理位置授权</view>
 						</view>
 					</view>
 				</view>
 
 				<view class="basic-info-bottom">
 					<view class="bottom-left">
-						<image src="../../static/temperature2.png" class="tmpimg"></image>
+						<image src="../../static/temperature.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
 						<view class="tmptitle">今日体温:</view>
@@ -59,7 +88,10 @@
 				</view>
 			</view>
 			<view class="wrapper">
-				<text class="query">是否有如下情况</text><image @click="showmsg" class="resizeimg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+"></image>
+				<text class="query">是否有如下情况</text>
+				<image @click="showmsg" class="resizeimg"
+					src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+">
+				</image>
 			</view>
 			<view class="ext-info">
 				<view class="uni-list">
@@ -89,19 +121,21 @@
 				<view>
 					<text>症状出现天数</text>
 				</view>
-				<picker @change="binddayChange" class="form-item-picker" :value="dayindex" :range="days" range-key="val">
+				<picker @change="binddayChange" class="form-item-picker" :value="dayindex" :range="days"
+					range-key="val">
 					<view v-if="dayindex!=null" class="picker">
-						{{ days[dayindex].val }}(天)
+						{{ days[dayindex].val }}
 					</view>
 					<view class="picker" v-else>请选择第几天</view>
 				</picker>
 			</view>
 			<view class="uni-btn-v">
-				<button  type="primary" @click="submit">感染预测</button>
-				<button type="default" form-type="reset" @click="reset">重置</button>
+				<button @click="submit('form')" class="uni-button">感染预测</button>
+				<!-- <button type="default" form-type="reset" @click="reset">重置</button> -->
 			</view>
 		</form>
 	</view>
+
 </template>
 
 <script>
@@ -109,6 +143,26 @@
 	export default {
 		data() {
 			return {
+				formvalue: {
+					age: null,
+					sex: null,
+					nc_test: null,
+
+				},
+				validaterules: {
+					age: {
+						rules: [{
+							required: true,
+							errorMessage: '请填写姓名',
+						}, ]
+					}
+				},
+				flag: false,
+				lastUpdateTime: null,
+				totalConfirm: null,
+				totalHeal: null,
+				todayConfirm: null,
+				todayHeal: null,
 				dayindex: null,
 				days: [],
 				day: null,
@@ -122,33 +176,33 @@
 				resultindex: null,
 				result: null,
 				symptoms: [{
-					value: "头痛",
+					value: "tt",
 					name: "头痛"
 				}, {
-					value: "气喘",
+					value: "qc",
 					name: "气喘"
 				}, {
-					value: "咽干喉痛",
+					value: "yt",
 					name: "咽干喉痛"
 				}, {
-					value: "流涕鼻塞",
+					value: "lt",
 					name: "流涕鼻塞"
 				}, {
-					value: "身体乏力",
+					value: "fl",
 					name: "身体乏力"
 				}, {
-					value: "肠胃不适",
+					value: "cw",
 					name: "肠胃不适"
 				}, {
-					value: "咽痒咳嗽",
+					value: "ks",
 					name: "咽痒咳嗽"
 				}, {
-					value: "无以上症状",
+					value: "null",
 					name: "无以上症状"
 				}, ],
 				currSymptoms: [],
 				sex: "男",
-				age: 1,
+				age: null,
 				sexindex: null,
 				sexrange: [{
 					val: "男"
@@ -223,21 +277,24 @@
 		onLoad() {
 			this.agerange = new Array();
 			this.days = new Array();
-			this.days.push({val:"0"});
+			this.days.push({
+				val: "0"
+			});
 			for (let i = 1; i < 100; i++) {
 				let ageobj = {
 					val: i,
 				}
-				if(i<=10)
-				{
-				this.days.push(ageobj);
+				if (i <= 10) {
+					this.days.push(ageobj);
 				}
 				this.agerange.push(ageobj);
 			}
 			this.agerange.push({
 				val: "100及以上"
 			});
-			this.days.push({val:"10天及以上"})
+			this.days.push({
+				val: "10天及以上"
+			})
 			console.log('加载表格页面');
 			this.qqmapsdk = new QQMapWX({
 				key: 'L32BZ-VJSCU-INJVN-4CIEX-XWUVS-CHF7Q'
@@ -245,8 +302,92 @@
 			this.getUserLocation();
 		},
 		methods: {
-			showmsg()
-			{
+			showdatamsg() {
+				uni.hideLoading();
+				uni.showModal({
+					title: '数据信息',
+					content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间' + this.lastUpdateTime,
+				});
+			},
+			loadError() {
+				uni.hideLoading();
+				uni.showModal({
+					title: '出错了',
+					content: '疫情数据加载失败,请尝试刷新',
+				});
+			},
+			processCityData(city) {
+				let index = 0,
+					result = city;
+				if (city.indexOf("省") != -1) {
+					index = city.indexOf('省');
+					result = city.substring(0, index);
+				}
+				if (city.indexOf("市") != -1) {
+					index = city.indexOf('市');
+					result = city.substring(0, index);
+				}
+				return result;
+			},
+			getCovidData() {
+				let requesturl = 'https://c.m.163.com/ug/api/wuhan/app/data/list-total';
+				let failflag = true;
+				uni.request({
+					url: requesturl,
+					dataType: "json",
+					success: (res) => {
+						if (!this.flag) {
+							let result = res.data.data.chinaTotal;
+							// 获取累计数据
+							this.totalConfirm = result.total.confirm;
+							this.totalHeal = result.total.heal;
+							// 获取新增数据
+							this.todayConfirm = result.today.confirm;
+							this.todayHeal = result.today.heal;
+							// 更新时间
+							this.lastUpdateTime = res.data.data.lastUpdateTime;
+							failflag = false;
+							console.log('完成')
+							uni.hideLoading();
+						} else {
+							let result = res.data.data.areaTree;
+							for (let country of result) {
+								if (country.name == this.country) {
+									for (let province of country.children) {
+										if (province.name == this.processCityData(this.province)) {
+											// 获取累计数据
+											this.totalConfirm = province.total.confirm;
+											this.totalHeal = province.total.heal;
+											// 获取新增数据
+											this.todayConfirm = province.today.confirm;
+											this.todayHeal = province.today.heal;
+											// 更新时间
+											this.lastUpdateTime = province.lastUpdateTime;
+											failflag = false;
+											console.log('完成')
+											uni.hideLoading();
+											break;
+										} else {
+											continue;
+										}
+									}
+									break;
+								} else {
+									continue;
+								}
+							}
+						}
+						if (failflag) {
+							this.loadError();
+						}
+					},
+					fail: (res) => {
+						this.loadError();
+						console.log(res);
+					}
+				})
+			},
+			showmsg() {
 				uni.showModal({
 					title: '提示',
 					content: '填写情况填写您的症状.若无,则选择无以上症状',
@@ -307,11 +448,16 @@
 									success: (res) => {
 										let loginAddress = res.result.ad_info.name
 										console.log(loginAddress)
+										this.flag = true;
 										// 获取信息
 										this.country = loginAddress.split(',')[0];
 										this.province = loginAddress.split(',')[1];
 										this.city = loginAddress.split(',')[2];
 										this.district = loginAddress.split(',')[3];
+										uni.showLoading({
+											title: '加载疫情数据中'
+										});
+										this.getCovidData();
 									},
 									fail: (res) => {
 										uni.showModal({
@@ -337,7 +483,109 @@
 					fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
 				})
 			},
-			submit() {},
+			getDate() {
+				let d = new Date();
+				let year = d.getFullYear();
+				let month = d.getMonth() + 1;
+				let day = d.getDate();
+				let result = [];
+				result.push(year);
+				result.push(month);
+				result.push(day);
+				return result;
+			},
+			submit(validatedForm) {
+				// this.$refs[validateForm].validate().
+				// 获取表格信息并进行转换
+				let timestamp = Date.parse(new Date());
+				console.log('--------表格信息------')
+				console.log('时间戳', timestamp)
+				let table = "table_v" + timestamp;
+				// let uuid = userOpenid;
+				let uuid = 'userOpenid';
+				let date = this.getDate();
+				console.log('date时间', date);
+				let stamp = timestamp;
+				let temp = this.currTemp;
+				console.log('体温', temp);
+				if (this.sex == null || this.age == null || this.result == null || this.day == null) {
+					uni.showModal({
+						title: '注意',
+						content: '请填写完整信息',
+					});
+					return;
+				}
+				let sex = this.sex;
+				let age = this.age;
+				console.log('性别', sex);
+				console.log('年龄', age);
+				let location = "";
+				if (this.flag) {
+					location = this.country + this.province + this.city;
+				}
+				console.log('位置', location);
+				let symptom = {
+					"tt": false,
+					"qc": false,
+					"yt": false,
+					"lt": false,
+					"fl": false,
+					"cw": false,
+					"ks": false
+				};
+				for (let i of this.currSymptoms) {
+					if (i in symptom) {
+						symptom[i] = true;
+					}
+					if (i == "null") {
+						console.log('无症状')
+						symptom = {
+							"tt": false,
+							"qc": false,
+							"yt": false,
+							"lt": false,
+							"fl": false,
+							"cw": false,
+							"ks": false
+						};
+						break;
+					}
+				}
+				console.log('症状', symptom)
+				console.log('nc_test', this.result);
+				let nc_test = this.result;
+				console.log('days_symp', this.day)
+				let days_symp = this.day;
+
+				let formData = {
+					table,
+					"value": {
+						uuid,
+						stamp,
+						date,
+						temp,
+						location,
+						symptom,
+						nc_test,
+						days_symp,
+						sex,
+						age,
+					}
+				}
+
+				console.log(formData);
+
+
+
+			},
+			// 下拉刷新数据
+			onPullDownRefresh() {
+				console.log('下拉刷新');
+				// 已授权
+				if (this.flag) {
+					this.getUserLocation();
+				}
+			},
 			reset() {
 				// 重置年龄
 				this.ageindex = null;
@@ -376,8 +624,7 @@
 				this.sexindex = e.detail.value;
 				this.sex = this.sexrange[this.sexindex].val;
 			},
-			binddayChange(e)
-			{
+			binddayChange(e) {
 				this.dayindex = e.detail.value;
 				this.day = this.days[this.dayindex].val;
 			}
@@ -387,24 +634,90 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
+
+	.tip-img-box {
+		display: flex;
+		align-items: center;
+	}
+
+	.covid-confirm,
+	.covid-heal {
+		border-radius: 16rpx;
+		border: 3rpx solid rgba(187, 187, 187, 1);
+		padding: 12rpx;
+	}
+
+	.covid-gap {
+		margin-bottom: 8rpx;
+	}
+
+	uni-modal .uni-modal__bd {
+		white-space: pre-wrap;
+	}
+
+	.miniimg {
+		margin-left: 7rpx;
+		width: 40rpx;
+		height: 40rpx;
+	}
+
+	.geo-bottom-bottom {
+		margin-bottom: 10rpx;
+	}
+
+	.add-confirm {
+		color: #a31d13;
+	}
+
+	.add-heal {
+		color: #34aa70;
+	}
+
+	.covid-bold {
+		color: #333;
+		font-weight: 600;
+		text-align: center;
+	}
+
+	.boldred {
+		text-align: center;
+		color: #a31d13;
+		font-size: 40rpx;
+	}
+
+	.green {
+		text-align: center;
+		color: #34aa70;
+		font-size: 40rpx;
+	}
+
 	.resizeimg {
 		width: 80rpx;
 		height: 80rpx;
 		margin-left: 10rpx;
 	}
+
 	.form-item-picker {
-		width: 60vw;
+		width: 50vw;
 	}
+
 	.form-item {
 		margin-bottom: 30rpx;
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
-		gap: 20rpx;
+		justify-content: space-between;
 	}
 
 	.block {
 		display: block;
+	}
+
+	.geo-wrappr {
+		margin-top: 10rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 25rpx;
 	}
 
 	.wrapper {
@@ -418,6 +731,11 @@
 		font-size: 60rpx;
 		font-weight: 700;
 		font-family: SourceHanSansSC-regular;
+	}
+
+	.uni-button {
+		font-weight: 700;
+		width: 70vw;
 	}
 
 	.checkgroups {
@@ -434,7 +752,7 @@
 
 	.query {
 		font-weight: 700;
-		font-size: 50rpx;
+		font-size: 35rpx;
 	}
 
 	.title {
@@ -458,6 +776,7 @@
 	}
 
 	.basic-info-bottom {
+		background-color: white;
 		display: flex;
 		gap: 40rpx;
 		align-items: center;
@@ -469,10 +788,17 @@
 
 	.geo-top {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.geo-top-wrapper {
+		display: flex;
 		justify-content: center;
-		gap: 35rpx;
+		gap: 40rpx;
 		align-items: center;
 		border-bottom: #F2F2F7 solid;
+		padding-bottom: 10rpx;
 	}
 
 	.tmpimg {
@@ -481,22 +807,23 @@
 	}
 
 	.geoimg {
-		width: 120rpx;
-		height: 120rpx;
+		width: 60rpx;
+		height: 60rpx;
 	}
 
 	.picker {
-		padding: 20rpx;
-		background-color: #ededed;
-		border: #C1C2C5 solid;
+		padding: 25rpx;
+		background-color: white;
+		border: 2rpx #C1C2C5 solid;
 	}
 
 	.basic-info-top {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 
 	.basic-info-right {
+		background-color: white;
 		width: 50vw;
 		display: flex;
 		flex-direction: column;
@@ -508,12 +835,17 @@
 	.basic-info-left {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-evenly;
 	}
 
 	.sex-label {
 		margin-top: 8rpx;
 		display: flex;
 		gap: 60rpx;
+	}
+
+	.uni-column {
+		min-width: 240rpx;
 	}
 
 	.uni-column+.uni-column {
@@ -542,6 +874,7 @@
 	}
 
 	.ext-info {
+		background-color: white;
 		padding: 30rpx;
 		border-radius: 15rpx;
 		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
@@ -552,8 +885,9 @@
 
 	.uni-btn-v {
 		display: flex;
-		justify-content: space-between;
-		gap: 20rpx;
+		// justify-content: space-between;
+		// gap: 20rpx;
+		margin: 0 auto;
 	}
 
 	.uni-input {
@@ -568,6 +902,13 @@
 		display: flex;
 	}
 
+	.detect-container /deep/ .uni-forms {
+		width: 90%;
+		margin: 10rpx auto;
+		padding: 10rpx;
+		min-height: 80vh;
+	}
+
 	.detect-form {
 		width: 90%;
 		margin: 10rpx auto;
@@ -576,6 +917,7 @@
 	}
 
 	.detect-container {
+		background-color: #E9F8F5;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

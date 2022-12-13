@@ -15,7 +15,7 @@
 			<view class="covid-button">
 				<view class="left-button" @click="showmsg1">
 					<image class="img-resize"
-						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiM4NWY5ZTM7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAxTDMgNXY2YzAgNS41NSAzLjg0IDEwLjc0IDkgMTIgNS4xNi0xLjI2IDktNi40NSA5LTEyVjVsLTktNHptLTIgMTZsLTQtNCAxLjQxLTEuNDFMMTAgMTQuMTdsNi41OS02LjU5TDE4IDlsLTggOHoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
+						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE3aC0ydi0yaDJ2MnptMi4wNy03Ljc1bC0uOS45MkMxMy40NSAxMi45IDEzIDEzLjUgMTMgMTVoLTJ2LS41YzAtMS4xLjQ1LTIuMSAxLjE3LTIuODNsMS4yNC0xLjI2Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0xLjEtLjktMi0yLTJzLTIgLjktMiAySDhjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNGMwIC44OC0uMzYgMS42OC0uOTMgMi4yNXoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
 					</image>
 					<text class="button-info">阳了么</text>
 				</view>
@@ -26,8 +26,9 @@
 			<view class="covid-button">
 				<view class="left-button" @click="showmsg2">
 					<image class="img-resize"
-						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE3aC0ydi0yaDJ2MnptMi4wNy03Ljc1bC0uOS45MkMxMy40NSAxMi45IDEzIDEzLjUgMTMgMTVoLTJ2LS41YzAtMS4xLjQ1LTIuMSAxLjE3LTIuODNsMS4yNC0xLjI2Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0xLjEtLjktMi0yLTJzLTIgLjktMiAySDhjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNGMwIC44OC0uMzYgMS42OC0uOTMgMi4yNXoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
-					</image><text class="button-info">阳了</text>
+						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiM4NWY5ZTM7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAxTDMgNXY2YzAgNS41NSAzLjg0IDEwLjc0IDkgMTIgNS4xNi0xLjI2IDktNi40NSA5LTEyVjVsLTktNHptLTIgMTZsLTQtNCAxLjQxLTEuNDFMMTAgMTQuMTdsNi41OS02LjU5TDE4IDlsLTggOHoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
+					</image>
+					<text class="button-info">阳了</text>
 				</view>
 				<view class="right-button">
 					<button type="primary" @click="torecovery">新冠病程监测</button>
@@ -58,12 +59,15 @@
 	export default {
 		data() {
 			return {
+				appId:'wxf2ff04695fb4db53',
+				appsecret:'5adc8870c93e92aeabb23625ae50ab38',
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
 				duration: 500,
 				imgs: [
-					'http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221211124823.jpg',
+					'http://rmkt29hqy.hn-bkt.clouddn.com/logo%E9%85%8D%E8%89%B2%E5%9B%BE.png',
+					'http://rmkt29hqy.hn-bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20221212201555.png',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/kangjiyiqing.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg',
@@ -71,8 +75,20 @@
 			}
 		},
 		components: {},
-		onLoad() {},
+		onLoad() {
+			this.wxlogin();
+		},
 		methods: {
+			wxlogin()
+			{
+				uni.login({
+				  success: res => {
+				    //code值(5分钟失效)
+				    console.info(res.code);
+					// https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
+				  }
+				});
+			},
 			showmsg1() {
 				uni.showModal({
 					title: '提示',
@@ -82,20 +98,19 @@
 			showmsg2() {
 				uni.showModal({
 					title: '提示',
-					content: '填写情况预测您的病程',
+					content: '填写情况监测您的病程',
 				});
 			},
-			topredict()
-			{
+			// 传递openid
+			topredict() {
 				uni.navigateTo({
-					url:"/pages/detect/index"
+					url: "/pages/detect/index"
 				})
-			}
-			,
-			torecovery()
-			{
+			},
+			// 传递openid
+			torecovery() {
 				uni.navigateTo({
-					url:"/pages/prediction/index"
+					url: "/pages/prediction/index"
 				})
 			}
 		}
@@ -104,8 +119,8 @@
 
 <style lang="scss" scoped>
 	.img-resize {
-		width: 100rpx;
-		height: 100rpx;
+		width: 80rpx;
+		height: 80rpx;
 	}
 
 	.info-title-text {
@@ -151,11 +166,14 @@
 	.covid-button {
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 		padding: 30rpx;
+		width: 90%;
 		display: flex;
 		margin: 0 30rpx;
 		justify-content: space-evenly;
 		height: 200rpx;
 		margin-top: 60rpx;
+		border: 1px solid rgba(190, 190, 190, 1);
+		border-radius: 16rpx;
 	}
 
 	.covid-button+.covid-button {

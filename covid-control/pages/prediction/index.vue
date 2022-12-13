@@ -494,6 +494,7 @@
 	.prediction-container {
 		background-color: #E9F8F5;
 	}
+	
 	.btn-contrainer {
 		width: 100%;
 		height: 80px;
