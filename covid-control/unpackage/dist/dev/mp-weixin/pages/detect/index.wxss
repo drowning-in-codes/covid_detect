@@ -47,7 +47,8 @@
   display: flex;
   align-items: center;
 }
-.covid-confirm.data-v-45e3c05f, .covid-heal.data-v-45e3c05f {
+.covid-confirm.data-v-45e3c05f,
+.covid-heal.data-v-45e3c05f {
   border-radius: 16rpx;
   border: 3rpx solid #bbbbbb;
   padding: 12rpx;
@@ -259,6 +260,12 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
 }
 .age-choose.data-v-45e3c05f {
   display: flex;
+}
+.detect-container.data-v-45e3c05f .uni-forms {
+  width: 90%;
+  margin: 10rpx auto;
+  padding: 10rpx;
+  min-height: 80vh;
 }
 .detect-form.data-v-45e3c05f {
   width: 90%;
