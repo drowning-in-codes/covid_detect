@@ -77,12 +77,6 @@
 			"text": "首页"
 		}, 
 		{
-			"pagePath": "pages/recovery/recovery",
-			"iconPath": "static/tabBar/康复手册.png",
-			"selectedIconPath": "static/tabBar/康复手册-filled.png",
-			"text": "康复手册"
-		}, 
-		{
 			"pagePath": "pages/myinfo/index",
 			"iconPath": "static/tabBar/我的.png",
 			"selectedIconPath": "static/tabBar/我的-filled.png",

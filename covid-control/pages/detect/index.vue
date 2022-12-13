@@ -1,28 +1,32 @@
 <template>
 	<view class="detect-container">
-		<form  @reset="formReset" class="detect-form">
-
+		<u-form :model="formvalue" ref="uForm" class="detect-form">
 			<view class="basic-info">
 				<view class="basic-info-top">
 					<view class="basic-info-left">
 						<view class="uni-column">
-							<view class="title">年龄</view>
-							<picker @change="bindageChange" :value="ageindex" v-model="formvalue.age" :range="agerange"
-								range-key="val">
-								<view v-if="ageindex!=null" class="picker">
-									{{ agerange[ageindex].val }}(岁)
+							<u-form-item prop="age" label="年龄" required="true" label-position="top"
+								:border-bottom="false">
+								<view class="input-area">
+									<u-input v-model="formvalue.age" placeholder="请选择" type="select" border="true"
+										@click="ageShow = true" />
 								</view>
-								<view class="picker" v-else>请选择年龄</view>
-							</picker>
+								<u-select v-model="ageShow" mode="single-column" :list="agerange"
+									@confirm="handAgeChange">
+								</u-select>
+							</u-form-item>
 						</view>
 						<view class="uni-column">
-							<view class="title">性别</view>
-							<picker @change="handleSexchange" :value="sexindex" :range="sexrange" range-key="val">
-								<view v-if="sexindex" class="picker">
-									{{ sexrange[sexindex].val }}
+							<u-form-item prop="sex" label="性别" required="true" label-position="top"
+								:border-bottom="false">
+								<view class="input-area">
+									<u-input class="input-area" placeholder="请选择" v-model="formvalue.sex" type="select"
+										border="true" @click="sexShow = true" />
 								</view>
-								<view class="picker" v-else>请选择性别</view>
-							</picker>
+								<u-select v-model="sexShow" mode="single-column" :list="sexrange"
+									@confirm="handleSexchange">
+								</u-select>
+							</u-form-item>
 						</view>
 					</view>
 					<view class="basic-info-right">
@@ -49,23 +53,28 @@
 									<view class="covid-heal-add">较昨日<text class="add-heal">+{{todayHeal}}</text></view>
 								</view>
 							</view>
-
 						</view>
-						<view class="geo-bottom" v-if="flag">
-							<view class="geo-wrappr">
+						<view class="geo-bottom">
+							<u-line :hair-line="false"/>
+							<view class="geo-wrapper-mini">
+								<view>地理位置</view>
 								<view class="img-box">
 									<image class="geoimg"
 										src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjQyIiBoZWlnaHQ9IjQyIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0yNC40ODUgMjMuMTUyTDE2IDMxLjYzN2wtOC40ODUtOC40ODVBMTEuOTYyIDExLjk2MiAwIDAgMSA0IDE0LjY2N2MwLTYuNjI3IDUuMzczLTEyIDEyLTEyczEyIDUuMzczIDEyIDEyYzAgMy4zMTQtMS4zNDMgNi4zMTQtMy41MTUgOC40ODV6TTE2IDE3LjMzM2EyLjY2NyAyLjY2NyAwIDEgMCAwLTUuMzM0IDIuNjY3IDIuNjY3IDAgMSAwIDAgNS4zMzR6IiBmaWxsPSJyZ2JhKDU1LjA4LDEyNi45OSwxMjYuOTksMSkiLz48L3N2Zz4=" />
 								</view>
-								<view class="center">国家:{{country}}</view>
 							</view>
-							<view class="center geo-bottom-bottom">{{province}}<text
-									class="iconfont icon-youjiantou"></text>{{city}}<text
-									class="iconfont icon-youjiantou"></text>{{district}}</view>
+							<u-form-item class="geo-form-item" :border-bottom="false" prop="region" label-width="150"
+								v-if="flag">
+								<u-input class="regionText" type="select" :select-open="positionShow"
+									v-model="formvalue.location" placeholder="请选择地区" @click="positionShow = true">
+								</u-input>
+								<u-picker mode="region" v-model="positionShow" @confirm="regionConfirm"></u-picker>
+							</u-form-item>
+							<view class="geo-bottom" v-else>
+								<view class="center">已拒绝获取地理位置授权</view>
+							</view>
 						</view>
-						<view class="geo-bottom" v-else>
-							<view class="center">已拒绝获取地理位置授权</view>
-						</view>
+
 					</view>
 				</view>
 
@@ -74,68 +83,59 @@
 						<image src="../../static/temperature.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
-						<view class="tmptitle">今日体温:</view>
-						<picker @change="bindPickerChange" class="showtemp" :value="index" :range="temperature"
-							range-key="val">
-							<view class="wrapper">
-								<view class="picker temp-show">{{ temperature[index].val}}</view>
-								<image style="width: 120rpx;height: 120rpx;"
-									src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik02IDEzLjMzM2E0LjY2NyA0LjY2NyAwIDAgMSAwLTkuMzM0IDQuNjY3IDQuNjY3IDAgMCAxIDAgOS4zMzR6bTAtMi42NjZhMiAyIDAgMSAwIDAtNCAyIDIgMCAxIDAgMCA0em0yMy4zMzMgMi42NjZoLTIuNjY3YTUuMzMzIDUuMzMzIDAgMSAwLTEwLjY2NiAwVjIwYTUuMzMzIDUuMzMzIDAgMSAwIDEwLjY2NiAwaDIuNjY3YTggOCAwIDAgMS0xNiAwdi02LjY2N2E4IDggMCAwIDEgMTYgMHoiIGZpbGw9InJnYmEoNTUuMDgsMTI2Ljk5LDEyNi45OSwxKSIvPjwvc3ZnPg==">
-								</image>
-							</view>
-						</picker>
+						<u-form-item required="true" prop="temp" label-width="190" label="今日体温:" :border-bottom="false"
+							label-position="top">
+							<u-input :border="true" v-model="formvalue.temp" :custom-style="temperatrueStyle"
+								type="select" @click="temperatrueShow = true"></u-input>
+							<u-select v-model="temperatrueShow" mode="mutil-column" :list="temperatrueList"
+								@confirm="confirmTemperatrue">
+							</u-select>
+						</u-form-item>
+						<image class="tmp-img-r"
+							src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik02IDEzLjMzM2E0LjY2NyA0LjY2NyAwIDAgMSAwLTkuMzM0IDQuNjY3IDQuNjY3IDAgMCAxIDAgOS4zMzR6bTAtMi42NjZhMiAyIDAgMSAwIDAtNCAyIDIgMCAxIDAgMCA0em0yMy4zMzMgMi42NjZoLTIuNjY3YTUuMzMzIDUuMzMzIDAgMSAwLTEwLjY2NiAwVjIwYTUuMzMzIDUuMzMzIDAgMSAwIDEwLjY2NiAwaDIuNjY3YTggOCAwIDAgMS0xNiAwdi02LjY2N2E4IDggMCAwIDEgMTYgMHoiIGZpbGw9InJnYmEoNTUuMDgsMTI2Ljk5LDEyNi45OSwxKSIvPjwvc3ZnPg==">
+						</image>
 					</view>
 				</view>
 			</view>
+
 			<view class="wrapper">
 				<text class="query">是否有如下情况</text>
-				<image @click="showmsg" class="resizeimg"
-					src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMSAxOGgydi0yaC0ydjJ6bTEtMTZDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4em0wLTE0YTQgNCAwIDAgMC00IDRoMmMwLTEuMS45LTIgMi0yczIgLjkgMiAyYzAgMi0zIDEuNzUtMyA1aDJjMC0yLjI1IDMtMi41IDMtNWE0IDQgMCAwIDAtNC00eiIgZmlsbD0icmdiYSg1NS4wOCwxMjYuOTksMTI2Ljk5LDEpIi8+PC9zdmc+">
-				</image>
+				<u-icon class="right-icon" name="question-circle" color="#377F7F" size="45" @click="tipShow = true">
+				</u-icon>
+				<u-modal v-model="tipShow" content="填写您的症状.若无,则选择无以上症状"></u-modal>
 			</view>
 			<view class="ext-info">
-				<view class="uni-list">
-					<checkbox-group @change="checkboxChange" class="checkgroups">
-						<view class="uni-list-cell" v-for="item in symptoms" :key="item.value">
-							<view>
-								<checkbox :value="item.value" :checked="item.checked" />
-							</view>
-							<view class="box-label">{{item.name}}</view>
-						</view>
-					</checkbox-group>
+				<u-form-item :border-bottom="false" prop="symptom">
+					<u-checkbox-group width="50%" @change="handleSymptomChange" shape="circle">
+						<u-checkbox @change="disableOtherCondition" v-model="item.checked"
+							v-for="(item, index) in symptomsList" :key="index" :name="item.name" label-size="16px"
+							icon-size="12px">{{item.value}}</u-checkbox>
+					</u-checkbox-group>
+				</u-form-item>
+			</view>
+			<u-form-item label-width="190" required="true" prop="nc_test" label="最近一次核酸检测结果" :border-bottom="false"
+				:label-style="labelStyle">
+				<view class="input-area">
+					<u-input placeholder="请选择(阳性、阴性、未知)" :border="true" v-model="formvalue.nc_test" type="select"
+						@click="resultShow = true"></u-input>
 				</view>
-			</view>
-			<view class="form-item">
-				<view>
-					<text>最近一次核酸检测结果</text>
+				<u-select v-model="resultShow" mode="single-column" :list="resultList" @confirm="handleResultChange">
+				</u-select>
+			</u-form-item>
+			<u-form-item label-width="190" required="true" prop="days_symp" label="症状出现天数" :border-bottom="false"
+				:label-style="labelStyle">
+				<view class="input-area">
+					<u-input class="input-area" placeholder="请选择(第几天)" :border="true" v-model="formvalue.days_symp"
+						type="select" @click="dayShow = true"></u-input>
 				</view>
-				<picker @change="bindresultChange" class="form-item-picker" :value="resultindex" :range="results"
-					range-key="val">
-					<view v-if="resultindex!=null" class="picker">
-						{{ results[resultindex].val }}
-					</view>
-					<view class="picker" v-else>请选择阳性,阴性或未知</view>
-				</picker>
+				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handDayChange"></u-select>
+			</u-form-item>
+			<view class="uni-btn">
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染预测
+				</u-button>
 			</view>
-			<view class="form-item">
-				<view>
-					<text>症状出现天数</text>
-				</view>
-				<picker @change="binddayChange" class="form-item-picker" :value="dayindex" :range="days"
-					range-key="val">
-					<view v-if="dayindex!=null" class="picker">
-						{{ days[dayindex].val }}
-					</view>
-					<view class="picker" v-else>请选择第几天</view>
-				</picker>
-			</view>
-			<view class="uni-btn-v">
-				<button @click="submit('form')" class="uni-button">感染预测</button>
-				<!-- <button type="default" form-type="reset" @click="reset">重置</button> -->
-			</view>
-		</form>
+		</u-form>
 	</view>
-
 </template>
 
 <script>
@@ -143,146 +143,268 @@
 	export default {
 		data() {
 			return {
+				formRules: {
+					age: [{
+						required: true,
+						message: '请选择年龄',
+						trigger: ['change', 'blur']
+					}],
+					sex: [{
+						required: true,
+						message: '请选择性别',
+						trigger: ['change', 'blur']
+					}],
+					nc_test: [{
+						required: true,
+						message: '请选择最近一次核酸检测结果',
+						trigger: ['change', 'blur']
+					}],
+					days_symp: [{
+						required: true,
+						message: '请选择症状出现天数',
+						trigger: ['change', 'blur']
+					}],
+					symptom: [{
+						// 自定义验证函数
+						validator: (rule, value, callback) => {
+							// 上面有说，返回true表示校验通过，返回false表示不通过
+							// this.$u.test.mobile()就是返回true或者false的
+							if(value.length == 0)
+							{
+								return false;
+							}
+							else {
+								return true;
+							}
+						},
+						message: '请选择症状',
+						trigger: ['change', 'blur'],
+					}],
+				},
+				temperatrueStyle: {
+					fontSize: '72rpx',
+					width: '160rpx',
+					padding: '10rpx',
+				},
+				customStyle: {
+					height: '80rpx',
+					'margin-top': '10rpx',
+					'margin-left': '120rpx',
+					'margin-right': '120rpx',
+					'margin-bottom': '40rpx'
+				},
+				labelStyle: {
+					width: '190rpx',
+					'line-height': '32rpx'
+				},
 				formvalue: {
-					age: null,
-					sex: null,
-					nc_test: null,
-
+					age: "",
+					sex: "",
+					temp: '36.7',
+					location: "",
+					nc_test: "",
+					days_symp: "",
+					symptom: [],
 				},
-				validaterules: {
-					age: {
-						rules: [{
-							required: true,
-							errorMessage: '请填写姓名',
-						}, ]
-					}
-				},
+				temperatrueShow: false,
+				dayShow: false,
+				resultShow: false,
+				tipShow: false,
+				ageShow: false,
+				sexShow: false,
+				positionShow: false,
 				flag: false,
 				lastUpdateTime: null,
 				totalConfirm: null,
 				totalHeal: null,
 				todayConfirm: null,
 				todayHeal: null,
-				dayindex: null,
 				days: [],
-				day: null,
-				results: [{
-					val: "阳性"
+				dayList: [{
+						value: '1',
+						label: '1',
+					},
+					{
+						value: '2',
+						label: '2',
+					},
+					{
+						value: '3',
+						label: '3',
+					},
+					{
+						value: '4',
+						label: '4',
+					},
+					{
+						value: '5',
+						label: '5',
+					},
+					{
+						value: '6',
+						label: '6',
+					},
+					{
+						value: '7',
+						label: '7',
+					},
+					{
+						value: '7+',
+						label: '7天以上',
+					},
+				],
+				resultList: [{
+						value: '阳性',
+						label: '阳性'
+					},
+					{
+						value: '阴性',
+						label: '阴性'
+					},
+					{
+						value: '未知',
+						label: '未知',
+					}
+				],
+				symptomsList: [{
+					name: "tt",
+					value: "头痛",
+					checked: false,
 				}, {
-					val: '阴性'
+					name: "qc",
+					value: "气喘",
+					checked: false,
 				}, {
-					val: "未知"
-				}],
-				resultindex: null,
-				result: null,
-				symptoms: [{
-					value: "tt",
-					name: "头痛"
+					name: "yt",
+					value: "咽干喉痛",
+					checked: false,
 				}, {
-					value: "qc",
-					name: "气喘"
+					name: "lt",
+					value: "流涕鼻塞",
+					checked: false,
 				}, {
-					value: "yt",
-					name: "咽干喉痛"
+					name: "fl",
+					value: "身体乏力",
+					checked: false,
 				}, {
-					value: "lt",
-					name: "流涕鼻塞"
+					name: "cw",
+					value: "肠胃不适",
+					checked: false,
 				}, {
-					value: "fl",
-					name: "身体乏力"
+					name: "ks",
+					value: "咽痒咳嗽",
+					checked: false,
 				}, {
-					value: "cw",
-					name: "肠胃不适"
-				}, {
-					value: "ks",
-					name: "咽痒咳嗽"
-				}, {
-					value: "null",
-					name: "无以上症状"
+					name: "null",
+					value: "无以上症状",
+					checked: false,
 				}, ],
-				currSymptoms: [],
-				sex: "男",
-				age: null,
-				sexindex: null,
 				sexrange: [{
-					val: "男"
+					value: "男",
+					label: "男",
+
 				}, {
-					val: "女"
+					value: "女",
+					label: "女"
 				}],
 				agerange: [],
-				ageindex: null,
 				qqmapsdk: null,
-				temperature: [{
-					val: '35.7以下'
-				}, {
-					val: '35.7'
-				}, {
-					val: '35.8'
-				}, {
-					val: '35.9'
-				}, {
-					val: '36.0'
-				}, {
-					val: '36.1'
-				}, {
-					val: '36.2'
-				}, {
-					val: '36.3'
-				}, {
-					val: '36.4'
-				}, {
-					val: '36.5'
-				}, {
-					val: '36.6'
-				}, {
-					val: '36.7'
-				}, {
-					val: '36.8'
-				}, {
-					val: '36.9'
-				}, {
-					val: '37.0'
-				}, {
-					val: '37.1'
-				}, {
-					val: '37.2'
-				}, {
-					val: '37.3'
-				}, {
-					val: '37.4'
-				}, {
-					val: '37.5'
-				}, {
-					val: '37.6'
-				}, {
-					val: '37.7'
-				}, {
-					val: '37.8'
-				}, {
-					val: '37.9'
-				}, {
-					val: '38.0'
-				}, {
-					val: '38.0以上'
-				}],
-				index: 16,
-				currTemp: '37.2',
+				temperatrueList: [
+					[{
+							value: '34',
+							label: '34'
+						},
+						{
+							value: '35',
+							label: '35'
+						},
+						{
+							value: '36',
+							label: '36'
+						},
+						{
+							value: '37',
+							label: '37'
+						},
+						{
+							value: '38',
+							label: '38'
+						},
+						{
+							value: '39',
+							label: '39'
+						},
+						{
+							value: '40',
+							label: '40'
+						},
+						{
+							value: '41',
+							label: '41'
+						},
+						{
+							value: '42',
+							label: '42'
+						}
+					],
+					[{
+							value: '.0',
+							label: '.0'
+						},
+						{
+							value: '.1',
+							label: '.1'
+						},
+						{
+							value: '.2',
+							label: '.2'
+						},
+						{
+							value: '.3',
+							label: '.3'
+						},
+						{
+							value: '.4',
+							label: '.4'
+						},
+						{
+							value: '.5',
+							label: '.5'
+						},
+						{
+							value: '.6',
+							label: '.6'
+						},
+						{
+							value: '.7',
+							label: '.7'
+						},
+						{
+							value: '.8',
+							label: '.8'
+						},
+						{
+							value: '.9',
+							label: '.9'
+						}
+
+					]
+				],
 				country: null,
 				province: null,
 				city: null,
 				district: null,
-				sex: null,
 			};
+		},
+		onReady() {
+			this.$refs.uForm.setRules(this.formRules);
 		},
 		onLoad() {
 			this.agerange = new Array();
-			this.days = new Array();
-			this.days.push({
-				val: "0"
-			});
 			for (let i = 1; i < 100; i++) {
 				let ageobj = {
-					val: i,
+					value: "" + i,
+					label: "" + i,
 				}
 				if (i <= 10) {
 					this.days.push(ageobj);
@@ -290,11 +412,9 @@
 				this.agerange.push(ageobj);
 			}
 			this.agerange.push({
-				val: "100及以上"
+				value: "100及以上",
+				label: "100及以上"
 			});
-			this.days.push({
-				val: "10天及以上"
-			})
 			console.log('加载表格页面');
 			this.qqmapsdk = new QQMapWX({
 				key: 'L32BZ-VJSCU-INJVN-4CIEX-XWUVS-CHF7Q'
@@ -302,6 +422,18 @@
 			this.getUserLocation();
 		},
 		methods: {
+			disableOtherCondition(e) {
+				if (e.name == "null") {
+					for (let item in this.symptomsList) {
+						if (this.symptomsList[item].name != "null") {
+							this.symptomsList[item].checked = false;
+						}
+					}
+				} else this.symptomsList[7].checked = false;
+			},
+			regionConfirm(e) {
+				this.formvalue.location = e.province.label + '>' + e.city.label + '>' + e.area.label;
+			},
 			showdatamsg() {
 				uni.hideLoading();
 				uni.showModal({
@@ -387,15 +519,6 @@
 					}
 				})
 			},
-			showmsg() {
-				uni.showModal({
-					title: '提示',
-					content: '填写情况填写您的症状.若无,则选择无以上症状',
-				});
-			},
-			formReset: function(e) {
-				console.log('清空数据')
-			},
 			getUserLocation() {
 				uni.getSetting({
 					success: (res) => {
@@ -454,6 +577,8 @@
 										this.province = loginAddress.split(',')[1];
 										this.city = loginAddress.split(',')[2];
 										this.district = loginAddress.split(',')[3];
+										this.formvalue.location = this.province + '>' +
+											this.city + '>' + this.district;
 										uni.showLoading({
 											title: '加载疫情数据中'
 										});
@@ -494,52 +619,27 @@
 				result.push(day);
 				return result;
 			},
-			submit(validatedForm) {
-				// this.$refs[validateForm].validate().
-				// 获取表格信息并进行转换
-				let timestamp = Date.parse(new Date());
-				console.log('--------表格信息------')
-				console.log('时间戳', timestamp)
-				let table = "table_v" + timestamp;
-				// let uuid = userOpenid;
-				let uuid = 'userOpenid';
-				let date = this.getDate();
-				console.log('date时间', date);
-				let stamp = timestamp;
-				let temp = this.currTemp;
-				console.log('体温', temp);
-				if (this.sex == null || this.age == null || this.result == null || this.day == null) {
-					uni.showModal({
-						title: '注意',
-						content: '请填写完整信息',
-					});
-					return;
-				}
-				let sex = this.sex;
-				let age = this.age;
-				console.log('性别', sex);
-				console.log('年龄', age);
-				let location = "";
-				if (this.flag) {
-					location = this.country + this.province + this.city;
-				}
-				console.log('位置', location);
-				let symptom = {
-					"tt": false,
-					"qc": false,
-					"yt": false,
-					"lt": false,
-					"fl": false,
-					"cw": false,
-					"ks": false
-				};
-				for (let i of this.currSymptoms) {
-					if (i in symptom) {
-						symptom[i] = true;
-					}
-					if (i == "null") {
-						console.log('无症状')
-						symptom = {
+			submit() {
+				this.$refs.uForm.validate(valid => {
+					if (valid) {
+						console.log('验证通过');
+						// this.$refs[validateForm].validate().
+						// 获取表格信息并进行转换
+						let timestamp = Date.parse(new Date());
+						console.log('--------表格信息------')
+						console.log('时间戳', timestamp)
+						let table = "table_v1";
+						// let uuid = userOpenid;
+						let uuid = 'userOpenid';
+						let date = this.getDate();
+						console.log('date时间', date);
+						let stamp = timestamp;
+						let location = "";
+						if (this.flag) {
+							location = this.country + this.province + this.city;
+						}
+						console.log('位置', location);
+						let symptom = {
 							"tt": false,
 							"qc": false,
 							"yt": false,
@@ -548,37 +648,32 @@
 							"cw": false,
 							"ks": false
 						};
-						break;
+						for (let i of this.currSymptoms) {
+							if (i in symptom) {
+								symptom[i] = true;
+							}
+							if (i == "null") {
+								console.log('无症状')
+								symptom = {
+									"tt": false,
+									"qc": false,
+									"yt": false,
+									"lt": false,
+									"fl": false,
+									"cw": false,
+									"ks": false
+								};
+								break;
+							}
+						}
+
+					} else {
+						console.log('验证失败');
 					}
-				}
-				console.log('症状', symptom)
-				console.log('nc_test', this.result);
-				let nc_test = this.result;
-				console.log('days_symp', this.day)
-				let days_symp = this.day;
-
-				let formData = {
-					table,
-					"value": {
-						uuid,
-						stamp,
-						date,
-						temp,
-						location,
-						symptom,
-						nc_test,
-						days_symp,
-						sex,
-						age,
-					}
-				}
-
-				console.log(formData);
-
-
-
+				});
 			},
 			// 下拉刷新数据
+			// 需要增加刷新 位置改变后的疫情数据
 			onPullDownRefresh() {
 				console.log('下拉刷新');
 				// 已授权
@@ -586,47 +681,28 @@
 					this.getUserLocation();
 				}
 			},
-			reset() {
-				// 重置年龄
-				this.ageindex = null;
-				this.age = null;
-				// 重置性别
-				this.sex = null;
-				this.sexindex = null;
-				// 重置体温
-				this.index = 16;
-				this.currTemp = '37.2';
-				//重置症状
-				this.currSymptoms = [];
-				// 重置剩余项
-				this.result = null;
-				this.resultindex = null;
-				this.day = null;
-				this.dayindex = null;
+			handleResultChange(e) {
+				this.formvalue.nc_test = e[0].value;
 			},
-			bindresultChange(e) {
-				this.resultindex = e.detail.value;
-				this.result = this.results[this.resultindex].val;
+			handleSymptomChange(e) {
+				console.log(e);
+				this.formvalue.symptom = e;
 			},
-			checkboxChange(e) {
-				// console.log(e.detail.value)
-				this.currSymptoms = e.detail.value;
+			handAgeChange(e) {
+				this.formvalue.age = e[0].value;
+
 			},
-			bindageChange(e) {
-				this.ageindex = e.detail.value;
-				this.age = this.agerange[this.ageindex].val;
-			},
-			bindPickerChange(e) {
-				this.index = e.detail.value;
-				this.currTemp = this.temperature[this.index].val;
+			confirmTemperatrue(e) {
+				this.formvalue.temp = '';
+				e.map((val, index) => {
+					this.formvalue.temp += val.label
+				})
 			},
 			handleSexchange(e) {
-				this.sexindex = e.detail.value;
-				this.sex = this.sexrange[this.sexindex].val;
+				this.formvalue.sex = e[0].value;
 			},
-			binddayChange(e) {
-				this.dayindex = e.detail.value;
-				this.day = this.days[this.dayindex].val;
+			handDayChange(e) {
+				this.formvalue.days_symp = e[0].label;
 			}
 		}
 	}
@@ -635,9 +711,47 @@
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
 
+	.tmp-img-r {
+		width: 120rpx;
+		height: 120rpx;
+		margin-left: 10rpx;
+		margin-bottom: 12rpx;
+	}
+
+	.bottom-right {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.right-icon {
+		margin-left: 10rpx;
+	}
+
+	.geo-form-item {
+		padding: 10rpx;
+	}
+
+	.geo-form-item /deep/ .u-form-item {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	.geo-form-item {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
 	.tip-img-box {
 		display: flex;
 		align-items: center;
+	}
+
+	.geo-wrapper-mini {
+		margin-top: 10rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10rpx;
 	}
 
 	.covid-confirm,
@@ -663,6 +777,12 @@
 
 	.geo-bottom-bottom {
 		margin-bottom: 10rpx;
+	}
+
+	.geo-bottom {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	.add-confirm {
@@ -697,12 +817,11 @@
 		margin-left: 10rpx;
 	}
 
-	.form-item-picker {
-		width: 50vw;
-	}
 
 	.form-item {
-		margin-bottom: 30rpx;
+		margin-left: 22rpx;
+		margin-right: 15rpx;
+		margin-bottom: 10rpx;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -723,25 +842,6 @@
 	.wrapper {
 		display: flex;
 		align-items: center;
-	}
-
-	.temp-show {
-		min-height: 50rpx;
-		color: #1C1F23;
-		font-size: 60rpx;
-		font-weight: 700;
-		font-family: SourceHanSansSC-regular;
-	}
-
-	.uni-button {
-		font-weight: 700;
-		width: 70vw;
-	}
-
-	.checkgroups {
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
 	}
 
 	.red {
@@ -778,7 +878,7 @@
 	.basic-info-bottom {
 		background-color: white;
 		display: flex;
-		gap: 40rpx;
+		gap: 15rpx;
 		align-items: center;
 		margin-top: 35rpx;
 		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
@@ -790,6 +890,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-bottom: 15rpx;
 	}
 
 	.geo-top-wrapper {
@@ -797,13 +898,13 @@
 		justify-content: center;
 		gap: 40rpx;
 		align-items: center;
-		border-bottom: #F2F2F7 solid;
 		padding-bottom: 10rpx;
+		margin-top: 5rpx;
 	}
 
 	.tmpimg {
-		width: 300rpx;
-		height: 300rpx;
+		width: 230rpx;
+		height: 250rpx;
 	}
 
 	.geoimg {
@@ -811,10 +912,8 @@
 		height: 60rpx;
 	}
 
-	.picker {
-		padding: 25rpx;
+	.detect-container /deep/ .input-area {
 		background-color: white;
-		border: 2rpx #C1C2C5 solid;
 	}
 
 	.basic-info-top {
@@ -827,6 +926,8 @@
 		width: 50vw;
 		display: flex;
 		flex-direction: column;
+		// justify-content: space-around;
+		justify-content: center;
 		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
 		padding: 15rpx;
 		border-radius: 15rpx;
@@ -834,60 +935,30 @@
 
 	.basic-info-left {
 		display: flex;
+		width: 40%;
 		flex-direction: column;
-		justify-content: space-evenly;
-	}
-
-	.sex-label {
-		margin-top: 8rpx;
-		display: flex;
-		gap: 60rpx;
-	}
-
-	.uni-column {
-		min-width: 240rpx;
+		justify-content: space-around;
 	}
 
 	.uni-column+.uni-column {
 		margin-top: 20rpx;
 	}
 
-	.detect-title {
-		font-size: 36rpx;
-		color: #8f8f94;
-		border-bottom: black solid;
-	}
-
-	.uni-list {
-		margin: 0 auto;
-	}
-
-	.box-label {
-		margin-left: 30rpx;
-	}
-
-	.uni-list-cell {
-		flex: 1 0 50%;
-		display: flex;
-		align-items: center;
-		margin-top: 15rpx;
-	}
-
 	.ext-info {
 		background-color: white;
-		padding: 30rpx;
+		padding: 20rpx;
+		padding-left: 50rpx;
 		border-radius: 15rpx;
 		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
 		margin-top: 30rpx;
 		margin-bottom: 40rpx;
 	}
 
-
-	.uni-btn-v {
-		display: flex;
-		// justify-content: space-between;
-		// gap: 20rpx;
+	.uni-btn {
 		margin: 0 auto;
+		margin-top: 30rpx;
+		width: 100%;
+		height: 100%;
 	}
 
 	.uni-input {
@@ -896,17 +967,6 @@
 		margin-bottom: 10rpx;
 		min-height: 60rpx;
 		background-color: #ededed;
-	}
-
-	.age-choose {
-		display: flex;
-	}
-
-	.detect-container /deep/ .uni-forms {
-		width: 90%;
-		margin: 10rpx auto;
-		padding: 10rpx;
-		min-height: 80vh;
 	}
 
 	.detect-form {
@@ -921,9 +981,5 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
-
-	.label {
-		display: inline;
 	}
 </style>
