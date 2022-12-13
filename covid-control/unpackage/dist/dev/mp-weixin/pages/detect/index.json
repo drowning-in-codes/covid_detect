@@ -2,7 +2,5 @@
   "navigationBarTitleText": "感染预测",
   "enablePullDownRefresh": true,
   "navigationBarBackgroundColor": "#E4FFFA",
-  "usingComponents": {
-    "uni-forms": "/uni_modules/uni-forms/components/uni-forms/uni-forms"
-  }
+  "usingComponents": {}
 }

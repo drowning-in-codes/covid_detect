@@ -1,6 +1,6 @@
 <template>
 	<view class="detect-container">
-		<uni-forms class="detect-form" ref="form" :modelValue="formvalue" :rules="validaterules">
+		<form class="detect-form" ref="form" :modelValue="formvalue" :rules="validaterules">
 			<view class="basic-info">
 				<view class="basic-info-top">
 					<view class="basic-info-left">
@@ -132,7 +132,7 @@
 				<button @click="submit('form')" class="uni-button">感染预测</button>
 				<!-- <button type="default" form-type="reset" @click="reset">重置</button> -->
 			</view>
-		</uni-forms>
+		</form>
 	</view>
 
 </template>
