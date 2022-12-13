@@ -500,6 +500,14 @@ var _default = {
       });
     },
     submit: function submit() {},
+    // 下拉刷新数据
+    onPullDownRefresh: function onPullDownRefresh() {
+      console.log('下拉刷新');
+      // 已授权
+      if (this.flag) {
+        this.getUserLocation();
+      }
+    },
     reset: function reset() {
       // 重置年龄
       this.ageindex = null;

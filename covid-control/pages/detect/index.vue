@@ -115,7 +115,7 @@
 				</picker>
 			</view>
 			<view class="uni-btn-v">
-				<button  type="primary" @click="submit" class="uni-button">感染预测</button>
+				<button   @click="submit" class="uni-button">感染预测</button>
 				<!-- <button type="default" form-type="reset" @click="reset">重置</button> -->
 			</view>
 		</form>
@@ -468,6 +468,17 @@
 			submit() {
 				
 			},
+			// 下拉刷新数据
+			onPullDownRefresh()
+			{
+				console.log('下拉刷新');
+				// 已授权
+				if(this.flag)
+				{
+					this.getUserLocation();
+				}
+			}
+			,
 			reset() {
 				// 重置年龄
 				this.ageindex = null;
@@ -517,6 +528,7 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
+	
 	.tip-img-box {
 		display: flex;
 		align-items: center;
@@ -601,6 +613,7 @@
 	}
 		
 	.uni-button {
+		font-weight: 700;
 		width: 70vw;
 	}
 	.checkgroups {
@@ -641,6 +654,7 @@
 	}
 
 	.basic-info-bottom {
+		background-color: white;
 		display: flex;
 		gap: 40rpx;
 		align-items: center;
@@ -676,7 +690,7 @@
 
 	.picker {
 		padding: 20rpx;
-		background-color: #ededed;
+		background-color: white;
 		border: #C1C2C5 solid;
 	}
 
@@ -686,6 +700,7 @@
 	}
 
 	.basic-info-right {
+		background-color: white;
 		width: 50vw;
 		display: flex;
 		flex-direction: column;
@@ -732,6 +747,7 @@
 	}
 
 	.ext-info {
+		background-color: white;
 		padding: 30rpx;
 		border-radius: 15rpx;
 		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
@@ -767,6 +783,7 @@
 	}
 
 	.detect-container {
+		background-color: #E9F8F5;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

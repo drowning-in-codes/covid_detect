@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "康复预测",
+  "navigationBarTitleText": "康复监测",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

@@ -10,13 +10,15 @@
 		{
 			"path": "pages/detect/index",
 			"style": {
-				"navigationBarTitleText": "感染预测"
+				"navigationBarTitleText": "感染预测",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/prediction/index",
 			"style": {
-				"navigationBarTitleText": "康复预测"
+				"navigationBarTitleText": "康复监测",
+				"enablePullDownRefresh": true
 			}
 		},
 		{

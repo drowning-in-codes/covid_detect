@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "感染预测",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

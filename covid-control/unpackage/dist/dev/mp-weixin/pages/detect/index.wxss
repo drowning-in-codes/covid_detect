@@ -124,6 +124,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   font-family: SourceHanSansSC-regular;
 }
 .uni-button.data-v-45e3c05f {
+  font-weight: 700;
   width: 70vw;
 }
 .checkgroups.data-v-45e3c05f {
@@ -157,6 +158,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   text-align: center;
 }
 .basic-info-bottom.data-v-45e3c05f {
+  background-color: white;
   display: flex;
   gap: 40rpx;
   align-items: center;
@@ -188,7 +190,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
 }
 .picker.data-v-45e3c05f {
   padding: 20rpx;
-  background-color: #ededed;
+  background-color: white;
   border: #C1C2C5 solid;
 }
 .basic-info-top.data-v-45e3c05f {
@@ -196,6 +198,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   justify-content: space-around;
 }
 .basic-info-right.data-v-45e3c05f {
+  background-color: white;
   width: 50vw;
   display: flex;
   flex-direction: column;
@@ -234,6 +237,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   margin-top: 15rpx;
 }
 .ext-info.data-v-45e3c05f {
+  background-color: white;
   padding: 30rpx;
   border-radius: 15rpx;
   box-shadow: 0px 2px 8px 0px #888888;
@@ -261,6 +265,7 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   min-height: 80vh;
 }
 .detect-container.data-v-45e3c05f {
+  background-color: #E9F8F5;
   display: flex;
   flex-direction: column;
   align-items: center;
