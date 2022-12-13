@@ -1,6 +1,20 @@
 <template>
 	<view class="feedback-container">
 		<!-- <text class="feedback-title">反馈界面</text> -->
+		<view class="info-box">
+			<button class="avatar-wrapper" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
+			  <image class="avatar" :src="avatarUrl"></image>
+			</button> 
+			
+			<view class="name-wrapper">
+				<view class="weui-input">
+					<input type="nickname"  placeholder="微信用户"/>
+				</view>
+					<image class="resizeimg"
+					src="data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PHBhdGggZD0iTTkzMi45ODEgNjQ0LjUzOGMtMTYuMzc5IDAtMzUuMjkgMTMuNDAxLTM1LjI5IDI5Ljc4djEyMC4xNjVjMCA1Ny4wMy00Ni4wMTEgMTAzLjE4OS0xMDIuNTk0IDEwMy4xODlIMjI1Ljk5MWMtNTYuNzMyIDAtMTAyLjU5NC00Ni4xNTktMTAyLjU5NC0xMDMuMTg5VjIyNi41NjljMC01Ny4wMyA0NS44NjItMTAzLjE4OSAxMDIuNTk0LTEwMy4xODloMjUyLjA5MWMxNi4zNzkgMCAyOS42MzIgMS40ODkgMjkuNjMyLTE0Ljg5cy0xMy4yNTItNDQuNjctMjkuNjMyLTQ0LjY3aC0yOTUuODdjLTY1LjM2OCAwLTExOC4zNzcgNTMuMzA3LTExOC4zNzcgMTE5LjEyMnY2NTUuMTcxYzAgNjUuODE1IDUzLjAwOSAxMTkuMTIyIDExOC4zNzcgMTE5LjEyMmg2NTYuNjZjNjUuMzY4IDAgMTE4LjM3Ny01My4zMDcgMTE4LjM3Ny0xMTkuMTIyVjY3NC4zMmMuMDAxLTE2LjM3OS03Ljg5MS0yOS43OC0yNC4yNy0yOS43OHptLTY4NS4yNSA5OC40MjVjLTQuNzY1IDMyLjQ2IDE3LjQyMiA1NC4yIDQ5LjU4NCA0OC4yNDVsMTg4LjgwOC0zNC4wOTlMMjc2LjkxNSA1NDYuNTYgMjQ3LjczIDc0Mi45NjN6bTM5MS45MTItNDYyLjkzOWE1OC44NzEgNTguODcxIDAgMCAxIDgzLjgzMiAwbDQxLjg0MiA0MS45OWMyMy4wOCAyMy4zNzcgMjMuMDggNjEuMDUgMCA4NC4yNzhMNTc2Ljk1NCA1OTUuODQ2Yy0yMy4wOCAyMy4yMjktNjAuNjAzIDIzLjIyOS04My42ODMgMGwtNDEuODQyLTQyLjE0Yy0yMy4wOC0yMy4yMjktMjMuMDgtNjAuOTAxIDAtODQuMjc4bDE4OC4yMTQtMTg5LjQwNXptLTEwNC41MyA0NDIuMjRsMzU1LjcyOC0zNTguMTEtMjA5LjIwOC0yMTAuNTQ4LTM1NS43MjggMzU3Ljk2MiAyMDkuMjA4IDIxMC42OTd6bTQwMC42OTYtNDE3LjY3YzM0LjY5NC0zNC44NDQgMjQuNDItODEuMTUyLTEwLjI3NC0xMTUuOTk1bC04My42ODMtODQuMjc5Yy0zNC42OTQtMzQuODQ0LTkwLjgzMS0zNC44NDQtMTI1LjUyNSAwbDIwOS4yMDggMjEwLjU0OCAxMC4yNzQtMTAuMjc0eiIvPjwvc3ZnPg==" 
+					/>
+			</view>
+		</view>
 		<view class="mention">
 			<uni-collapse accordion>
 				<uni-collapse-item title="如何避免感染" :open="true">
@@ -57,19 +71,63 @@
 	export default {
 		data() {
 			return {
-
+				authorizeflag:false,
+				avatarUrl:'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
 			};
 		},
 		methods: {
-
-		}
+		  onChooseAvatar(e) {
+		    const { avatarUrl } = e.detail 
+		    this.avatarUrl = avatarUrl
+		  },
+		  getuserinfo(e)
+		  {
+			  console.log(e);
+		  }
+		},
+		
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	.name-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.resizeimg {
+		width: 30rpx;
+		height: 30rpx;
+		margin-right: 60rpx;
+	}
+	.info-box {
+		margin-top: 50rpx;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		border-radius: 16rpx;
+		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
+	}
 	.feedback-title {
 		font-size: 40rpx;
 		border-bottom: black solid;
+	}
+	.avatar {
+		width:160rpx;
+		height:160rpx;
+		border-radius: 100rpx;
+	}
+	.avatar-wrapper::after{
+		border:none;
+	}
+	.avatar-wrapper
+	{
+		background-color: white;
+		border:none;
+		width:200rpx;
+		height:200rpx;
+		display: flex;
+		align-items: center;
 	}
 	.feedback-container {
 		width: 85%;
@@ -81,7 +139,7 @@
 		font-weight: 600;
 	}
 	.mention{
-		margin-top: 35rpx;
+		margin-top: 85rpx;
 	}
 	.title {
 		font-weight: 700;
