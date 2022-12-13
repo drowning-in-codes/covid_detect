@@ -30,7 +30,7 @@
 					</image><text class="button-info">阳了</text>
 				</view>
 				<view class="right-button">
-					<button type="primary" @click="torecovery">新冠康复预测</button>
+					<button type="primary" @click="torecovery">新冠病程监测</button>
 				</view>
 			</view>
 		</view>
@@ -150,9 +150,9 @@
 
 	.covid-button {
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-		width: 80%;
+		padding: 30rpx;
 		display: flex;
-		margin: 0 auto;
+		margin: 0 30rpx;
 		justify-content: space-evenly;
 		height: 200rpx;
 		margin-top: 60rpx;

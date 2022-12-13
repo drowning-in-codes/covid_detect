@@ -1,8 +1,5 @@
 <template>
 	<view class="detect-container">
-		<view class="detect-title">
-			请填写您的信息
-		</view>
 		<form  @reset="formReset" class="detect-form">
 			<view class="basic-info">
 				<view class="basic-info-top">
