@@ -1,6 +1,6 @@
 <template>
 	<view class="feedback-container">
-		<text class="feedback-title">反馈界面</text>
+		<!-- <text class="feedback-title">反馈界面</text> -->
 		<view class="mention">
 			<uni-collapse accordion>
 				<uni-collapse-item title="如何避免感染" :open="true">

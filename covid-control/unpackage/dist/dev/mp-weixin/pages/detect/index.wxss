@@ -93,14 +93,13 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   margin-left: 10rpx;
 }
 .form-item-picker.data-v-45e3c05f {
-  width: 60vw;
+  width: 50vw;
 }
 .form-item.data-v-45e3c05f {
   margin-bottom: 30rpx;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  gap: 20rpx;
+  justify-content: space-between;
 }
 .block.data-v-45e3c05f {
   display: block;
@@ -189,13 +188,13 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   height: 60rpx;
 }
 .picker.data-v-45e3c05f {
-  padding: 20rpx;
+  padding: 25rpx;
   background-color: white;
-  border: #C1C2C5 solid;
+  border: 2rpx #C1C2C5 solid;
 }
 .basic-info-top.data-v-45e3c05f {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .basic-info-right.data-v-45e3c05f {
   background-color: white;
@@ -215,6 +214,9 @@ uni-modal .uni-modal__bd.data-v-45e3c05f {
   margin-top: 8rpx;
   display: flex;
   gap: 60rpx;
+}
+.uni-column.data-v-45e3c05f {
+  min-width: 240rpx;
 }
 .uni-column + .uni-column.data-v-45e3c05f {
   margin-top: 20rpx;

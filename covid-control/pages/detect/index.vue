@@ -579,14 +579,13 @@
 		margin-left: 10rpx;
 	}
 	.form-item-picker {
-		width: 60vw;
+		width: 50vw;
 	}
 	.form-item {
 		margin-bottom: 30rpx;
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
-		gap: 20rpx;
+		justify-content: space-between;
 	}
 
 	.block {
@@ -689,14 +688,14 @@
 	}
 
 	.picker {
-		padding: 20rpx;
+		padding: 25rpx;
 		background-color: white;
-		border: #C1C2C5 solid;
+		border: 2rpx #C1C2C5 solid;
 	}
 
 	.basic-info-top {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 
 	.basic-info-right {
@@ -720,7 +719,9 @@
 		display: flex;
 		gap: 60rpx;
 	}
-
+	.uni-column {
+		min-width:240rpx;
+	}
 	.uni-column+.uni-column {
 		margin-top: 20rpx;
 	}

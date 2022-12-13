@@ -3,36 +3,41 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "新冠症状监测",
-				"enablePullDownRefresh": true
+				"navigationBarTitleText": "新冠预测小程序",
+				"enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#E4FFFA"
 			}
 		},
 		{
 			"path": "pages/detect/index",
 			"style": {
 				"navigationBarTitleText": "感染预测",
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#E4FFFA"
 			}
 		},
 		{
 			"path": "pages/prediction/index",
 			"style": {
 				"navigationBarTitleText": "康复监测",
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#E4FFFA"
 			}
 		},
 		{
 			"path": "pages/myinfo/index",
 			"style": {
-				"navigationBarTitleText": "反馈情况"
+				"navigationBarTitleText": "我的页面",
+				"navigationBarBackgroundColor": "#E4FFFA"
 			}
 		}
 	    ,{
             "path" : "pages/predictionresult/predictionresult",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "预测结果显示",
-                "enablePullDownRefresh": true
+                "navigationBarTitleText": "预测结果",
+                "enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#E4FFFA"
             }
             
         }
@@ -40,8 +45,9 @@
             "path" : "pages/recoveryresult/recoveryresult",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "康复日程显示",
-                "enablePullDownRefresh": true
+                "navigationBarTitleText": "康复日程",
+                "enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#E4FFFA"
             }
             
         }
@@ -50,7 +56,8 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "康复手册",
-                "enablePullDownRefresh": true
+                "enablePullDownRefresh": true,
+				"navigationBarBackgroundColor": "#E4FFFA"
             }
             
         }
