@@ -120,6 +120,7 @@
 			</view>
 		</form>
 	</view>
+	
 </template>
 
 <script>
@@ -146,33 +147,33 @@
 				resultindex: null,
 				result: null,
 				symptoms: [{
-					value: "头痛",
+					value: "tt",
 					name: "头痛"
 				}, {
-					value: "气喘",
+					value: "qc",
 					name: "气喘"
 				}, {
-					value: "咽干喉痛",
+					value: "yt",
 					name: "咽干喉痛"
 				}, {
-					value: "流涕鼻塞",
+					value: "lt",
 					name: "流涕鼻塞"
 				}, {
-					value: "身体乏力",
+					value: "fl",
 					name: "身体乏力"
 				}, {
-					value: "肠胃不适",
+					value: "cw",
 					name: "肠胃不适"
 				}, {
-					value: "咽痒咳嗽",
+					value: "ks",
 					name: "咽痒咳嗽"
 				}, {
-					value: "无以上症状",
+					value: "null",
 					name: "无以上症状"
 				}, ],
 				currSymptoms: [],
 				sex: "男",
-				age: 1,
+				age: null,
 				sexindex: null,
 				sexrange: [{
 					val: "男"
@@ -465,7 +466,104 @@
 					fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
 				})
 			},
+			getDate()
+			{
+				let d = new Date();
+				let year = d.getFullYear();
+				let month = d.getMonth()+1;
+				let day = d.getDate();
+				let result = [];
+				result.push(year);
+				result.push(month);
+				result.push(day);
+				return result;
+			},
 			submit() {
+				// 获取表格信息并进行转换
+				let timestamp = Date.parse(new Date()); 
+				console.log('--------表格信息------')
+				console.log('时间戳',timestamp)
+				let table = "table_v"+timestamp;
+				// let uuid = userOpenid;
+				let uuid ='userOpenid';
+				let date = this.getDate();
+				console.log('date时间',date);
+				let stamp = timestamp;
+				let temp = this.currTemp;
+				console.log('体温',temp);
+				if(this.sex == null || this.age == null || this.result==null || this.day == null)
+				{
+						uni.showModal({
+							title: '注意',
+							content: '请填写完整信息',
+						});
+					return;
+				}
+				let sex = this.sex;
+				let age = this.age;
+				console.log('性别',sex);
+				console.log('年龄',age);
+				let location = "";
+				if(this.flag)
+				{
+				  location = this.country+this.province+this.city;
+				}
+				console.log('位置',location);
+				let symptom = {
+					"tt":false,
+					"qc":false,
+					"yt":false,
+					"lt":false,
+					"fl":false,
+					"cw":false,
+					"ks": false
+				};
+				for(let i of this.currSymptoms)
+				{
+					if(i in symptom)
+					{
+						symptom[i] = true;
+					}
+					if(i == "null")
+					{
+						console.log('无症状')
+						symptom = {
+							"tt":false,
+							"qc":false,
+							"yt":false,
+							"lt":false,
+							"fl":false,
+							"cw":false,
+							"ks": false
+						};
+						break;
+					}
+				}
+				console.log('症状',symptom)
+				console.log('nc_test',this.result);
+				let nc_test = this.result;
+				console.log('days_symp',this.day)
+				let days_symp = this.day;
+				
+				let formData = {
+					table,
+					"value":{
+						uuid,
+						stamp,
+						date,
+						temp,
+						location,
+						symptom,
+						nc_test,
+						days_symp,
+						sex,
+						age,
+					}
+				}
+				
+				console.log(formData);
+				
+				
 				
 			},
 			// 下拉刷新数据
