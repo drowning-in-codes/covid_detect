@@ -171,6 +171,8 @@
 		justify-content: space-evenly;
 		height: 200rpx;
 		margin-top: 60rpx;
+		border: 1px solid rgba(190, 190, 190, 1);
+		border-radius: 16rpx;
 	}
 
 	.covid-button+.covid-button {
