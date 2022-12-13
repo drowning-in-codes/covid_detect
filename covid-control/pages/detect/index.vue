@@ -1,6 +1,7 @@
 <template>
 	<view class="detect-container">
-		<form class="detect-form" ref="form" :modelValue="formvalue" :rules="validaterules">
+		<form  @reset="formReset" class="detect-form">
+
 			<view class="basic-info">
 				<view class="basic-info-top">
 					<view class="basic-info-left">

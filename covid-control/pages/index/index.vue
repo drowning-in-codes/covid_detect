@@ -165,9 +165,10 @@
 
 	.covid-button {
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		padding: 30rpx;
 		width: 90%;
 		display: flex;
-		margin: 0 auto;
+		margin: 0 30rpx;
 		justify-content: space-evenly;
 		height: 200rpx;
 		margin-top: 60rpx;
