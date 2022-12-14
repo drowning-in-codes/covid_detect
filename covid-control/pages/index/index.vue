@@ -68,8 +68,6 @@
 	export default {
 		data() {
 			return {
-				// appId:'wxf2ff04695fb4db53',
-				// appsecret:'5adc8870c93e92aeabb23625ae50ab38',
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
