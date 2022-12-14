@@ -123,7 +123,7 @@
 			// 新冠康复手册
 			torecovery() {
 				uni.navigateTo({
-					url: "/pages/recoverymanual/recoverymanual"
+					url: "/pages/recovery/recovery"
 				})
 			}
 			,
@@ -194,7 +194,7 @@
 		display: flex;
 		gap:30rpx;
 		align-items: center;
-		padding: 30rpx;
+		padding: 10rpx;
 		width: 90%;
 		margin: 0 30rpx;
 		margin-top: 56rpx;
