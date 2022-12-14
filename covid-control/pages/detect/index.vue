@@ -724,7 +724,9 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
-
+	.covid-confirm-add,.covid-heal-add {
+		text-align: center;
+	}
 	.tmp-img-r {
 		width: 120rpx;
 		height: 120rpx;
