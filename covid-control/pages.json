@@ -64,6 +64,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/recoverymanual/recoverymanual",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "新冠康复手册",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#7A7E83",

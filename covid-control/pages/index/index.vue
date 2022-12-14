@@ -12,26 +12,35 @@
 			</view>
 		</view>
 		<view class="covid-buttons">
+			
 			<view class="covid-button">
 				<view class="left-button" @click="showmsg1">
 					<image class="img-resize"
 						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE3aC0ydi0yaDJ2MnptMi4wNy03Ljc1bC0uOS45MkMxMy40NSAxMi45IDEzIDEzLjUgMTMgMTVoLTJ2LS41YzAtMS4xLjQ1LTIuMSAxLjE3LTIuODNsMS4yNC0xLjI2Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0xLjEtLjktMi0yLTJzLTIgLjktMiAySDhjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNGMwIC44OC0uMzYgMS42OC0uOTMgMi4yNXoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
 					</image>
-					<text class="button-info">阳了么</text>
 				</view>
 				<view class="right-button">
-					<button type="primary" @click="topredict">新冠感染预测</button>
+					<button class="button-text" @click="torecovery">新冠康复手册</button>
 				</view>
 			</view>
 			<view class="covid-button">
 				<view class="left-button" @click="showmsg2">
 					<image class="img-resize"
-						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiM4NWY5ZTM7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAxTDMgNXY2YzAgNS41NSAzLjg0IDEwLjc0IDkgMTIgNS4xNi0xLjI2IDktNi40NSA5LTEyVjVsLTktNHptLTIgMTZsLTQtNCAxLjQxLTEuNDFMMTAgMTQuMTdsNi41OS02LjU5TDE4IDlsLTggOHoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
+						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE3aC0ydi0yaDJ2MnptMi4wNy03Ljc1bC0uOS45MkMxMy40NSAxMi45IDEzIDEzLjUgMTMgMTVoLTJ2LS41YzAtMS4xLjQ1LTIuMSAxLjE3LTIuODNsMS4yNC0xLjI2Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0xLjEtLjktMi0yLTJzLTIgLjktMiAySDhjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNGMwIC44OC0uMzYgMS42OC0uOTMgMi4yNXoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
 					</image>
-					<text class="button-info">阳了</text>
 				</view>
 				<view class="right-button">
-					<button type="primary" @click="torecovery">新冠病程监测</button>
+					<button  class="button-text" @click="topredict">阳了么</button>
+				</view>
+			</view>
+			<view class="covid-button">
+				<view class="left-button" @click="showmsg3">
+					<image class="img-resize"
+						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiM4NWY5ZTM7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAxTDMgNXY2YzAgNS41NSAzLjg0IDEwLjc0IDkgMTIgNS4xNi0xLjI2IDktNi40NSA5LTEyVjVsLTktNHptLTIgMTZsLTQtNCAxLjQxLTEuNDFMMTAgMTQuMTdsNi41OS02LjU5TDE4IDlsLTggOHoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
+					</image>
+				</view>
+				<view class="right-button">
+					<button class="button-text" @click="todetect">阳了</button>
 				</view>
 			</view>
 		</view>
@@ -92,10 +101,16 @@
 			showmsg1() {
 				uni.showModal({
 					title: '提示',
-					content: '填写症状预测您是否阳性',
+					content: '查看新冠康复手册守护您的健康',
 				});
 			},
 			showmsg2() {
+				uni.showModal({
+					title: '提示',
+					content: '填写症状预测您是否阳性',
+				});
+			},
+			showmsg3(){
 				uni.showModal({
 					title: '提示',
 					content: '填写情况监测您的病程',
@@ -107,8 +122,15 @@
 					url: "/pages/detect/index"
 				})
 			},
-			// 传递openid
+			// 新冠康复手册
 			torecovery() {
+				uni.navigateTo({
+					url: "/pages/recoverymanual/recoverymanual"
+				})
+			}
+			,
+			// 传递openid
+			todetect() {
 				uni.navigateTo({
 					url: "/pages/prediction/index"
 				})
@@ -118,6 +140,13 @@
 </script>
 
 <style lang="scss" scoped>
+	.button-text {
+		border: none;
+		background-color: white;
+		font-weight: 700;
+		font-size: 45rpx;
+	}
+	.button-text::after{ border: none;}
 	.img-resize {
 		width: 80rpx;
 		height: 80rpx;
@@ -164,16 +193,17 @@
 	}
 
 	.covid-button {
-		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		display: flex;
+		gap:30rpx;
+		align-items: center;
 		padding: 30rpx;
 		width: 90%;
-		display: flex;
 		margin: 0 30rpx;
-		justify-content: space-evenly;
+		margin-top: 56rpx;
 		height: 200rpx;
-		margin-top: 60rpx;
 		border: 1px solid rgba(190, 190, 190, 1);
 		border-radius: 16rpx;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	}
 
 	.covid-button+.covid-button {
@@ -189,6 +219,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin-left: 80rpx;
 	}
 
 	.right-button {
