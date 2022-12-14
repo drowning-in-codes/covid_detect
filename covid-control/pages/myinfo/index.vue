@@ -1,6 +1,6 @@
 <template>
 	<view class="feedback-container">
-		<!-- <text class="feedback-title">反馈界面</text> -->
+		<!-- <text class="feedback-title">反馈界面</text> -->	
 		<view class="info-box">
 			<button class="avatar-wrapper" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
 			  <image class="avatar" :src="avatarUrl"></image>
@@ -15,9 +15,13 @@
 					/>
 			</view>
 		</view>
+			<view class="covid-results">
+				<view class="covid-predict"><button @click="topredict" class="covid-result-button">感染预测</button></view>
+				<view class="covid-detect"><button @click="todetect" class="covid-result-button">症状监测</button></view>
+			</view>
 		<view class="mention">
 			<uni-collapse accordion>
-				<uni-collapse-item title="如何避免感染" :open="true">
+				<uni-collapse-item :show-animation="true" title="如何避免感染" :open="true">
 					<view>
 						<view class="subtitle">1、勤洗手和保持良好的呼吸道卫生习惯</view>
 						使用肥皂或洗手液并用流动水洗手，用一次性纸巾或干净毛巾擦手。双手接触呼吸道分泌物后（如打喷嚏后）应立即洗手。
@@ -45,7 +49,7 @@
 						⑥弯曲手指使关节在另一手掌心旋转揉搓，交换进行各搓五下。。
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="如果感染了怎么办">
+				<uni-collapse-item :show-animation="true" title="如果感染了怎么办">
 					<view>
 						<view class="subtitle">1.保持良好的心态</view>
 						当接到防疫中心打来的通知电话时，任谁都会手抖，但是心态一定要平和。大多数时候，我们在家里接到防疫中心的电话通知，多半是被检测为无症状感染者了。所谓无症状感染者就是没有产生发烧咳嗽等症状，但是携带了新冠病毒，如果继续与人接触依然会传播病毒，所以也需要隔离。
@@ -58,8 +62,8 @@
 						接送转运的车辆一般是负压救护车，在有条件的情况下是一车一人，但是，大多数情况都是坐大巴车前往。抵达隔离点前，可能会有很长的等待时间，因为需要协调人员和床位，耐心一点、平和一点就好。
 					</view>
 				</uni-collapse-item>
-
 			</uni-collapse>
+		
 			<view class="contact">
 				<button open-type="contact">实时反馈</button>
 			</view>
@@ -83,6 +87,16 @@
 		  getuserinfo(e)
 		  {
 			  console.log(e);
+		  },
+		  topredict(){
+			  uni.navigateTo({
+			  	url:"/pages/predictionresult/predictionresult"
+			  })
+		  },
+		  todetect() {
+			  uni.navigateTo({
+			  	url:"/pages/recoveryresult/recoveryresult"
+			  })
 		  }
 		},
 		
@@ -90,6 +104,26 @@
 </script>
 
 <style lang="scss" scoped>
+	.covid-result-button{
+		background-color: white;
+		text-align: left;
+		font-size: 28rpx;
+		font-weight: 700;
+	}
+	.covid-result-button::after {
+		border: none;
+	}
+	.covid-predict,.covid-detect {
+		border-bottom: 3rpx solid #F2F2F7;
+		padding-bottom: 20rpx;
+	}
+	.covid-results {
+		padding-left: 15rpx;
+		margin-top: 60rpx;
+		display: flex;
+		flex-direction: column;
+		gap: 30rpx;
+	}
 	.weui-input {
 		margin-right: -30rpx;
 	}
@@ -143,7 +177,7 @@
 		font-weight: 600;
 	}
 	.mention{
-		margin-top: 85rpx;
+		margin-top: 55rpx;
 	}
 	.title {
 		font-weight: 700;

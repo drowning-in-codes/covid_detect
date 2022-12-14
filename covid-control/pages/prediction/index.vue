@@ -80,7 +80,7 @@
 
 				<view class="basic-info-bottom">
 					<view class="bottom-left">
-						<image src="../../static/temperature2.png" class="tmpimg"></image>
+						<image src="http://rmkt29hqy.hn-bkt.clouddn.com/temperature2.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
 						<u-form-item required="true" prop="temp" label-width="190" label="今日体温:" :border-bottom="false"
