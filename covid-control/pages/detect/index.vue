@@ -55,7 +55,7 @@
 							</view>
 						</view>
 						<view class="geo-bottom">
-							<u-line :hair-line="false"/>
+							<u-line :hair-line="false" />
 							<view class="geo-wrapper-mini">
 								<view>地理位置</view>
 								<view class="img-box">
@@ -169,11 +169,9 @@
 						validator: (rule, value, callback) => {
 							// 上面有说，返回true表示校验通过，返回false表示不通过
 							// this.$u.test.mobile()就是返回true或者false的
-							if(value.length == 0)
-							{
+							if (value.length == 0) {
 								return false;
-							}
-							else {
+							} else {
 								return true;
 							}
 						},
@@ -421,6 +419,16 @@
 			});
 			this.getUserLocation();
 		},
+		// 观察值变化 获取数据
+		watch: {
+			province: {
+				handler(newVal, oldVal) {
+					if (oldVal != null) {
+						this.getCovidData();
+					}
+				}
+			}
+		},
 		methods: {
 			disableOtherCondition(e) {
 				if (e.name == "null") {
@@ -432,7 +440,10 @@
 				} else this.symptomsList[7].checked = false;
 			},
 			regionConfirm(e) {
-				this.formvalue.location = e.province.label + '>' + e.city.label + '>' + e.area.label;
+				this.province = e.province.label;
+				this.city = e.city.label;
+				this.district = e.area.label;
+				this.formvalue.location = this.province + '>' + this.city + '>' + this.district;
 			},
 			showdatamsg() {
 				uni.hideLoading();
@@ -677,9 +688,7 @@
 			onPullDownRefresh() {
 				console.log('下拉刷新');
 				// 已授权
-				if (this.flag) {
-					this.getUserLocation();
-				}
+				this.getUserLocation();
 			},
 			handleResultChange(e) {
 				this.formvalue.nc_test = e[0].value;
