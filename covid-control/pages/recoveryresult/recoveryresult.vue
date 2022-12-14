@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import * as echarts from '@/uni_modules/lime-echart/static/echarts.min';
+	import * as echarts from '@/uni_modules/lime-echart/static/echarts';
 	export default {
 		data() {
 			return {
@@ -578,7 +578,8 @@
 	.result-container {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+		justify-content: center;
+		gap:50rpx;
 		margin: 20rpx auto;
 		width: 95vw;
 	}

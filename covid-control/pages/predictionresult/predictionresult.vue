@@ -8,14 +8,15 @@
 		</view>
 		<view class="echart_panel3">
 			<l-echart ref="chart3" @finished="chart3init"></l-echart>
+			<view><text class="red">*</text>柱状图中绿色代表用户当前尚无的症状，橙色是用户已有症状</view>
 		</view>
 		<button class="back-button" @click="toHome">返回首页</button>
 	</view>
 </template>
 
 <script>
-	import * as echarts from '@/uni_modules/lime-echart/static/echarts.min';
-	// import * as liquidFill from '@/uni_modules/lime-echart/static/echarts-liquidfill.min.js';
+	import * as echarts from '@/uni_modules/lime-echart/static/echarts';
+	import * as liquidFill from '@/uni_modules/lime-echart/static/echarts-liquidfill.min.js';
 	export default {
 		data() {
 			return {
@@ -105,7 +106,7 @@
 				      waveAnimation: true,
 				      animation: true,
 				      // color: '#ff8',
-				      radius: '95%',
+				      radius: '80%',
 				      center: ['50%', '50%'],
 				      data: [
 				        {
@@ -335,6 +336,12 @@
 </script>
 
 <style scoped>
+
+	.red {
+		color:red;
+		margin-left: 5rpx;
+		margin-right: 10rpx;
+	}
 	.result-container {
 		display: flex;
 		flex-direction: column;
