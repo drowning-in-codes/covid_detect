@@ -90,7 +90,7 @@
 		methods: {
 			breatheTipOpen() {
 				uni.navigateTo({
-					url: "/pages/recoverymanual/recoverymanual"
+					url: "/pages/recoverymanual/breatheManage/index"
 				})
 			}
 		}

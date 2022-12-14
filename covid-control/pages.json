@@ -65,11 +65,12 @@
             
         }
         ,{
-            "path" : "pages/recoverymanual/recoverymanual",
+            "path" : "pages/recoverymanual/breatheManage/index",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "新冠康复手册",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "呼吸管理",
+                "enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#E4FFFA"
             }
             
         }
