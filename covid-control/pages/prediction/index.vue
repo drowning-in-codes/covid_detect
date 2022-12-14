@@ -53,10 +53,9 @@
 									<view class="covid-heal-add">较昨日<text class="add-heal">+{{todayHeal}}</text></view>
 								</view>
 							</view>
-
 						</view>
-						<u-line />
 						<view class="geo-bottom">
+							<u-line :hair-line="false" />
 							<view class="geo-wrapper-mini">
 								<view>地理位置</view>
 								<view class="img-box">
@@ -81,7 +80,7 @@
 
 				<view class="basic-info-bottom">
 					<view class="bottom-left">
-						<image src="../../static/temperature.png" class="tmpimg"></image>
+						<image src="../../static/temperature2.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
 						<u-form-item required="true" prop="temp" label-width="190" label="今日体温:" :border-bottom="false"
@@ -129,10 +128,10 @@
 					<u-input class="input-area" placeholder="请选择(第几天)" :border="true" v-model="formvalue.days_symp"
 						type="select" @click="dayShow = true"></u-input>
 				</view>
-				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handDayChange"></u-select>
+				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
-				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">病程监测
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">七日病程监测
 				</u-button>
 			</view>
 		</u-form>
@@ -170,11 +169,9 @@
 						validator: (rule, value, callback) => {
 							// 上面有说，返回true表示校验通过，返回false表示不通过
 							// this.$u.test.mobile()就是返回true或者false的
-							if(value.length == 0)
-							{
+							if (value.length == 0) {
 								return false;
-							}
-							else {
+							} else {
 								return true;
 							}
 						},
@@ -223,36 +220,36 @@
 				days: [],
 				dayList: [{
 						value: '1',
-						label: '1',
+						label: '第一天',
 					},
 					{
 						value: '2',
-						label: '2',
+						label: '第二天',
 					},
 					{
 						value: '3',
-						label: '3',
+						label: '第三天',
 					},
 					{
 						value: '4',
-						label: '4',
+						label: '第四天',
 					},
 					{
 						value: '5',
-						label: '5',
+						label: '第五天',
 					},
 					{
 						value: '6',
-						label: '6',
+						label: '第六天',
 					},
 					{
 						value: '7',
-						label: '7',
+						label: '第七天',
 					},
-					{
-						value: '7+',
-						label: '7天以上',
-					},
+					// {
+					// 	value: '7+',
+					// 	label: '7天以上',
+					// },
 				],
 				resultList: [{
 						value: '阳性',
@@ -422,6 +419,16 @@
 			});
 			this.getUserLocation();
 		},
+		// 观察值变化 获取数据
+		watch: {
+			province: {
+				handler(newVal, oldVal) {
+					if (oldVal != null) {
+						this.getCovidData();
+					}
+				}
+			}
+		},
 		methods: {
 			disableOtherCondition(e) {
 				if (e.name == "null") {
@@ -433,7 +440,10 @@
 				} else this.symptomsList[7].checked = false;
 			},
 			regionConfirm(e) {
-				this.formvalue.location = e.province.label + '>' + e.city.label + '>' + e.area.label;
+				this.province = e.province.label;
+				this.city = e.city.label;
+				this.district = e.area.label;
+				this.formvalue.location = this.province + '>' + this.city + '>' + this.district;
 			},
 			showdatamsg() {
 				uni.hideLoading();
@@ -624,7 +634,6 @@
 				this.$refs.uForm.validate(valid => {
 					if (valid) {
 						console.log('验证通过');
-						// this.$refs[validateForm].validate().
 						// 获取表格信息并进行转换
 						let timestamp = Date.parse(new Date());
 						console.log('--------表格信息------')
@@ -640,7 +649,31 @@
 							location = this.country + this.province + this.city;
 						}
 						console.log('位置', location);
-						let symptom = {
+						let symptom = this.transformSymptom();
+						console.log('症状',symptom);
+
+					} else {
+						console.log('验证失败');
+					}
+				});
+			},
+			transformSymptom() {
+				let symptom = {
+					"tt": false,
+					"qc": false,
+					"yt": false,
+					"lt": false,
+					"fl": false,
+					"cw": false,
+					"ks": false
+				};
+				for (let i of this.formvalue.symptom) {
+					if (i in symptom) {
+						symptom[i] = true;
+					}
+					if (i == "null") {
+						console.log('无症状')
+						symptom = {
 							"tt": false,
 							"qc": false,
 							"yt": false,
@@ -649,38 +682,18 @@
 							"cw": false,
 							"ks": false
 						};
-						for (let i of this.currSymptoms) {
-							if (i in symptom) {
-								symptom[i] = true;
-							}
-							if (i == "null") {
-								console.log('无症状')
-								symptom = {
-									"tt": false,
-									"qc": false,
-									"yt": false,
-									"lt": false,
-									"fl": false,
-									"cw": false,
-									"ks": false
-								};
-								break;
-							}
-						}
-
-					} else {
-						console.log('验证失败');
+						break;
 					}
-				});
-			},
+				}
+				return symptom;
+			}
+			,
 			// 下拉刷新数据
 			// 需要增加刷新 位置改变后的疫情数据
 			onPullDownRefresh() {
 				console.log('下拉刷新');
 				// 已授权
-				if (this.flag) {
-					this.getUserLocation();
-				}
+				this.getUserLocation();
 			},
 			handleResultChange(e) {
 				this.formvalue.nc_test = e[0].value;
@@ -702,8 +715,8 @@
 			handleSexchange(e) {
 				this.formvalue.sex = e[0].value;
 			},
-			handDayChange(e) {
-				this.formvalue.days_symp = e[0].label;
+			handleDayChange(e) {
+				this.formvalue.days_symp = e[0].value;
 			}
 		}
 	}
@@ -891,7 +904,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-bottom: 20rpx;
+		margin-bottom: 15rpx;
 	}
 
 	.geo-top-wrapper {
@@ -900,6 +913,7 @@
 		gap: 40rpx;
 		align-items: center;
 		padding-bottom: 10rpx;
+		margin-top: 5rpx;
 	}
 
 	.tmpimg {
@@ -926,7 +940,8 @@
 		width: 50vw;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		// justify-content: space-around;
+		justify-content: center;
 		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
 		padding: 15rpx;
 		border-radius: 15rpx;
@@ -936,7 +951,7 @@
 		display: flex;
 		width: 40%;
 		flex-direction: column;
-		justify-content: space-evenly;
+		justify-content: space-around;
 	}
 
 	.uni-column+.uni-column {

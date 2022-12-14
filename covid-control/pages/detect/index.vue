@@ -128,7 +128,7 @@
 					<u-input class="input-area" placeholder="请选择(第几天)" :border="true" v-model="formvalue.days_symp"
 						type="select" @click="dayShow = true"></u-input>
 				</view>
-				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handDayChange"></u-select>
+				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
 				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染预测
@@ -220,36 +220,36 @@
 				days: [],
 				dayList: [{
 						value: '1',
-						label: '1',
+						label: '第一天',
 					},
 					{
 						value: '2',
-						label: '2',
+						label: '第二天',
 					},
 					{
 						value: '3',
-						label: '3',
+						label: '第三天',
 					},
 					{
 						value: '4',
-						label: '4',
+						label: '第四天',
 					},
 					{
 						value: '5',
-						label: '5',
+						label: '第五天',
 					},
 					{
 						value: '6',
-						label: '6',
+						label: '第六天',
 					},
 					{
 						value: '7',
-						label: '7',
+						label: '第七天',
 					},
-					{
-						value: '7+',
-						label: '7天以上',
-					},
+					// {
+					// 	value: '7+',
+					// 	label: '7天以上',
+					// },
 				],
 				resultList: [{
 						value: '阳性',
@@ -634,7 +634,6 @@
 				this.$refs.uForm.validate(valid => {
 					if (valid) {
 						console.log('验证通过');
-						// this.$refs[validateForm].validate().
 						// 获取表格信息并进行转换
 						let timestamp = Date.parse(new Date());
 						console.log('--------表格信息------')
@@ -650,7 +649,31 @@
 							location = this.country + this.province + this.city;
 						}
 						console.log('位置', location);
-						let symptom = {
+						let symptom = this.transformSymptom();
+						console.log('症状',symptom);
+
+					} else {
+						console.log('验证失败');
+					}
+				});
+			},
+			transformSymptom() {
+				let symptom = {
+					"tt": false,
+					"qc": false,
+					"yt": false,
+					"lt": false,
+					"fl": false,
+					"cw": false,
+					"ks": false
+				};
+				for (let i of this.formvalue.symptom) {
+					if (i in symptom) {
+						symptom[i] = true;
+					}
+					if (i == "null") {
+						console.log('无症状')
+						symptom = {
 							"tt": false,
 							"qc": false,
 							"yt": false,
@@ -659,30 +682,12 @@
 							"cw": false,
 							"ks": false
 						};
-						for (let i of this.currSymptoms) {
-							if (i in symptom) {
-								symptom[i] = true;
-							}
-							if (i == "null") {
-								console.log('无症状')
-								symptom = {
-									"tt": false,
-									"qc": false,
-									"yt": false,
-									"lt": false,
-									"fl": false,
-									"cw": false,
-									"ks": false
-								};
-								break;
-							}
-						}
-
-					} else {
-						console.log('验证失败');
+						break;
 					}
-				});
-			},
+				}
+				return symptom;
+			}
+			,
 			// 下拉刷新数据
 			// 需要增加刷新 位置改变后的疫情数据
 			onPullDownRefresh() {
@@ -710,8 +715,8 @@
 			handleSexchange(e) {
 				this.formvalue.sex = e[0].value;
 			},
-			handDayChange(e) {
-				this.formvalue.days_symp = e[0].label;
+			handleDayChange(e) {
+				this.formvalue.days_symp = e[0].value;
 			}
 		}
 	}
