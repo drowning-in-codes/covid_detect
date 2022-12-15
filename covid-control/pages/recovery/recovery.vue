@@ -48,7 +48,7 @@
 				<u-grid-item :custom-style="customStyle">
 					<image class="grid-img" src="http://rmkt29hqy.hn-bkt.clouddn.com/stress.jpg">
 					</image>
-					<view class="grid-text">压力原理</view>
+					<view class="grid-text">压力管理</view>
 				</u-grid-item>
 
 				<u-grid-item :custom-style="customStyle">

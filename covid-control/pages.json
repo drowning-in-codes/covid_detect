@@ -6,7 +6,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "新冠预测小程序",
+				"navigationBarTitleText": "感染预测小程序",
 				"enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
 			}
@@ -95,7 +95,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "新冠症状监测",
+		"navigationBarTitleText": "感染症状监测",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
