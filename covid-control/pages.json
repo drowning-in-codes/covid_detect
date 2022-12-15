@@ -63,17 +63,18 @@
 				"navigationBarBackgroundColor": "#E4FFFA"
             }
             
-        }
-        ,{
-            "path" : "pages/recoverymanual/breatheManage/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "呼吸管理",
-                "enablePullDownRefresh": false,
+        },
+		{
+		    "path" : "pages/recoverymanual/tipSign",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "风险提醒",
+		        "enablePullDownRefresh": false,
 				"navigationBarBackgroundColor": "#E4FFFA"
-            }
-            
-        }
+		    }
+		    
+		}
+		
     ],
 	"tabBar": {
 		"color": "#7A7E83",
