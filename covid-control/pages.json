@@ -6,7 +6,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "感染预测小程序",
+				"navigationBarTitleText": "个人健康管理小程序",
 				"enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
 			}

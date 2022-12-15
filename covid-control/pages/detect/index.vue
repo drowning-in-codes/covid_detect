@@ -131,7 +131,7 @@
 				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
-				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染预测
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染风险提示
 				</u-button>
 			</view>
 		</u-form>

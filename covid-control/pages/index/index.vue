@@ -39,9 +39,9 @@
 					</image>
 				</view>
 				<view class="right-button">
-					<button  class="button-text" @click="topredict">健康风险提醒</button>
+					<button class="button-text" @click="topredict">健康风险提醒</button>
 				</view>
-				
+
 			</view>
 		</view>
 		<view class="covid-infos">
@@ -86,28 +86,36 @@
 			this.wxlogin();
 		},
 		methods: {
-			wxlogin()
-			{
+			wxlogin() {
 				uni.login({
-				  success: res => {
-				    //code值(5分钟失效)
-				    console.info(res.code);
-					// https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
-					uni.request({
-						method:"POST",
-						url:"https://api.easybioai.com:4001/getid",
-						data:{
-							code:res.code
-						},
-						header:{
-							"content-type": "application/json"
-						},
-						success:(res)=>{
-							console.log(res.data)
-						}
-					})
-					
-				  }
+					success: result => {
+						//code值(5分钟失效)
+						console.info(result.code);
+						let code = result.code;
+						let data = {
+							code:`${code}`
+						};
+						uni.request({
+							method: "POST",
+							url: "https://api.easybioai.com:4001/getid",
+							headers: {
+							   'Content-Type': 'application/json'
+							 },
+							data,
+							success: (res) => {
+								console.log(res.data)
+							},
+							fail:(err)=>{
+								console.log(err)
+							}
+						})
+
+
+
+
+
+
+					}
 				});
 			},
 			showmsg1() {
@@ -122,7 +130,7 @@
 					content: '填写症状预测您是否阳性',
 				});
 			},
-			showmsg3(){
+			showmsg3() {
 				uni.showModal({
 					title: '提示',
 					content: '填写情况监测您的病程',
@@ -139,8 +147,7 @@
 				uni.navigateTo({
 					url: "/pages/recovery/recovery"
 				})
-			}
-			,
+			},
 			// 传递openid
 			todetect() {
 				uni.navigateTo({
@@ -158,7 +165,11 @@
 		font-weight: 700;
 		font-size: 45rpx;
 	}
-	.button-text::after{ border: none;}
+
+	.button-text::after {
+		border: none;
+	}
+
 	.img-resize {
 		width: 80rpx;
 		height: 80rpx;
@@ -206,7 +217,7 @@
 
 	.covid-button {
 		display: flex;
-		gap:30rpx;
+		gap: 30rpx;
 		align-items: center;
 		padding: 10rpx;
 		width: 90%;

@@ -5,6 +5,7 @@
 		</view>
 		<view class="echart_panel2">
 			<l-echart ref="chart2" @finished="chart2init"></l-echart>
+			<view class="tips"><text class="red">*</text>此图是已接种疫苗、无基础疾病中青年患者常见病程</view>
 		</view>
 		<button class="back-button" @click="toHome">返回首页</button>
 	</view>
@@ -571,6 +572,13 @@
 </script>
 
 <style scoped>
+	.tips {
+		margin-top:25rpx;
+	}
+	.red {
+		color:red;
+		margin-right:5rpx;
+	}
 	.back-button {
 		width:80vw;
 		margin: 30rpx auto;

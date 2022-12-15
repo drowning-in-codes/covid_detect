@@ -16,7 +16,7 @@
 
 <script>
 	import * as echarts from '@/uni_modules/lime-echart/static/echarts';
-	// import * as liquidFill from '@/uni_modules/lime-echart/static/echarts-liquidfill.min.js';
+	import * as liquidFill from '@/uni_modules/lime-echart/static/echarts-liquidfill.min.js';
 	export default {
 		data() {
 			return {
