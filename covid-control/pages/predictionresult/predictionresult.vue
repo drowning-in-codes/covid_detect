@@ -23,7 +23,7 @@
 				option1: null,
 				option2: null,
 				option3:null,
-				dat: null,
+				loading:true,
 				// getrisk 请求服务器得到感染风险
 				getrisk:0.2,
 				// getzz 请求服务器得到用于填写的症状数据
@@ -33,16 +33,86 @@
 				zzrisk:[8.7, 13.6, 13.9, 18.6, 38.1, 50, 67.7, 87.9],
 				exist:[],
 				notexist:[],
-				datashow:[]
+				datashow:[],
+				openid:null,
 			}
 		},
-		onLoad(value) {
+		onLoad(params) {
 			// onLoad函数中获取结果,并在这里设置值
 			console.log('onLoad');
-			this.processChart2();
-			this.processChart3();
+			console.log('openid',params.openid);
+			this.openid = params.openid;
+			this.showOrhideLoading();
+			this.fetchUserData();
+
 		},
 		methods: {
+			showOrhideLoading()
+			{
+				if(this.loading)
+				{
+					uni.showLoading({
+						title: '加载中'
+					});
+					this.loading = !this.loading;
+				}
+				else
+				{
+					uni.hideLoading();
+					this.loading = !this.loading;
+				}
+			},
+			fetchUserData()
+			{
+				let data = {
+					type: "predic_result",
+					uuid: this.openid
+				}
+				// 获取用户数据
+				uni.request({
+					url: "https://api.easybioai.com:4001/query",
+					method: "POST",
+					header: {
+						'Content-Type': 'application/json'
+					},
+					data,
+					success: (res) => {
+						this.showOrhideLoading();
+						console.log(res);
+						if(res.data.status == 1)
+						{
+							this.resultData = res;
+							this.processChart2();
+							this.processChart3();
+						}
+						else
+						{
+							this.loadError();
+
+						}
+					},
+					fail: (err) => {
+						this.loadError();
+					}
+				})
+			},
+			loadError()
+			{
+				uni.showModal({
+					title: '错误',
+					content: '展示结果失败,请刷新后重试',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							this.fetchUserData();
+						} else if (res.cancel) {
+							uni.navigateBack({
+								delta: 1
+							})
+						}
+					}
+				});
+			},
 			toHome()
 			{
 				console.log('返回');

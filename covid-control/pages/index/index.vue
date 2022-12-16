@@ -68,6 +68,7 @@
 	export default {
 		data() {
 			return {
+				openid: null,
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
@@ -86,6 +87,22 @@
 			this.wxlogin();
 		},
 		methods: {
+			loadError() {
+				uni.showModal({
+					title: '出错了',
+					content: '网络出现问题,请尝试刷新',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							uni.switchTab(
+							{
+								url:"/pages/index/index"
+							}
+							)
+						}
+					}
+				});
+			},
 			wxlogin() {
 				uni.login({
 					success: result => {
@@ -93,30 +110,34 @@
 						console.info(result.code);
 						let code = result.code;
 						let data = {
-							code:`${code}`
+							code: `${code}`
 						};
-						uni.request({
-							method: "POST",
-							url: "https://api.easybioai.com:4001/getid",
-							headers: {
-							   'Content-Type': 'application/json'
-							 },
-							data,
-							success: (res) => {
-								console.log(res.data)
-							},
-							fail:(err)=>{
-								console.log(err)
-							}
-						})
-
-
-
-
-
-
+						this.getopenid(data);
+					},
+					fail: () => {
+						this.loadError();
 					}
 				});
+			},
+			getopenid(data) {
+				uni.request({
+					method: "POST",
+					url: "https://api.easybioai.com:4001/getid",
+					data,
+					success: (res) => {
+						console.log(res.data)
+						if (res.data.status == "1") {
+							this.openid = res.data.uuid;
+							uni.setStorageSync('openid', this.openid);
+						} else {
+							this.loadError();
+						}
+					},
+					fail: (err) => {
+						console.log(err)
+						this.loadError();
+					}
+				})
 			},
 			showmsg1() {
 				uni.showModal({
@@ -139,19 +160,19 @@
 			// 传递openid
 			topredict() {
 				uni.navigateTo({
-					url: "/pages/detect/index"
+					url: "/pages/prediction/index"+`?openid=${this.openid}`
 				})
 			},
 			// 新冠康复手册
 			torecovery() {
 				uni.navigateTo({
-					url: "/pages/recovery/recovery"
+					url: "/pages/recovery/recovery"+`?openid=${this.openid}`
 				})
 			},
 			// 传递openid
 			todetect() {
 				uni.navigateTo({
-					url: "/pages/prediction/index"
+					url:"/pages/detect/index"+`?openid=${this.openid}`
 				})
 			}
 		}
