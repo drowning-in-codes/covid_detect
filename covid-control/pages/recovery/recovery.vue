@@ -90,16 +90,16 @@
 				tipList: [
 					"http://rmkt29hqy.hn-bkt.clouddn.com/%E5%8D%B1%E9%99%A9%E4%BF%A1%E5%8F%B7.png",
 					"http://rmkt29hqy.hn-bkt.clouddn.com/%E5%91%BC%E5%90%B8%E7%AE%A1%E7%90%86.png",
-					"http://rmkt29hqy.hn-bkt.clouddn.com/%E5%A3%B0%E9%9F%B3%E7%AE%A1%E7%90%86.png",
+					"http://rmkt29hqy.hn-bkt.clouddn.com/%E4%BD%93%E5%8A%9B%E6%B4%BB%E5%8A%A8%E4%B8%8E%E9%94%BB%E7%82%BC.png",
 					"http://rmkt29hqy.hn-bkt.clouddn.com/%E4%BF%9D%E5%AD%98%E4%BD%93%E5%8A%9B%E5%92%8C%E7%96%B2%E5%8A%B3%E7%AE%A1%E7%90%86.png",
 					"http://rmkt29hqy.hn-bkt.clouddn.com/%E5%A3%B0%E9%9F%B3%E7%AE%A1%E7%90%86.png",
 					"http://rmkt29hqy.hn-bkt.clouddn.com/%E5%90%9E%E5%92%BD%E7%AE%A1%E7%90%86.png",
-					"http://rmkt29hqy.hn-bkt.clouddn.com/breathe_1.png",
+					"http://rmkt29hqy.hn-bkt.clouddn.com/%E8%90%A5%E5%85%BB%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8C%85%E6%8B%AC%E5%97%85%E8%A7%89%E5%92%8C%E5%91%B3%E8%A7%89.png",
 					"http://rmkt29hqy.hn-bkt.clouddn.com/%E8%84%91%E5%8A%9B%E7%AE%A1%E7%90%86.png",
-					"http://rmkt29hqy.hn-bkt.clouddn.com/breathe_1.png",
-					"http://rmkt29hqy.hn-bkt.clouddn.com/breathe_1.png",
-					"http://rmkt29hqy.hn-bkt.clouddn.com/breathe_1.png",
-					"http://rmkt29hqy.hn-bkt.clouddn.com/breathe_1.png",
+					"http://rmkt29hqy.hn-bkt.clouddn.com/%E5%8E%8B%E5%8A%9B%E7%AE%A1%E7%90%86.png",
+					"http://rmkt29hqy.hn-bkt.clouddn.com/%E7%96%BC%E7%97%9B%E7%9A%84%E7%AE%A1%E7%90%86.png",
+					"http://rmkt29hqy.hn-bkt.clouddn.com/%E9%87%8D%E8%BF%94%E5%B7%A5%E4%BD%9C%E5%B2%97%E4%BD%8D.png",
+					"http://rmkt29hqy.hn-bkt.clouddn.com/%E7%97%87%E7%8A%B6%E8%BF%BD%E8%B8%AA%E8%AE%B0%E5%BD%95.png",
 				],
 
 			}
