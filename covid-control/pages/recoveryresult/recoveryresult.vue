@@ -5,6 +5,7 @@
 		</view>
 		<view class="echart_panel2">
 			<l-echart ref="chart2" @finished="chart2init"></l-echart>
+			<view class="tips"><text class="red">*</text>此图是已接种疫苗、无基础疾病中青年患者常见病程</view>
 		</view>
 		<button class="back-button" @click="toHome">返回首页</button>
 	</view>
@@ -18,174 +19,67 @@
 				temp_min: null,
 				temp_max: null,
 				schema: [],
-				my_state: null,
-				ave_state: null,
+				my_state1: null,
+				ave_state1: null,
+				my_state2: null,
+				contrast: null,
 				option1: null,
 				option2: null,
-				dat: null,
+				dat: [],
+				openid: null,
+				resultData: null,
+				itemStyle1: null,
+				loading:true,
 			}
 		},
-		onLoad(value) {
+		onLoad(params) {
 			// onLoad函数中获取结果,并在这里设置值
 			console.log('onLoad');
-			this.processChart1();
-			this.processChart2();
+			console.log('openid', params.openid);
+			this.openid = params.openid;
+			// 获取用户数据 resultData
+			this.fetchUserData();
 		},
 		methods: {
-			toHome()
-			{
-				console.log('返回');
-				uni.switchTab({
-					url: '/pages/index/index'
-				});
-			},
-			processChart1() {
-				this.temp_min = 35;
-				this.temp_max = 43;
-				let data_get = {
-					"msg": "query succeed",
-					"status": 1,
-					"value": {
-						"2022-12-14": { // 6
-							"_id": "6398856a9f4ef3708338f4a6",
-							"date": [2022, 12, 14],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670940010.275769,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
-						},
-						"2022-12-07": { // 1
-							"_id": "63986a089f4ef3708338f4a5",
-							"date": [2022, 12, 7],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670933000.8822377,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
-						},
-						"2022-12-08": { // 2
-							"_id": "6398856a9f4ef3708338f4a6",
-							"date": [2022, 12, 8],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670940010.275769,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
-						},
-						"2022-12-10": { // 3
-							"_id": "6398856a9f4ef3708338f4a6",
-							"date": [2022, 12, 10],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670940010.275769,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
-						},
-						"2022-12-11": { // 4
-							"_id": "6398856a9f4ef3708338f4a6",
-							"date": [2022, 12, 11],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670940010.275769,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
-						},
-						"2022-12-13": { // 5
-							"_id": "6398856a9f4ef3708338f4a6",
-							"date": [2022, 12, 13],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670940010.275769,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
-						},
-						"2023-1-1": { // 7
-							"_id": "6398856a9f4ef3708338f4a6",
-							"date": [2023, 1, 1],
-							"days_symp": 0,
-							"location": "",
-							"nc_test": null,
-							"stamp": 1670940010.275769,
-							"symptom": {
-								"cw": false,
-								"fl": false,
-								"ks": false,
-								"lt": false,
-								"qc": false,
-								"tt": true,
-								"yt": false
-							},
-							"temp": 36.7,
-							"uuid": 1
+			loadError() {
+				uni.showModal({
+					title: '错误',
+					content: '展示结果失败,请刷新后重试',
+					success: (res)=> {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							this.fetchUserData();
+						} else if (res.cancel) {
+							uni.navigateBack({
+								delta: 1
+							})
 						}
 					}
+				});
+			},
+			showOrhideLoading()
+			{
+				if(this.loading)
+				{
+					uni.showLoading({
+						title: '加载中'
+					});
+					this.loading = !this.loading;
 				}
-				let date_list = []
-				for (let i in data_get.value) {
+				else
+				{
+					uni.hideLoading();
+					this.loading = !this.loading;
+				}
+			}
+			,
+			getData(data_get) { // 对后端数据的处理，都写在这里了，目前使用的是模拟数据
+				var date_list = []
+				for (var i in data_get.value) {
 					date_list.push(data_get.value[i].date)
 				}
-				date_list.sort(function(a, b) {
+				// 先对日期升序排序，然后挑出距离第一次填报最多 7 日内的填报信息，返回至多 7 日内的数据
+				date_list.sort(function(a, b) { // 日期升序排序
 					if (a[0] != b[0]) {
 						return a[0] - b[0]
 					} else if (a[1] != b[1]) {
@@ -193,25 +87,71 @@
 					} else {
 						return a[2] - b[2]
 					}
-				}); // 日期升序排序
-				// 挑出七日体温时间范围，这块代码有点麻烦，晚会再补充
-				let date_start = date_list[0]
-				let date_end = []
-				let date_end_year = date_start[0]
-				let date_end_month = date_start[1]
-				let date_end_day = date_start[2] + 6
+				});
+				// 挑出 7 日体温时间范围
+				var date_start = date_list[0]
+				var date_end_year = date_start[0]
+				var date_end_month = date_start[1]
+				var date_end_day = date_start[2] + 6
 
 				function isLeapYear(year) {
 					return ((year % 400 === 0) || (year % 100 !== 0 && year % 4 === 0))
 				}
-				if (date_end_month > 12) {
-					date_end_month = date_end_month % 12
-					date_end_year += 1
+				switch (date_end_month) {
+					case 1:
+					case 3:
+					case 5:
+					case 7:
+					case 8:
+					case 10:
+					case 12:
+						if (date_end_day > 31) {
+							date_end_day %= 31;
+							date_end_month += 1;
+							if (date_end_month > 12) {
+								date_end_month = 1;
+								date_end_year += 1;
+							}
+						}
+						break;
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						if (date_end_day > 30) {
+							date_end_day %= 30;
+							date_end_month += 1;
+						}
+						break;
+					case 2:
+						if (isLeapYear(date_end_year)) {
+							if (date_end_day > 29) {
+								date_end_day %= 29;
+								date_end_month += 1;
+							}
+						} else {
+							if (date_end_day > 28) {
+								date_end_day %= 28;
+								date_end_month += 1;
+							}
+						}
+						break;
+					default:
+						console.log("月份输入错误");
 				}
-				date_end = [date_end_year, date_end_month, date_end_day]
-				let tmp = []
-				for (let i = 0; i < date_list.length & i < 7; i++) { // 这块加一个时间范围比较
-					if (date_list[i][1] > 9 && date_list[i][2] > 9) {
+				console.log(date_end_year, date_end_month, date_end_day)
+				var tmp = []
+				for (var i = 0; i < date_list.length & i < 7; i++) { // 7日时间范围比较
+					if (date_list[i][0] > date_end_year) {
+						break;
+					}
+					if (date_list[i][1] > date_end_month) {
+						break;
+					}
+					if (date_list[i][2] > date_end_day) {
+						break;
+					}
+					if (date_list[i][1] > 9 && date_list[i][2] > 9) { // 日期格式转换
 						tmp.push(date_list[i][0] + '-' + date_list[i][1] + '-' + date_list[i][2])
 					}
 					if (date_list[i][1] > 9 && date_list[i][2] <= 9) {
@@ -225,31 +165,71 @@
 					}
 				}
 				date_list = tmp
-				//console.log(date_list)
-				let my_state_tmp = []
-				for (let i = 0; i < date_list.length; i++) {
-					my_state_tmp.push([i, data_get.value[date_list[i]]])
+				console.log(date_list)
+				var res = []
+				var daysBetweenDates = function(date1, date2) { // 计算与第date_list[0]天相比，date_list[i]是第几天
+					return Math.abs((+new Date(date1)) - (+new Date(date2))) / (24 * 60 * 60 * 1000);
+				};
+				for (var i = 0; i < date_list.length; i++) {
+					var val = data_get.value[date_list[i]]
+					res.push([
+						daysBetweenDates(date_list[i], date_list[0]),
+						val.temp,
+						val.nc_test, // 核酸结果
+						val.symptom.yt, // 咽干咽痛
+						val.symptom.fl, // 身体乏力
+						val.symptom.ks, // 咽痒咳嗽
+						val.symptom.lt, // 流涕鼻塞
+						val.symptom.cw, // 肠胃不适
+						val.symptom.tt, // 头痛
+						val.symptom.qc, // 气喘
+					])
 				}
-				console.log(my_state_tmp)
-				this.my_state = [
-					[0, 36.8, '阳', 1, 0, 0, 0, 0],
-					[1, 36.8, '阳', 1, 0, 0, 0, 0],
-					// [2, 39.1, '阳', 1, 1, 0, 0, 0],
-					[3, 41.5, '阳', 0, 0, 1, 0, 0],
-					[4, 38.5, '阳', 0, 0, 0, 1, 0],
-					[5, 36.8, '阳', 0, 0, 0, 0, 1],
-					[6, 36.8, '阳', 1, 0, 0, 0, 1],
-				]
-				this.ave_state = [
-					[0, 36.8, '阳', 1, 1, 0, 0, 0],
-					[1, 37.3, '阳', 1, 1, 0, 0, 0],
-					[2, 39, '阳', 1, 1, 1, 0, 1],
-					[3, 40, '阳', 1, 1, 1, 1, 1],
-					[4, 37.5, '阳', 1, 1, 1, 1, 1],
-					[5, 37.3, '阳', 1, 1, 1, 1, 1],
-					[6, 36.8, '阴', 0, 0, 0, 0, 0],
-				];
-				this.schema = [{
+				return res
+			},
+			fetchUserData() {
+				let data = {
+					type: "full_records",
+					table: "table_v1",
+					uuid: this.openid
+				}
+				this.showOrhideLoading();
+				// 获取用户数据
+				uni.request({
+					url: "https://api.easybioai.com:4001/query",
+					method: "POST",
+					header: {
+						'Content-Type': 'application/json'
+					},
+					data,
+					success: (res) => {
+						console.log(res);
+						this.showOrhideLoading();
+						if (res.data.status == 1) 
+						{
+							// 获取到数据
+							this.resultData = res.data;
+							this.processChart1();
+							this.processChart2();
+						}else {
+							this.loadError();
+						}
+					},
+					fail: (err) => {
+						this.loadError();
+					}
+				})
+			},
+			toHome() {
+				console.log('返回');
+				uni.switchTab({
+					url: '/pages/index/index'
+				});
+			},
+			processChart1() {
+				this.temp_min1 = 35;
+				this.temp_max1 = 43;
+				this.schema1 = [{
 						name: 'date',
 						index: 0,
 						text: '日'
@@ -300,8 +280,17 @@
 						text: '气喘'
 					}
 				];
-
-				this.itemStyle = {
+				this.my_state1 = this.getData(this.resultData);
+				this.ave_state1 = [
+					[0, 36.8, '阳', 1, 1, 0, 0, 0],
+					[1, 37.3, '阳', 1, 1, 0, 0, 0],
+					[2, 39, '阳', 1, 1, 1, 0, 1],
+					[3, 40, '阳', 1, 1, 1, 1, 1],
+					[4, 37.5, '阳', 1, 1, 1, 1, 1],
+					[5, 37.3, '阳', 1, 1, 1, 1, 1],
+					[6, 36.8, '阴', 0, 0, 0, 0, 0],
+				];
+				this.itemStyle1 = {
 					// item 阴影设置
 					// opacity: 0.8,
 					shadowBlur: 50,
@@ -313,17 +302,16 @@
 				};
 			},
 			processChart2() {
-				var my_state = [
+				this.my_state2 = [
 					[0, 36.8, '阳', 1, 0, 0, 0, 0, 1, 0],
 					[1, 36.8, '阳', 1, 0, 0, 0, 0, 1, 0],
 					// [2, 39.1, '阳', 1, 1, 0, 0, 0, 1, 0],
 					[3, 41.5, '阳', 0, 0, 1, 0, 0, 1, 0],
 					[4, 37.5, '阳', 0, 0, 0, 1, 0, 1, 0],
-				 [5, 37.3, '阳', 0, 0, 0, 0, 1, 1, 0],
+					[5, 37.3, '阳', 0, 0, 0, 0, 1, 1, 0],
 					[6, 36.8, '阳', 1, 0, 0, 0, 1, 1, 1],
 				]
-
-				const contrast = [
+				this.contrast = [ // 红框中的文字，写死
 					['轻微', '加重', '加剧', '持续', '持续', '减轻', '明显好转'], // 咽干咽痛
 					['轻微', '加重', '加剧', '持续', '持续', '减轻', '明显好转'], // 身体乏力
 					['尚无', '尚无', '出现', '出现', '持续', '加重', '明显好转'], // 咽痒咳嗽
@@ -333,12 +321,12 @@
 				].map(function(item) {
 					return [item[0], item[1], item[2], item[3], item[4], item[5], item[6]];
 				});
-
-				this.dat = []; // 生成格子图中的数据
-				for (var i = 0; i < my_state.length; i++) { // 第几天
-					for (var j = 3; j < my_state[i].length - 2; j++) { // 症状
-						if (my_state[i][j] == 1) {
-							this.dat.push([my_state[i][0], j - 3, my_state[i][j], contrast[j - 3][i], contrast[5][i]])
+				for (var i = 0; i < this.my_state2.length; i++) { // 第几天
+					for (var j = 3; j < this.my_state2[i].length - 2; j++) { // 症状
+						if (this.my_state2[i][j]) {
+							this.dat.push([this.my_state2[i][0], j - 3, this.my_state2[i][j], this.contrast[j - 3][i], this
+								.contrast[5][i]
+							])
 						}
 					}
 				}
@@ -347,8 +335,8 @@
 				});
 			},
 			setchart1Option() {
-				this.option1 = {
-					color: ['#377E47', '#FF6159', ], // 点的颜色,不会调成实心的
+				this.option1 = { // 图的样式设计
+					color: ['#377E47', '#FF6159', ], // 图中点的颜色,不知道怎么调成实心的
 					legend: {
 						top: 10,
 						data: ['我的病程', '平均病程'],
@@ -362,7 +350,7 @@
 						top: '20%',
 						bottom: '8%'
 					},
-					tooltip: {
+					tooltip: { // 弹出框的格式
 						backgroundColor: 'rgba(255,255,255,0.7)',
 						position: function(pos, params, dom, rect, size) {
 							// 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
@@ -372,29 +360,21 @@
 							obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
 							return obj;
 						},
-						formatter:(param)=>{
-							let value = param.value;
+						formatter: function(param) {
+							var value = param.value;
 							// prettier-ignore
-							
-							return this.schema[2].text + '：' + value[2] + '性' + '\n' +
-								this.schema[3].text + '：' + (value[3] == 1 ? '是' : '否') + '\n' +
-								this.schema[4].text + '：' + (value[4] == 1 ? '是' : '否') + '\n' +
-								this.schema[5].text + '：' + (value[5] == 1 ? '是' : '否') + '\n' +
-								this.schema[6].text + '：' + (value[6] == 1 ? '是' : '否') + '\n' +
-								this.schema[7].text + '：' + (value[7] == 1 ? '是' : '否')
-							
-							// const schema = [
-							//   { name: 'date', index: 0, text: '日' },
-							//   { name: 'temp', index: 1, text: '体温' },
-							//   { name: 'test_res', index: 2, text: '核酸结果' },
-							//   { name: 'throat', index: 3, text: '咽干咽痛' },
-							//   { name: 'weakness', index: 4, text: '身体乏力' },
-							//   { name: 'cough', index: 5, text: '咽痒咳嗽' },
-							//   { name: 'nose', index: 6, text: '流涕鼻塞' },
-							//   { name: 'stomach', index: 7, text: '肠胃不适' },
-							//   { name: 'headache', index: 8, text: '头痛' },
-							//   { name: 'asthma', index: 9, text: '气喘' },
-							// ];
+							return this.schema[1].text + '：' + (value[1]) + ' ℃\n' // 体温
+								// + schema[2].text + '：' + value[2] + '性' + '\n' // 核酸结果
+								+
+								this.schema1[3].text + ':' + (value[3] ? '是' : '否') + '\n' // 咽干咽痛
+								+
+								this.schema1[4].text + ':' + (value[4] ? '是' : '否') + '\n' // 身体乏力
+								+
+								this.schema1[5].text + ':' + (value[5] ? '是' : '否') + '\n' // 咽痒咳嗽
+								+
+								this.schema1[6].text + ':' + (value[6] ? '是' : '否') + '\n' // 流涕鼻塞
+								+
+								this.schema1[7].text + ':' + (value[7] ? '是' : '否') // 肠胃不适
 						}
 					},
 					xAxis: {
@@ -418,16 +398,16 @@
 							fontSize: 16
 						},
 						splitLine: {
-							show: true
+							show: true // 横着的线
 						},
-						min: this.temp_min
+						min: this.temp_min1
 					},
-					visualMap: {
+					visualMap: { // 控制圆圈大小样式
 						show: false,
 						calculable: false,
 						dimension: 1,
-						min: this.temp_min,
-						max: this.temp_max,
+						min: this.temp_min1,
+						max: this.temp_max1,
 						itemWidth: 30,
 						itemHeight: 50,
 						precision: 0.1,
@@ -440,32 +420,34 @@
 							symbolSize: [10, 70],
 							color: ['rgba(255,255,255,0.4)']
 						},
-						controller: {
-							inRange: {
-								color: ['#C3C3C3']
-							},
-							outOfRange: {
-								color: ['#999']
-							}
-						}
+						// controller: {
+						//   inRange: {
+						//     color: ['#C3C3C3']
+						//   },
+						//   outOfRange: {
+						//     color: ['#999']
+						//   }
+						// }
 					},
+
 					series: [{
 							name: '平均病程',
 							type: 'line',
-							itemStyle: this.itemStyle,
-							data: this.ave_state
+							itemStyle: this.itemStyle1,
+							data: this.ave_state1
 						},
 						{
 							name: '我的病程',
 							type: 'line',
-							itemStyle: this.itemStyle,
-							data: this.my_state
+							itemStyle: this.itemStyle1,
+							data: this.my_state1
 						},
 					]
-				}
+				};
+
 			},
 			setchart2Option() {
-				this.option2 =  {
+				this.option2 = {
 					tooltip: {
 						backgroundColor: 'rgba(255,255,255,0.7)',
 						formatter: function(param) {
@@ -571,18 +553,29 @@
 </script>
 
 <style scoped>
+	.tips {
+		margin-top: 25rpx;
+	}
+
+	.red {
+		color: red;
+		margin-right: 5rpx;
+	}
+
 	.back-button {
-		width:80vw;
+		width: 80vw;
 		margin: 30rpx auto;
 	}
+
 	.result-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		gap:50rpx;
+		gap: 50rpx;
 		margin: 20rpx auto;
 		width: 95vw;
 	}
+
 	.echart_panel1 {
 		widht: 100%;
 		height: 600rpx

@@ -7,21 +7,21 @@
 						<view class="uni-column">
 							<u-form-item prop="age" label="年龄" required="true" label-position="top"
 								:border-bottom="false">
-								<view class="input-area">
-									<u-input v-model="formvalue.age" placeholder="请选择" type="select" border="true"
-										@click="ageShow = true" />
+								<view class="input-area" :style="{backgroundColor:bgColor}">
+									<u-input :disable="Disable" v-model="formvalue.age" placeholder="请选择" type="select" border="true"
+										@click="showage" />
 								</view>
 								<u-select v-model="ageShow" mode="single-column" :list="agerange"
-									@confirm="handAgeChange">
+									@confirm="handleAgeChange">
 								</u-select>
 							</u-form-item>
 						</view>
 						<view class="uni-column">
 							<u-form-item prop="sex" label="性别" required="true" label-position="top"
 								:border-bottom="false">
-								<view class="input-area">
-									<u-input class="input-area" placeholder="请选择" v-model="formvalue.sex" type="select"
-										border="true" @click="sexShow = true" />
+								<view class="input-area" :style="{backgroundColor:bgColor}">
+									<u-input :disable="Disable" class="input-area" placeholder="请选择" v-model="formvalue.sex" type="select"
+										border="true" @click="showsex" />
 								</view>
 								<u-select v-model="sexShow" mode="single-column" :list="sexrange"
 									@confirm="handleSexchange">
@@ -80,7 +80,7 @@
 
 				<view class="basic-info-bottom">
 					<view class="bottom-left">
-						<image src="http://rmkt29hqy.hn-bkt.clouddn.com/temperature.png" class="tmpimg"></image>
+						<image src="http://rmkt29hqy.hn-bkt.clouddn.com/temperature2.png" class="tmpimg"></image>
 					</view>
 					<view class="bottom-right">
 						<u-form-item required="true" prop="temp" label-width="190" label="今日体温:" :border-bottom="false"
@@ -131,7 +131,7 @@
 				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
-				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染预测
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染风险提示
 				</u-button>
 			</view>
 		</u-form>
@@ -143,6 +143,7 @@
 	export default {
 		data() {
 			return {
+				Disable:false,
 				formRules: {
 					age: [{
 						required: true,
@@ -195,6 +196,7 @@
 					width: '190rpx',
 					'line-height': '32rpx'
 				},
+				bgColor: 'white',
 				formvalue: {
 					age: "",
 					sex: "",
@@ -219,31 +221,31 @@
 				todayHeal: null,
 				days: [],
 				dayList: [{
-						value: '1',
+						value: '第一天',
 						label: '第一天',
 					},
 					{
-						value: '2',
+						value: '第二天',
 						label: '第二天',
 					},
 					{
-						value: '3',
+						value: '第三天',
 						label: '第三天',
 					},
 					{
-						value: '4',
+						value: '第四天',
 						label: '第四天',
 					},
 					{
-						value: '5',
+						value: '第五天',
 						label: '第五天',
 					},
 					{
-						value: '6',
+						value: '第六天',
 						label: '第六天',
 					},
 					{
-						value: '7',
+						value: '第七天',
 						label: '第七天',
 					},
 					// {
@@ -392,28 +394,43 @@
 				province: null,
 				city: null,
 				district: null,
+				openId: null,
+				newuser: true,
 			};
 		},
 		onReady() {
 			this.$refs.uForm.setRules(this.formRules);
 		},
-		onLoad() {
+		onLoad(params) {
+			console.log(params)
+			this.openId = params.openid;
 			this.agerange = new Array();
-			for (let i = 1; i < 100; i++) {
-				let ageobj = {
-					value: "" + i,
-					label: "" + i,
-				}
-				if (i <= 10) {
-					this.days.push(ageobj);
-				}
-				this.agerange.push(ageobj);
-			}
 			this.agerange.push({
-				value: "100及以上",
-				label: "100及以上"
+				value: "0-6岁(婴幼儿)",
+				label: "0-6岁(婴幼儿)"
+			});
+			this.agerange.push({
+				value: "7-12岁(少儿)",
+				label: "7-12岁(少儿)"
+			});
+			this.agerange.push({
+				value: "13-17岁(青少年)",
+				label: "13-17岁(青少年)"
+			});
+			this.agerange.push({
+				value: "18-45岁(青年)",
+				label: "18-45岁(青年)"
+			});
+			this.agerange.push({
+				value: "46-69岁(中年)",
+				label: "46-69岁(中年)"
+			});
+			this.agerange.push({
+				value: "69及以上(老年)",
+				label: "69及以上(老年)"
 			});
 			console.log('加载表格页面');
+			this.checkUser();
 			this.qqmapsdk = new QQMapWX({
 				key: 'L32BZ-VJSCU-INJVN-4CIEX-XWUVS-CHF7Q'
 			});
@@ -430,6 +447,49 @@
 			}
 		},
 		methods: {
+			showage() {
+				this.ageShow = true;
+			},
+			showsex() {
+				this.sexShow = true;
+			},
+			checkUser() {
+				let data = {
+					type: "person",
+					uuid: this.openId
+				};
+				uni.request({
+					method: "POST",
+					url: "https://api.easybioai.com:4001/query",
+					data,
+					success: (res) => {
+						console.log(res);
+						//如果不是新用户 展示数据
+						if (res.data.value != null) {
+							// 禁用输入
+							this.Disable = true;
+							this.showage = {};
+							this.showsex = {};
+							// 设置禁用颜色
+							this.bgColor = '#dddddd';
+							// 获取到数据 非空
+							if(res.data.value.sex == "male")
+							{
+							this.formvalue.sex = "男";
+							}else
+							{
+								this.formvalue.sex = "女";
+							}
+							this.formvalue.age = this.detransform(res.data.value.age);
+							this.newuser = false;
+						}
+					},
+					fail: () => {
+						this.loadError({content:"获取用户数据失败,请尝试刷新"});
+					}
+				})
+			},
+
 			disableOtherCondition(e) {
 				if (e.name == "null") {
 					for (let item in this.symptomsList) {
@@ -452,11 +512,25 @@
 					content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间' + this.lastUpdateTime,
 				});
 			},
-			loadError() {
-				uni.hideLoading();
+			loadError({content = '疫情数据加载失败,请尝试刷新', callback}) {
 				uni.showModal({
 					title: '出错了',
-					content: '疫情数据加载失败,请尝试刷新',
+					content,
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+						}
+						if(callback == undefined)
+						{
+							uni.redirectTo({
+								url:"/pages/detect/index"
+							})
+						}
+						else
+						{
+						callback();
+						}
+					}
 				});
 			},
 			processCityData(city) {
@@ -521,11 +595,11 @@
 							}
 						}
 						if (failflag) {
-							this.loadError();
+							this.loadError({callback:this.getCovidData});
 						}
 					},
 					fail: (res) => {
-						this.loadError();
+						this.loadError({callback:this.getCovidData});
 						console.log(res);
 					}
 				})
@@ -621,9 +695,9 @@
 			},
 			getDate() {
 				let d = new Date();
-				let year = d.getFullYear();
-				let month = d.getMonth() + 1;
-				let day = d.getDate();
+				let year = +d.getFullYear();
+				let month = +d.getMonth() + 1;
+				let day = +d.getDate();
 				let result = [];
 				result.push(year);
 				result.push(month);
@@ -635,27 +709,112 @@
 					if (valid) {
 						console.log('验证通过');
 						// 获取表格信息并进行转换
-						let timestamp = Date.parse(new Date());
 						console.log('--------表格信息------')
-						console.log('时间戳', timestamp)
-						let table = "table_v1";
-						// let uuid = userOpenid;
-						let uuid = 'userOpenid';
-						let date = this.getDate();
-						console.log('date时间', date);
-						let stamp = timestamp;
-						let location = "";
-						if (this.flag) {
-							location = this.country + this.province + this.city;
+						let stamp = Date.parse(new Date());
+						// 如果是新用户
+						if (this.newuser) {
+							this.postUserAndFormData(stamp);
+						} else {
+							this.postformData(stamp);
 						}
-						console.log('位置', location);
-						let symptom = this.transformSymptom();
-						console.log('症状',symptom);
-
 					} else {
 						console.log('验证失败');
 					}
 				});
+			},
+			postUserAndFormData(stamp) {
+				// 提交用户与表单信息
+				console.log("提交用户与表单信息");
+				let sex = this.transformsex();
+				let age = this.transformage();
+				let value = {
+					uuid: this.openId,
+					stamp,
+					age,
+					sex,
+				}
+				let insertData = {
+					table: "person_attr",
+					value,
+				};
+				uni.request({
+					url: "https://api.easybioai.com:4001/insert",
+					method: "POST",
+					data: insertData,
+					success: () => {
+						this.postformData(stamp);
+					},
+					fail: () => {
+						this.loadError({content:"发送数据失败,请刷新重试"});
+					}
+				})
+			},
+			postformData(stamp) {
+				// 提交表单信息
+				console.log("提交表单信息");
+				let location = "";
+				let uuid = this.openId;
+				let date = this.getDate();
+				let symptom = this.transformSymptom();
+				if (this.flag) {
+					location = this.country + this.province + this.city;
+				};
+				let value = {
+					uuid,
+					stamp,
+					date,
+					temp: +this.formvalue.temp,
+					location,
+					symptom,
+					nc_test: this.formvalue.nc_test,
+					days_symp: +this.transformDay(),
+				};
+				let formResult = {
+					table: "table_v1",
+					value,
+				};
+				uni.request({
+					url: "https://api.easybioai.com:4001/insert",
+					method: "POST",
+					data: formResult,
+					success: (res) => {
+						console.log(res)
+						if(res.data.status == 1)
+						{
+							console.log("正在跳转");
+							this.gotodetect();
+						}else
+						{
+							this.loadError({content:"发送数据失败,请刷新后重试"});
+						}
+					},
+					fail: () => {
+						this.loadError({content:"发送数据失败,请刷新后重试"});
+					}
+				})
+			},
+			gotodetect()
+			{
+				uni.navigateTo({
+					url:"/pages/recoveryresult/recoveryresult?"+`openid=${this.openId}`
+				})
+			},
+			transformDay() {
+				if (this.formvalue.days_symp == "第一天") {
+					return "1";
+				} else if (this.formvalue.days_symp == "第二天") {
+					return "2";
+				} else if (this.formvalue.days_symp == "第三天") {
+					return "3";
+				} else if (this.formvalue.days_symp == "第四天") {
+					return "4";
+				} else if (this.formvalue.days_symp == "第五天") {
+					return "5";
+				} else if (this.formvalue.days_symp == "第六天") {
+					return "6";
+				} else if (this.formvalue.days_symp == "第七天") {
+					return "7";
+				}
 			},
 			transformSymptom() {
 				let symptom = {
@@ -686,8 +845,55 @@
 					}
 				}
 				return symptom;
+			},
+			detransform(value)
+			{
+				if(value == 0)
+				{
+					return "0-6岁(婴幼儿)";
+				}else if(value == 1)
+				{
+					return "7-12岁(少儿)";
+				}
+				else if(value == 2)
+				{
+					return "13-17岁(青少年)";
+				}
+				else if(value == 3)
+				{
+					return "18-45岁(青年)";
+				}
+				else if(value == 4)
+				{
+					return "46-69岁(中年)";
+				}
+				else {
+					return "69岁及以上(老年)";
+				}
 			}
 			,
+			transformage() {
+				if (this.formvalue.age == "0-6岁(婴幼儿)") {
+					return 0;
+				} else if (this.formvalue.age == "7-12岁(少儿)") {
+					return 1;
+				} else if (this.formvalue.age == "13-17岁(青少年)") {
+					return 2;
+				} else if (this.formvalue.age == "18-45岁(青年)") {
+					return 3;
+				} else if (this.formvalue.age == "46-69岁(中年)") {
+					return 4;
+				} else if (this.formvalue.age == "69岁及以上(老年)") {
+					return 5;
+				}
+			},
+			transformsex() {
+				if (this.formvalue.sex == "男") {
+					return 'male';
+				} else {
+					return 'female';
+				}
+			},
 			// 下拉刷新数据
 			// 需要增加刷新 位置改变后的疫情数据
 			onPullDownRefresh() {
@@ -702,7 +908,7 @@
 				console.log(e);
 				this.formvalue.symptom = e;
 			},
-			handAgeChange(e) {
+			handleAgeChange(e) {
 				this.formvalue.age = e[0].value;
 
 			},
@@ -724,9 +930,12 @@
 
 <style lang="scss" scoped>
 	@import '../../static/iconfont.css';
-	.covid-confirm-add,.covid-heal-add {
+
+	.covid-confirm-add,
+	.covid-heal-add {
 		text-align: center;
 	}
+
 	.tmp-img-r {
 		width: 120rpx;
 		height: 120rpx;

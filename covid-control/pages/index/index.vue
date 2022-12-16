@@ -12,7 +12,6 @@
 			</view>
 		</view>
 		<view class="covid-buttons">
-			
 			<view class="covid-button">
 				<view class="left-button" @click="showmsg1">
 					<image class="img-resize"
@@ -20,17 +19,7 @@
 					</image>
 				</view>
 				<view class="right-button">
-					<button class="button-text" @click="torecovery">新冠康复手册</button>
-				</view>
-			</view>
-			<view class="covid-button">
-				<view class="left-button" @click="showmsg2">
-					<image class="img-resize"
-						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE3aC0ydi0yaDJ2MnptMi4wNy03Ljc1bC0uOS45MkMxMy40NSAxMi45IDEzIDEzLjUgMTMgMTVoLTJ2LS41YzAtMS4xLjQ1LTIuMSAxLjE3LTIuODNsMS4yNC0xLjI2Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0xLjEtLjktMi0yLTJzLTIgLjktMiAySDhjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNGMwIC44OC0uMzYgMS42OC0uOTMgMi4yNXoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
-					</image>
-				</view>
-				<view class="right-button">
-					<button  class="button-text" @click="topredict">新冠风险预测</button>
+					<button class="button-text" @click="torecovery">感染康复管理</button>
 				</view>
 			</view>
 			<view class="covid-button">
@@ -40,8 +29,19 @@
 					</image>
 				</view>
 				<view class="right-button">
-					<button class="button-text" @click="todetect">七日病程监测</button>
+					<button class="button-text" @click="todetect">七日症状监测</button>
 				</view>
+			</view>
+			<view class="covid-button">
+				<view class="left-button" @click="showmsg2">
+					<image class="img-resize"
+						src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjM1IiBoZWlnaHQ9IjM1IiBzdHlsZT0iYm9yZGVyLWNvbG9yOiNiYmI7Ym9yZGVyLXdpZHRoOjA7Ym9yZGVyLXN0eWxlOnNvbGlkIiBmaWx0ZXI9Im5vbmUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE3aC0ydi0yaDJ2MnptMi4wNy03Ljc1bC0uOS45MkMxMy40NSAxMi45IDEzIDEzLjUgMTMgMTVoLTJ2LS41YzAtMS4xLjQ1LTIuMSAxLjE3LTIuODNsMS4yNC0xLjI2Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0xLjEtLjktMi0yLTJzLTIgLjktMiAySDhjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNGMwIC44OC0uMzYgMS42OC0uOTMgMi4yNXoiIGZpbGw9InJnYmEoMTMzLjExLDI0OC44OCwyMjYuOTUwMDAwMDAwMDAwMDIsMSkiLz48L3N2Zz4=">
+					</image>
+				</view>
+				<view class="right-button">
+					<button class="button-text" @click="topredict">健康风险提醒</button>
+				</view>
+
 			</view>
 		</view>
 		<view class="covid-infos">
@@ -68,6 +68,7 @@
 	export default {
 		data() {
 			return {
+				openid: null,
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
@@ -86,15 +87,57 @@
 			this.wxlogin();
 		},
 		methods: {
-			wxlogin()
-			{
-				uni.login({
-				  success: res => {
-				    //code值(5分钟失效)
-				    console.info(res.code);
-					// https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code
-				  }
+			loadError() {
+				uni.showModal({
+					title: '出错了',
+					content: '网络出现问题,请尝试刷新',
+					success: function(res) {
+						if (res.confirm) {
+							console.log('用户点击确定');
+							uni.switchTab(
+							{
+								url:"/pages/index/index"
+							}
+							)
+						}
+					}
 				});
+			},
+			wxlogin() {
+				uni.login({
+					success: result => {
+						//code值(5分钟失效)
+						console.info(result.code);
+						let code = result.code;
+						let data = {
+							code: `${code}`
+						};
+						this.getopenid(data);
+					},
+					fail: () => {
+						this.loadError();
+					}
+				});
+			},
+			getopenid(data) {
+				uni.request({
+					method: "POST",
+					url: "https://api.easybioai.com:4001/getid",
+					data,
+					success: (res) => {
+						console.log(res.data)
+						if (res.data.status == "1") {
+							this.openid = res.data.uuid;
+							uni.setStorageSync('openid', this.openid);
+						} else {
+							this.loadError();
+						}
+					},
+					fail: (err) => {
+						console.log(err)
+						this.loadError();
+					}
+				})
 			},
 			showmsg1() {
 				uni.showModal({
@@ -108,7 +151,7 @@
 					content: '填写症状预测您是否阳性',
 				});
 			},
-			showmsg3(){
+			showmsg3() {
 				uni.showModal({
 					title: '提示',
 					content: '填写情况监测您的病程',
@@ -117,20 +160,19 @@
 			// 传递openid
 			topredict() {
 				uni.navigateTo({
-					url: "/pages/detect/index"
+					url: "/pages/prediction/index"+`?openid=${this.openid}`
 				})
 			},
 			// 新冠康复手册
 			torecovery() {
 				uni.navigateTo({
-					url: "/pages/recovery/recovery"
+					url: "/pages/recovery/recovery"+`?openid=${this.openid}`
 				})
-			}
-			,
+			},
 			// 传递openid
 			todetect() {
 				uni.navigateTo({
-					url: "/pages/prediction/index"
+					url:"/pages/detect/index"+`?openid=${this.openid}`
 				})
 			}
 		}
@@ -144,7 +186,11 @@
 		font-weight: 700;
 		font-size: 45rpx;
 	}
-	.button-text::after{ border: none;}
+
+	.button-text::after {
+		border: none;
+	}
+
 	.img-resize {
 		width: 80rpx;
 		height: 80rpx;
@@ -192,7 +238,7 @@
 
 	.covid-button {
 		display: flex;
-		gap:30rpx;
+		gap: 30rpx;
 		align-items: center;
 		padding: 10rpx;
 		width: 90%;

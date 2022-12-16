@@ -16,7 +16,7 @@
 			</view>
 		</view>
 			<view class="covid-results">
-				<view class="covid-predict"><button @click="topredict" class="covid-result-button">感染预测</button></view>
+				<view class="covid-predict"><button @click="topredict" class="covid-result-button">风险提醒</button></view>
 				<view class="covid-detect"><button @click="todetect" class="covid-result-button">症状监测</button></view>
 			</view>
 		<view class="mention">
@@ -77,8 +77,14 @@
 			return {
 				authorizeflag:false,
 				avatarUrl:'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+				openid:null,
 			};
 		},
+		onShow(){
+			this.openid = uni.getStorageSync('openid');
+			console.log('信息页面获取',this.openid)
+		}
+		,
 		methods: {
 		  onChooseAvatar(e) {
 		    const { avatarUrl } = e.detail 
@@ -90,12 +96,12 @@
 		  },
 		  topredict(){
 			  uni.navigateTo({
-			  	url:"/pages/predictionresult/predictionresult"
+			  	url:"/pages/predictionresult/predictionresult?"+`openid=${this.openid}`
 			  })
 		  },
 		  todetect() {
 			  uni.navigateTo({
-			  	url:"/pages/recoveryresult/recoveryresult"
+			  	url:"/pages/recoveryresult/recoveryresult?"+`openid=${this.openid}`
 			  })
 		  }
 		},
@@ -108,14 +114,13 @@
 		background-color: white;
 		text-align: left;
 		font-size: 28rpx;
-		font-weight: 700;
 	}
 	.covid-result-button::after {
 		border: none;
 	}
 	.covid-predict,.covid-detect {
 		border-bottom: 3rpx solid #F2F2F7;
-		padding-bottom: 20rpx;
+		padding-bottom: 15rpx;
 	}
 	.covid-results {
 		padding-left: 15rpx;
