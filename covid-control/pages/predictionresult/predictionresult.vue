@@ -42,9 +42,7 @@
 			console.log('onLoad');
 			console.log('openid',params.openid);
 			this.openid = params.openid;
-			this.showOrhideLoading();
 			this.fetchUserData();
-
 		},
 		methods: {
 			showOrhideLoading()
@@ -68,6 +66,7 @@
 					type: "predic_result",
 					uuid: this.openid
 				}
+				this.showOrhideLoading();
 				// 获取用户数据
 				uni.request({
 					url: "https://api.easybioai.com:4001/query",
@@ -101,9 +100,9 @@
 				uni.showModal({
 					title: '错误',
 					content: '展示结果失败,请刷新后重试',
-					success: function(res) {
+					success: (res)=> {
 						if (res.confirm) {
-							console.log('用户点击确定');
+							console.log(this)
 							this.fetchUserData();
 						} else if (res.cancel) {
 							uni.navigateBack({

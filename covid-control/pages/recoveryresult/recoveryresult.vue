@@ -45,7 +45,7 @@
 				uni.showModal({
 					title: '错误',
 					content: '展示结果失败,请刷新后重试',
-					success: function(res) {
+					success: (res)=> {
 						if (res.confirm) {
 							console.log('用户点击确定');
 							this.fetchUserData();

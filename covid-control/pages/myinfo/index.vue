@@ -114,14 +114,13 @@
 		background-color: white;
 		text-align: left;
 		font-size: 28rpx;
-		font-weight: 700;
 	}
 	.covid-result-button::after {
 		border: none;
 	}
 	.covid-predict,.covid-detect {
 		border-bottom: 3rpx solid #F2F2F7;
-		padding-bottom: 20rpx;
+		padding-bottom: 15rpx;
 	}
 	.covid-results {
 		padding-left: 15rpx;
