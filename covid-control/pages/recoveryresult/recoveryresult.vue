@@ -1,5 +1,7 @@
 <template>
-	<view class="result-container">
+	<view class="container">
+		<view class="recovery-title">七日病程监测情况</view>
+	<view class="r-result-container">
 		<view class="echart_panel1">
 			<l-echart ref="chart1" @finished="chart1init"></l-echart>
 		</view>
@@ -7,7 +9,8 @@
 			<l-echart ref="chart2" @finished="chart2init"></l-echart>
 			<view class="tips"><text class="red">*</text>此图是已接种疫苗、无基础疾病中青年患者常见病程</view>
 		</view>
-		<button class="back-button" @click="toHome">返回首页</button>
+	</view>
+	<button class="back-button" @click="toHome">返回首页</button>
 	</view>
 </template>
 
@@ -57,22 +60,20 @@
 					}
 				});
 			},
-			showOrhideLoading()
-			{
-				if(this.loading)
-				{
+			hideLoading() {
+				if (!this.loading) {
+					uni.hideLoading();
+					this.loading = !this.loading;
+				}
+			},
+			showLoading() {
+				if (this.loading) {
 					uni.showLoading({
 						title: '加载中'
 					});
 					this.loading = !this.loading;
 				}
-				else
-				{
-					uni.hideLoading();
-					this.loading = !this.loading;
-				}
-			}
-			,
+			},
 			getData(data_get) { // 对后端数据的处理，都写在这里了，目前使用的是模拟数据
 				var date_list = []
 				for (var i in data_get.value) {
@@ -193,7 +194,7 @@
 					table: "table_v1",
 					uuid: this.openid
 				}
-				this.showOrhideLoading();
+				this.showLoading();
 				// 获取用户数据
 				uni.request({
 					url: "https://api.easybioai.com:4001/query",
@@ -204,7 +205,7 @@
 					data,
 					success: (res) => {
 						console.log(res);
-						this.showOrhideLoading();
+						this.hideLoading();
 						if (res.data.status == 1) 
 						{
 							// 获取到数据
@@ -216,6 +217,7 @@
 						}
 					},
 					fail: (err) => {
+						this.hideLoading();
 						this.loadError();
 					}
 				})
@@ -389,6 +391,11 @@
 						splitArea: { // 竖着的条纹
 							show: true
 						},
+						axisLabel: {
+							fontSize: 12,
+							show:true,
+							interval:0,//使x轴横坐标全部显示
+						},
 					},
 					yAxis: {
 						type: 'value',
@@ -480,6 +487,11 @@
 						textStyle: { // 没用，不会调
 							fontSize: 1600000
 						},
+						axisLabel: {
+							fontSize: 12,
+							show:true,
+							interval:0,//使x轴横坐标全部显示
+						},
 						// position: 'top'
 					},
 					yAxis: {
@@ -553,6 +565,19 @@
 </script>
 
 <style scoped>
+	.recovery-title {
+		color:#101010;
+		text-align: center;
+		margin-bottom:40rpx ;
+		background-color: #E3FFFA;
+		font-size: 40rpx;
+		font-weight: 700;
+	}
+	.container {
+		padding-bottom: 5rpx;
+		padding-top:20rpx ;
+		background-color: #E3FFFA;
+	}
 	.tips {
 		margin-top: 25rpx;
 	}
@@ -567,13 +592,17 @@
 		margin: 30rpx auto;
 	}
 
-	.result-container {
+	.r-result-container {
+		background-color: white;
 		display: flex;
+		width: 95vw;
+		margin: 0 auto;
+		padding: 10rpx;
+		box-shadow: 0px 2px 8px 0px rgba(136, 136, 136, 40);
+		border-radius: 16rpx;
 		flex-direction: column;
 		justify-content: center;
 		gap: 50rpx;
-		margin: 20rpx auto;
-		width: 95vw;
 	}
 
 	.echart_panel1 {

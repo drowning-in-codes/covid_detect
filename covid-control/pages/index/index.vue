@@ -80,6 +80,7 @@
 					'http://rmkt29hqy.hn-bkt.clouddn.com/daniel-schludi-ZeMRI9vO71o-unsplash.jpg',
 					'http://rmkt29hqy.hn-bkt.clouddn.com/mika-baumeister-uz_T7h8ds04-unsplash.jpg',
 				],
+				loading:true,
 			}
 		},
 		components: {},
@@ -87,6 +88,20 @@
 			this.wxlogin();
 		},
 		methods: {
+			hideLoading() {
+				if (!this.loading) {
+					uni.hideLoading();
+					this.loading = !this.loading;
+				}
+			},
+			showLoading() {
+				if (this.loading) {
+					uni.showLoading({
+						title: '加载中'
+					});
+					this.loading = !this.loading;
+				}
+			},
 			loadError() {
 				uni.showModal({
 					title: '出错了',
@@ -130,11 +145,13 @@
 							this.openid = res.data.uuid;
 							uni.setStorageSync('openid', this.openid);
 						} else {
+							this.hideLoading();
 							this.loadError();
 						}
 					},
 					fail: (err) => {
 						console.log(err)
+						this.hideLoading();
 						this.loadError();
 					}
 				})
