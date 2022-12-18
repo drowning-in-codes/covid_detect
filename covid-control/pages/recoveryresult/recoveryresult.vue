@@ -1,16 +1,16 @@
 <template>
 	<view class="container">
 		<view class="recovery-title">七日病程监测情况</view>
-	<view class="r-result-container">
-		<view class="echart_panel1">
-			<l-echart ref="chart1" @finished="chart1init"></l-echart>
+		<view class="r-result-container">
+			<view class="echart_panel1">
+				<l-echart ref="chart1" @finished="chart1init"></l-echart>
+			</view>
+			<view class="echart_panel2">
+				<l-echart ref="chart2" @finished="chart2init"></l-echart>
+				<view class="tips"><text class="red">*</text>此图是已接种疫苗、无基础疾病中青年患者常见病程</view>
+			</view>
 		</view>
-		<view class="echart_panel2">
-			<l-echart ref="chart2" @finished="chart2init"></l-echart>
-			<view class="tips"><text class="red">*</text>此图是已接种疫苗、无基础疾病中青年患者常见病程</view>
-		</view>
-	</view>
-	<button class="back-button" @click="toHome">返回首页</button>
+		<button class="back-button" @click="toHome">返回首页</button>
 	</view>
 </template>
 
@@ -21,34 +21,55 @@
 			return {
 				temp_min: null,
 				temp_max: null,
-				schema: [],
+				schema1: [],
 				my_state1: null,
+				myData2: [],
 				ave_state1: null,
 				my_state2: null,
 				contrast: null,
 				option1: null,
 				option2: null,
-				dat: [],
 				openid: null,
 				resultData: null,
 				itemStyle1: null,
-				loading:true,
+				loading: true,
 			}
 		},
 		onLoad(params) {
 			// onLoad函数中获取结果,并在这里设置值
-			console.log('onLoad');
+			console.log('------onLoad--');
 			console.log('openid', params.openid);
 			this.openid = params.openid;
 			// 获取用户数据 resultData
 			this.fetchUserData();
 		},
 		methods: {
+			checkUser(value) {
+				if (value == null) {
+					uni.showModal({
+						title: '提示',
+						content: '请通过提交最近的症状记录查看情况',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+								uni.switchTab({
+									url: "/pages/index/index"
+								})
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+								return false;
+							}
+						}
+					});
+				} else {
+					return true;
+				}
+			},
 			loadError() {
 				uni.showModal({
 					title: '错误',
 					content: '展示结果失败,请刷新后重试',
-					success: (res)=> {
+					success: (res) => {
 						if (res.confirm) {
 							console.log('用户点击确定');
 							this.fetchUserData();
@@ -186,7 +207,7 @@
 						val.symptom.qc, // 气喘
 					])
 				}
-				return res
+				return res;
 			},
 			fetchUserData() {
 				let data = {
@@ -206,15 +227,17 @@
 					success: (res) => {
 						console.log(res);
 						this.hideLoading();
-						if (res.data.status == 1) 
-						{
-							// 获取到数据
-							this.resultData = res.data;
-							this.processChart1();
-							this.processChart2();
-						}else {
-							this.loadError();
+						if (this.checkUser(res.data.value)) {
+							if (res.data.status == 1) {
+								// 获取到数据
+								this.resultData = res.data;
+								this.processChart1();
+								this.processChart2();
+							} else {
+								this.loadError();
+							}
 						}
+
 					},
 					fail: (err) => {
 						this.hideLoading();
@@ -229,6 +252,7 @@
 				});
 			},
 			processChart1() {
+				console.log('处理图表1')
 				this.temp_min1 = 35;
 				this.temp_max1 = 43;
 				this.schema1 = [{
@@ -304,16 +328,9 @@
 				};
 			},
 			processChart2() {
-				this.my_state2 = [
-					[0, 36.8, '阳', 1, 0, 0, 0, 0, 1, 0],
-					[1, 36.8, '阳', 1, 0, 0, 0, 0, 1, 0],
-					// [2, 39.1, '阳', 1, 1, 0, 0, 0, 1, 0],
-					[3, 41.5, '阳', 0, 0, 1, 0, 0, 1, 0],
-					[4, 37.5, '阳', 0, 0, 0, 1, 0, 1, 0],
-					[5, 37.3, '阳', 0, 0, 0, 0, 1, 1, 0],
-					[6, 36.8, '阳', 1, 0, 0, 0, 1, 1, 1],
-				]
-				this.contrast = [ // 红框中的文字，写死
+				console.log('处理图表2');
+				this.my_state2 = this.getData(this.resultData);
+				this.contrast = [ // 红框中的文字
 					['轻微', '加重', '加剧', '持续', '持续', '减轻', '明显好转'], // 咽干咽痛
 					['轻微', '加重', '加剧', '持续', '持续', '减轻', '明显好转'], // 身体乏力
 					['尚无', '尚无', '出现', '出现', '持续', '加重', '明显好转'], // 咽痒咳嗽
@@ -326,15 +343,17 @@
 				for (var i = 0; i < this.my_state2.length; i++) { // 第几天
 					for (var j = 3; j < this.my_state2[i].length - 2; j++) { // 症状
 						if (this.my_state2[i][j]) {
-							this.dat.push([this.my_state2[i][0], j - 3, this.my_state2[i][j], this.contrast[j - 3][i], this
+							this.myData2.push([this.my_state2[i][0], j - 3, this.my_state2[i][j], this.contrast[j - 3][i],
+								this
 								.contrast[5][i]
 							])
 						}
 					}
 				}
-				this.dat.map(function(item) {
+				this.myData2.map(function(item) {
 					return [item[0], item[1], item[2]];
 				});
+				console.log('表格2结果' + JSON.parse(JSON.stringify(this.myData2)))
 			},
 			setchart1Option() {
 				this.option1 = { // 图的样式设计
@@ -362,10 +381,10 @@
 							obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
 							return obj;
 						},
-						formatter: function(param) {
+						formatter: (param) => {
 							var value = param.value;
 							// prettier-ignore
-							return this.schema[1].text + '：' + (value[1]) + ' ℃\n' // 体温
+							return this.schema1[1].text + '：' + (value[1]) + ' ℃\n' // 体温
 								// + schema[2].text + '：' + value[2] + '性' + '\n' // 核酸结果
 								+
 								this.schema1[3].text + ':' + (value[3] ? '是' : '否') + '\n' // 咽干咽痛
@@ -377,6 +396,10 @@
 								this.schema1[6].text + ':' + (value[6] ? '是' : '否') + '\n' // 流涕鼻塞
 								+
 								this.schema1[7].text + ':' + (value[7] ? '是' : '否') // 肠胃不适
+							// +
+							// this.schema1[8].text + ':' + (value[8] ? '是' : '否') + '\n'// 肠胃不适
+							// +
+							// this.schema1[9].text + ':' + (value[9] ? '是' : '否') // 肠胃不适
 						}
 					},
 					xAxis: {
@@ -393,8 +416,8 @@
 						},
 						axisLabel: {
 							fontSize: 12,
-							show:true,
-							interval:0,//使x轴横坐标全部显示
+							show: true,
+							interval: 0, //使x轴横坐标全部显示
 						},
 					},
 					yAxis: {
@@ -489,8 +512,8 @@
 						},
 						axisLabel: {
 							fontSize: 12,
-							show:true,
-							interval:0,//使x轴横坐标全部显示
+							show: true,
+							interval: 0, //使x轴横坐标全部显示
 						},
 						// position: 'top'
 					},
@@ -524,7 +547,7 @@
 						name: 'Punch Card',
 						type: 'heatmap',
 						// data: [dat, contrast],
-						data: this.dat,
+						data: JSON.parse(JSON.stringify(this.myData2)),
 						label: {
 							show: false // 控制是否显示数字
 						},
@@ -549,13 +572,14 @@
 			},
 			chart1init() {
 				this.$refs.chart1.init(echarts, chart => {
-					console.log('finished')
+					console.log('1finished')
 					this.setchart1Option();
 					chart.setOption(this.option1);
 				});
 			},
 			chart2init() {
 				this.$refs.chart2.init(echarts, chart => {
+					console.log('2finished');
 					this.setchart2Option();
 					chart.setOption(this.option2);
 				});
@@ -566,18 +590,20 @@
 
 <style scoped>
 	.recovery-title {
-		color:#101010;
+		color: #101010;
 		text-align: center;
-		margin-bottom:40rpx ;
+		margin-bottom: 40rpx;
 		background-color: #E3FFFA;
 		font-size: 40rpx;
 		font-weight: 700;
 	}
+
 	.container {
 		padding-bottom: 5rpx;
-		padding-top:20rpx ;
+		padding-top: 20rpx;
 		background-color: #E3FFFA;
 	}
+
 	.tips {
 		margin-top: 25rpx;
 	}

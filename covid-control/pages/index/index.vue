@@ -134,6 +134,60 @@
 					}
 				});
 			},
+			checkuser()
+			{
+				let data = {
+					type: "predict_result",
+					uuid: this.openid
+				}
+				uni.request({
+					url: "https://api.easybioai.com:4001/query",
+					method: "POST",
+					data,
+					success: (res) => {
+						this.hideLoading();
+						console.log(res);
+						if (res.data.status == 1) {
+							return ;
+						} else if (res.data.status == 0) {
+							// 新用户
+							this.allowDataUse();
+						} else {
+							this.loadError();
+						}
+					},
+					fail: (err) => {
+						this.hideLoading();
+						this.loadError();
+					}
+				})
+			}
+			,
+			allowDataUse()
+			{
+				uni.showModal({
+					title: '提示',
+					content: '您填写的表单数据将仅用于研究之用,不会泄露您的隐私.请选择是否授权',
+					success: function (res) {
+						if (res.confirm) {
+							uni.showToast({
+								title: '已允许授权',
+								icon:'success',
+								duration: 2500
+							});
+							console.log('用户点击确定');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+							uni.showToast({
+								title: '已拒绝授权',
+								icon:'error',
+								duration: 2500
+							});
+						}
+					}
+				});
+			}
+			,
 			getopenid(data) {
 				uni.request({
 					method: "POST",
@@ -144,6 +198,7 @@
 						if (res.data.status == "1") {
 							this.openid = res.data.uuid;
 							uni.setStorageSync('openid', this.openid);
+							this.checkuser();
 						} else {
 							this.hideLoading();
 							this.loadError();
@@ -197,6 +252,9 @@
 </script>
 
 <style lang="scss" scoped>
+	uni-modal .uni-modal__bd {
+		white-space: pre-wrap;
+	}
 	.button-text {
 		border: none;
 		background-color: white;

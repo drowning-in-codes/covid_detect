@@ -8,8 +8,8 @@
 							<u-form-item prop="age" label="年龄" required="true" label-position="top"
 								:border-bottom="false">
 								<view class="input-area" :style="{backgroundColor:bgColor}">
-									<u-input :disable="Disable" v-model="formvalue.age" placeholder="请选择" type="select" border="true"
-										@click="showage" />
+									<u-input :disable="Disable" v-model="formvalue.age" placeholder="请选择" type="select"
+										border="true" @click="showage" />
 								</view>
 								<u-select v-model="ageShow" mode="single-column" :list="agerange"
 									@confirm="handleAgeChange">
@@ -20,8 +20,8 @@
 							<u-form-item prop="sex" label="性别" required="true" label-position="top"
 								:border-bottom="false">
 								<view class="input-area" :style="{backgroundColor:bgColor}">
-									<u-input :disable="Disable" class="input-area" placeholder="请选择" v-model="formvalue.sex" type="select"
-										border="true" @click="showsex" />
+									<u-input :disable="Disable" class="input-area" placeholder="请选择"
+										v-model="formvalue.sex" type="select" border="true" @click="showsex" />
 								</view>
 								<u-select v-model="sexShow" mode="single-column" :list="sexrange"
 									@confirm="handleSexchange">
@@ -131,7 +131,7 @@
 				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
-				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染风险提示
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染风险提醒
 				</u-button>
 			</view>
 		</u-form>
@@ -143,7 +143,7 @@
 	export default {
 		data() {
 			return {
-				Disable:false,
+				Disable: false,
 				formRules: {
 					age: [{
 						required: true,
@@ -215,10 +215,10 @@
 				positionShow: false,
 				flag: false,
 				lastUpdateTime: null,
-				totalConfirm: null,
-				totalHeal: null,
-				todayConfirm: null,
-				todayHeal: null,
+				totalConfirm: "未获取",
+				totalHeal: "未获取",
+				todayConfirm: "未获取",
+				todayHeal: "未获取",
 				days: [],
 				dayList: [{
 						value: '第一天',
@@ -310,10 +310,7 @@
 				agerange: [],
 				qqmapsdk: null,
 				temperatrueList: [
-					[{
-							value: '34',
-							label: '34'
-						},
+					[
 						{
 							value: '35',
 							label: '35'
@@ -338,14 +335,7 @@
 							value: '40',
 							label: '40'
 						},
-						{
-							value: '41',
-							label: '41'
-						},
-						{
-							value: '42',
-							label: '42'
-						}
+					
 					],
 					[{
 							value: '.0',
@@ -473,11 +463,9 @@
 							// 设置禁用颜色
 							this.bgColor = '#dddddd';
 							// 获取到数据 非空
-							if(res.data.value.sex == "male")
-							{
-							this.formvalue.sex = "男";
-							}else
-							{
+							if (res.data.value.sex == "male") {
+								this.formvalue.sex = "男";
+							} else {
 								this.formvalue.sex = "女";
 							}
 							this.formvalue.age = this.detransform(res.data.value.age);
@@ -485,11 +473,12 @@
 						}
 					},
 					fail: () => {
-						this.loadError({content:"获取用户数据失败,请尝试刷新"});
+						this.loadError({
+							content: "获取用户数据失败,请尝试刷新"
+						});
 					}
 				})
 			},
-
 			disableOtherCondition(e) {
 				if (e.name == "null") {
 					for (let item in this.symptomsList) {
@@ -512,24 +501,25 @@
 					content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间' + this.lastUpdateTime,
 				});
 			},
-			loadError({content = '疫情数据加载失败,请尝试刷新', callback}) {
+			loadError({
+				content = '疫情数据加载失败,请尝试刷新',
+				callback
+			}) {
 				uni.showModal({
 					title: '出错了',
 					content,
 					success: function(res) {
 						if (res.confirm) {
 							console.log('用户点击确定');
+							if (callback == undefined) {
+								uni.redirectTo({
+									url: "/pages/detect/index"
+								})
+							} else {
+								callback();
+							}
 						}
-						if(callback == undefined)
-						{
-							uni.redirectTo({
-								url:"/pages/detect/index"
-							})
-						}
-						else
-						{
-						callback();
-						}
+					
 					}
 				});
 			},
@@ -539,10 +529,31 @@
 				if (city.indexOf("省") != -1) {
 					index = city.indexOf('省');
 					result = city.substring(0, index);
+					
 				}
 				if (city.indexOf("市") != -1) {
 					index = city.indexOf('市');
 					result = city.substring(0, index);
+				}
+				// 额外处理一些地方 如广西 宁夏 新疆 西藏  内蒙古
+				if(city.indexOf("新疆")!=-1)
+				{
+					return "新疆"
+				}else if(city.indexOf("广西")!=-1)
+				{
+					return "广西"
+				}
+				else if(city.indexOf("宁夏")!=-1)
+				{
+					return "宁夏"
+				}
+				else if(city.indexOf("西藏")!=-1)
+				{
+					return "西藏"
+				}
+				else if(city.indexOf("内蒙古")!=-1)
+				{
+					return "内蒙古"
 				}
 				return result;
 			},
@@ -595,11 +606,15 @@
 							}
 						}
 						if (failflag) {
-							this.loadError({callback:this.getCovidData});
+							this.loadError({
+								callback: this.getCovidData
+							});
 						}
 					},
 					fail: (res) => {
-						this.loadError({callback:this.getCovidData});
+						this.loadError({
+							callback: this.getCovidData
+						});
 						console.log(res);
 					}
 				})
@@ -607,20 +622,24 @@
 			getUserLocation() {
 				uni.getSetting({
 					success: (res) => {
-						if (res.authSetting && res.authSetting.hasOwnProperty("scope.userLocation")) {
-							if (res.authSetting["scope.userLocation"]) {
+						console.log('权限',res);
+						if (res.authSetting && res.authSetting.hasOwnProperty("scope.userFuzzyLocation")) {
+							if (res.authSetting["scope.userFuzzyLocation"]) {
 								this.getCityInfo();
 							} else {
 								uni.showModal({
 									title: "提示",
-									content: "请重新授权获取你的地理位置，否则部分功能将无法使用",
+									content: "请重新授权获取你的地理位置，否则部分功能将无法使用.\r\n提示:点击小程序右上角的三个点在设置中修改授权",
 									success: (res) => {
 										if (res.confirm) {
 											uni.openSetting({
 												success: () => this.getCityInfo()
 											});
 										} else {
-											reject("请授权获取你的地理位置，否则部分功能将无法使用！");
+											// this.loadError({
+											// 	content: "请授权获取你的地理位置,否则部分功能将无法使用.",
+											// 	callback: this.getUserLocation
+											// });
 										}
 									},
 								});
@@ -636,13 +655,13 @@
 			getCityInfo() {
 				console.log('调用getCityInfo')
 				uni.authorize({
-					scope: "scope.userLocation",
+					scope: "scope.userFuzzyLocation",
 					success: () => {
 						console.log('授权')
-						uni.getLocation({
+						uni.getFuzzyLocation({
 							type: "gcj02", //  wgs84: 返回GPS坐标，gcj02: 返回国测局坐标
 							success: res => {
-								console.log('获取位置')
+								console.log('获取位置', res)
 								const {
 									latitude,
 									longitude
@@ -680,7 +699,8 @@
 									},
 								});
 							},
-							fail: () => {
+							fail: (res) => {
+								console.log(res)
 								uni.showModal({
 									title: '错误',
 									content: '获取地理位置错误,请刷新重试',
@@ -690,7 +710,13 @@
 							}
 						});
 					},
-					fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
+					fail: (res) => {
+						console.log(res);
+						this.loadError({
+							content: "请授权获取你的地理位置,否则部分功能将无法使用.\r\n提示:点击小程序右上角的三个点在设置中修改授权",
+							callback: this.getUserLocation
+						});
+					}
 				})
 			},
 			getDate() {
@@ -745,7 +771,9 @@
 						this.postformData(stamp);
 					},
 					fail: () => {
-						this.loadError({content:"发送数据失败,请刷新重试"});
+						this.loadError({
+							content: "发送数据失败,请刷新重试"
+						});
 					}
 				})
 			},
@@ -779,24 +807,25 @@
 					data: formResult,
 					success: (res) => {
 						console.log(res)
-						if(res.data.status == 1)
-						{
+						if (res.data.status == 1) {
 							console.log("正在跳转");
 							this.gotodetect();
-						}else
-						{
-							this.loadError({content:"发送数据失败,请刷新后重试"});
+						} else {
+							this.loadError({
+								content: "发送数据失败,请刷新后重试"
+							});
 						}
 					},
 					fail: () => {
-						this.loadError({content:"发送数据失败,请刷新后重试"});
+						this.loadError({
+							content: "发送数据失败,请刷新后重试"
+						});
 					}
 				})
 			},
-			gotodetect()
-			{
+			gotodetect() {
 				uni.navigateTo({
-					url:"/pages/recoveryresult/recoveryresult?"+`openid=${this.openId}`
+					url: "/pages/recoveryresult/recoveryresult?" + `openid=${this.openId}`
 				})
 			},
 			transformDay() {
@@ -846,32 +875,21 @@
 				}
 				return symptom;
 			},
-			detransform(value)
-			{
-				if(value == 0)
-				{
+			detransform(value) {
+				if (value == 0) {
 					return "0-6岁(婴幼儿)";
-				}else if(value == 1)
-				{
+				} else if (value == 1) {
 					return "7-12岁(少儿)";
-				}
-				else if(value == 2)
-				{
+				} else if (value == 2) {
 					return "13-17岁(青少年)";
-				}
-				else if(value == 3)
-				{
+				} else if (value == 3) {
 					return "18-45岁(青年)";
-				}
-				else if(value == 4)
-				{
+				} else if (value == 4) {
 					return "46-69岁(中年)";
-				}
-				else {
+				} else {
 					return "69岁及以上(老年)";
 				}
-			}
-			,
+			},
 			transformage() {
 				if (this.formvalue.age == "0-6岁(婴幼儿)") {
 					return 0;

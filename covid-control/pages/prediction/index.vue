@@ -131,7 +131,7 @@
 				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
-				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染风险提示
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">健康风险提醒
 				</u-button>
 			</view>
 		</u-form>
@@ -215,10 +215,10 @@
 				positionShow: false,
 				flag: false,
 				lastUpdateTime: null,
-				totalConfirm: null,
-				totalHeal: null,
-				todayConfirm: null,
-				todayHeal: null,
+				totalConfirm: "未获取",
+				totalHeal: "未获取",
+				todayConfirm: "未获取",
+				todayHeal: "未获取",
 				days: [],
 				dayList: [{
 						value: '第一天',
@@ -310,10 +310,7 @@
 				agerange: [],
 				qqmapsdk: null,
 				temperatrueList: [
-					[{
-							value: '34',
-							label: '34'
-						},
+					[
 						{
 							value: '35',
 							label: '35'
@@ -338,14 +335,7 @@
 							value: '40',
 							label: '40'
 						},
-						{
-							value: '41',
-							label: '41'
-						},
-						{
-							value: '42',
-							label: '42'
-						}
+					
 					],
 					[{
 							value: '.0',
@@ -401,8 +391,10 @@
 		onReady() {
 			this.$refs.uForm.setRules(this.formRules);
 		},
+
 		onLoad(params) {
 			console.log(params)
+			console.log('onLoad')
 			this.openId = params.openid;
 			this.agerange = new Array();
 			this.agerange.push({
@@ -519,17 +511,18 @@
 					success: function(res) {
 						if (res.confirm) {
 							console.log('用户点击确定');
+							if(callback == undefined)
+							{
+								uni.redirectTo({
+									url:"/pages/prediction/index"
+								})
+							}
+							else
+							{
+							callback();
+							}
 						}
-						if(callback == undefined)
-						{
-							uni.redirectTo({
-								url:"/pages/prediction/index"
-							})
-						}
-						else
-						{
-						callback();
-						}
+					
 					}
 				});
 			},
@@ -539,10 +532,31 @@
 				if (city.indexOf("省") != -1) {
 					index = city.indexOf('省');
 					result = city.substring(0, index);
+					
 				}
 				if (city.indexOf("市") != -1) {
 					index = city.indexOf('市');
 					result = city.substring(0, index);
+				}
+				// 额外处理一些地方 如广西 宁夏 新疆 西藏  内蒙古
+				if(city.indexOf("新疆")!=-1)
+				{
+					return "新疆"
+				}else if(city.indexOf("广西")!=-1)
+				{
+					return "广西"
+				}
+				else if(city.indexOf("宁夏")!=-1)
+				{
+					return "宁夏"
+				}
+				else if(city.indexOf("西藏")!=-1)
+				{
+					return "西藏"
+				}
+				else if(city.indexOf("内蒙古")!=-1)
+				{
+					return "内蒙古"
 				}
 				return result;
 			},
@@ -607,20 +621,23 @@
 			getUserLocation() {
 				uni.getSetting({
 					success: (res) => {
-						if (res.authSetting && res.authSetting.hasOwnProperty("scope.userLocation")) {
-							if (res.authSetting["scope.userLocation"]) {
+						if (res.authSetting && res.authSetting.hasOwnProperty("scope.userFuzzyLocation")) {
+							if (res.authSetting["scope.userFuzzyLocation"]) {
 								this.getCityInfo();
 							} else {
 								uni.showModal({
 									title: "提示",
-									content: "请重新授权获取你的地理位置，否则部分功能将无法使用",
+									content: "请重新授权获取你的地理位置，否则部分功能将无法使用.\r\n提示:点击小程序右上角的三个点在设置中修改授权",
 									success: (res) => {
 										if (res.confirm) {
 											uni.openSetting({
 												success: () => this.getCityInfo()
 											});
 										} else {
-											reject("请授权获取你的地理位置，否则部分功能将无法使用！");
+											// this.loadError({
+											// 	content: "请授权获取你的地理位置,否则部分功能将无法使用.",
+											// 	callback: this.getUserLocation
+											// });
 										}
 									},
 								});
@@ -636,13 +653,13 @@
 			getCityInfo() {
 				console.log('调用getCityInfo')
 				uni.authorize({
-					scope: "scope.userLocation",
+					scope: "scope.userFuzzyLocation",
 					success: () => {
 						console.log('授权')
-						uni.getLocation({
+						uni.getFuzzyLocation({
 							type: "gcj02", //  wgs84: 返回GPS坐标，gcj02: 返回国测局坐标
 							success: res => {
-								console.log('获取位置')
+								console.log('获取位置',res);
 								const {
 									latitude,
 									longitude
@@ -690,7 +707,12 @@
 							}
 						});
 					},
-					fail: () => reject("请授权获取你的位置，否则部分功能将无法使用！")
+					fail: () =>{
+						this.loadError({
+							content: "请授权获取你的地理位置,否则部分功能将无法使用.\r\n提示:点击小程序右上角的三个点在设置中修改授权",
+							callback: this.getUserLocation
+						});
+					}
 				})
 			},
 			getDate() {

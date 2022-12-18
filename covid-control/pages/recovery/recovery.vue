@@ -59,7 +59,7 @@
 					<view class="grid-text">疼痛管理</view>
 				</u-grid-item>
 				<u-grid-item :custom-style="customStyle" @click="tipOpen(10)" bg-color="rgba(255,255,255,0)">
-					<image class="grid-img" src="http://rmkt29hqy.hn-bkt.clouddn.com/manual/%E5%91%BC%E5%90%B8%E7%AE%A1%E7%90%86.png">
+					<image class="grid-img" src="http://rmkt29hqy.hn-bkt.clouddn.com/manual/%E9%87%8D%E8%BF%94%E5%B7%A5%E4%BD%9C.png">
 					</image>
 					<view class="grid-text">重返工作</view>
 				</u-grid-item>

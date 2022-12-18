@@ -14,7 +14,7 @@
 		{
 			"path": "pages/detect/index",
 			"style": {
-				"navigationBarTitleText": "感染预测",
+				"navigationBarTitleText": "七日病程监测",
 				"enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
 			}
@@ -22,7 +22,7 @@
 		{
 			"path": "pages/prediction/index",
 			"style": {
-				"navigationBarTitleText": "康复监测",
+				"navigationBarTitleText": "健康风险提醒",
 				"enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
 			}
@@ -38,7 +38,7 @@
             "path" : "pages/predictionresult/predictionresult",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "预测结果",
+                "navigationBarTitleText": "健康风险提醒",
                 "enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
             }
@@ -48,7 +48,7 @@
             "path" : "pages/recoveryresult/recoveryresult",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "康复日程",
+                "navigationBarTitleText": "七日康复日程",
                 "enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
             }
