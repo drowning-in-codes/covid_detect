@@ -29,7 +29,7 @@
 					</image>
 				</view>
 				<view class="right-button">
-					<button class="button-text" @click="todetect">七日症状监测</button>
+					<button class="button-text" @click="todetect">七日症状对比</button>
 				</view>
 			</view>
 			<view class="covid-button">
@@ -226,7 +226,7 @@
 			showmsg3() {
 				uni.showModal({
 					title: '提示',
-					content: '填写情况监测您的病程',
+					content: '填写情况可以对比您的病程',
 				});
 			},
 			// 传递openid

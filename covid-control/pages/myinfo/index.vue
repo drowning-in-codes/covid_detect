@@ -18,7 +18,7 @@
 			<view>我的情况</view>
 			<u-cell-group>
 				<u-cell-item icon="volume-fill" title="风险提醒" @click="topredict"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="症状监测" @click="todetect"></u-cell-item>
+				<u-cell-item icon="integral-fill" title="症状对比" @click="todetect"></u-cell-item>
 
 				</u-cell-item>
 			</u-cell-group>

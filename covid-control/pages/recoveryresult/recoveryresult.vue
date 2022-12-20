@@ -1,12 +1,12 @@
 <template>
 	<view class="container">
-		<view class="recovery-title">七日病程监测情况</view>
+		<view class="recovery-title">七日病程对比情况</view>
 		<view class="r-result-container">
 			<view class="echart_panel1">
-				<l-echart ref="chart1" @finished="chart1init"></l-echart>
+				<l-echart ref="chart1" @finished="chart1init" beforeDelay="150"></l-echart>
 			</view>
 			<view class="echart_panel2">
-				<l-echart ref="chart2" @finished="chart2init"></l-echart>
+				<l-echart ref="chart2" @finished="chart2init" beforeDelay="150"></l-echart>
 				<view class="tips"><text class="red">*</text>此图是已接种疫苗、无基础疾病中青年患者常见病程</view>
 			</view>
 		</view>
@@ -25,7 +25,6 @@
 				my_state1: null,
 				myData2: [],
 				ave_state1: null,
-				my_state2: null,
 				contrast: null,
 				option1: null,
 				option2: null,
@@ -42,6 +41,13 @@
 			this.openid = params.openid;
 			// 获取用户数据 resultData
 			this.fetchUserData();
+		},
+		onPullDownRefresh() {
+			// 加载
+			console.log('下拉加载');
+			this.chart1init();
+			this.chart2init();
+		
 		},
 		methods: {
 			checkUser(value) {
@@ -95,6 +101,7 @@
 					this.loading = !this.loading;
 				}
 			},
+
 			getData(data_get) { // 对后端数据的处理，都写在这里了，目前使用的是模拟数据
 				var date_list = []
 				for (var i in data_get.value) {
@@ -209,6 +216,15 @@
 				}
 				return res;
 			},
+			lazyLoading()
+			{
+				setTimeout(()=>{
+					this.hideLoading();
+					this.chart1init();
+					this.chart2init();
+				},800)
+			}
+			,
 			fetchUserData() {
 				let data = {
 					type: "full_records",
@@ -233,6 +249,7 @@
 								this.resultData = res.data;
 								this.processChart1();
 								this.processChart2();
+								// this.lazyLoading();
 							} else {
 								this.loadError();
 							}
@@ -329,7 +346,6 @@
 			},
 			processChart2() {
 				console.log('处理图表2');
-				this.my_state2 = this.getData(this.resultData);
 				this.contrast = [ // 红框中的文字
 					['轻微', '加重', '加剧', '持续', '持续', '减轻', '明显好转'], // 咽干咽痛
 					['轻微', '加重', '加剧', '持续', '持续', '减轻', '明显好转'], // 身体乏力
@@ -340,10 +356,10 @@
 				].map(function(item) {
 					return [item[0], item[1], item[2], item[3], item[4], item[5], item[6]];
 				});
-				for (var i = 0; i < this.my_state2.length; i++) { // 第几天
-					for (var j = 3; j < this.my_state2[i].length - 2; j++) { // 症状
-						if (this.my_state2[i][j]) {
-							this.myData2.push([this.my_state2[i][0], j - 3, this.my_state2[i][j], this.contrast[j - 3][i],
+				for (var i = 0; i < this.my_state1.length; i++) { // 第几天
+					for (var j = 3; j < this.my_state1[i].length - 2; j++) { // 症状
+						if (this.my_state1[i][j]) {
+							this.myData2.push([this.my_state1[i][0], j - 3, this.my_state1[i][j], this.contrast[j - 3][i],
 								this
 								.contrast[5][i]
 							])

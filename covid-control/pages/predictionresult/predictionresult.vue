@@ -3,18 +3,18 @@
 		<view class="recovery-title">健康风险提醒</view>
 		<view class="p-result-container">
 			<view class="echart_panel1">
-				<l-echart ref="chart1" @finished="chart1init"></l-echart>
+				<l-echart ref="chart1" @finished="chart1init"  beforeDelay="80"></l-echart>
 				<view class="tips"><text class="red">*</text>注意:值越大表示风险越高.
 				</view>
-				<view class="tips-2">此结果为仅考虑用户输入症状下的整体健康风险预估值，仅供个人参考，不能用作任何医学指导或医学用.
+				<view class="tips-2">此结果为仅考虑用户输入症状下的整体健康风险预估值，仅供个人参考，不能用作任何医学指导或医学用途.
 				</view>
 			</view>
 			<view class="echart_panel2">
-				<l-echart ref="chart2" @finished="chart2init"></l-echart>
+				<l-echart ref="chart2" @finished="chart2init" beforeDelay="80"></l-echart>
 			</view>
 			<view class="echart_panel3">
-				<l-echart ref="chart3" @finished="chart3init"></l-echart>
-				<view><text class="red">*</text>柱状图中绿色代表用户当前尚无的症状，橙色是用户已有症状</view>
+				<l-echart ref="chart3" @finished="chart3init" beforeDelay="80"></l-echart>
+				<view><text class="red">*</text>柱状图中绿色代表用户当前尚无的症状,橙色是用户已有症状.百分数代表该症状出现的统计频率</view>
 			</view>
 		</view>
 		<button class="back-button" @click="toHome">返回首页</button>
@@ -53,6 +53,14 @@
 			console.log('openid', params.openid);
 			this.openid = params.openid;
 			this.fetchUserData();
+		},
+		onPullDownRefresh() {
+			// 加载
+			console.log('下拉加载');
+			this.chart1init();
+			this.chart2init();
+			this.chart3init();
+		
 		},
 		methods: {
 
@@ -373,47 +381,6 @@
 					}]
 				};
 			},
-			setchaty3Option() {
-				this.option3 = {
-					title: {
-						text: '感染者症状频率'
-					},
-					grid: {
-						left: '20%',
-						right: '15%'
-					},
-					xAxis: {
-						name: '频率',
-						type: 'value'
-					},
-					yAxis: {
-						name: '症状',
-						type: 'category',
-						data: [
-							'肠胃不适',
-							'头痛',
-							'咽干咽痛',
-							'气喘',
-							'身体乏力',
-							'流涕鼻塞',
-							'咽痒咳嗽',
-							'发烧'
-						]
-					},
-					series: [{
-							data: this.datashow,
-							type: 'bar',
-							label: {
-								show: true,
-								precision: 1,
-								position: 'right',
-								formatter: '{c}%'
-							}
-						},
-
-					]
-				};
-			},
 			setchart3Option() {
 				this.option3 = {
 					title: {
@@ -470,7 +437,6 @@
 			},
 			chart3init() {
 				this.$refs.chart3.init(echarts, chart => {
-					this.processChart3();
 					this.setchart3Option();
 					chart.setOption(this.option3);
 				});

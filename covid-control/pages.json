@@ -14,7 +14,7 @@
 		{
 			"path": "pages/detect/index",
 			"style": {
-				"navigationBarTitleText": "七日病程监测",
+				"navigationBarTitleText": "七日病程对比",
 				"enablePullDownRefresh": true,
 				"navigationBarBackgroundColor": "#E4FFFA"
 			}
@@ -96,7 +96,7 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "感染症状监测",
+		"navigationBarTitleText": "感染症状对比",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

@@ -131,7 +131,7 @@
 				<u-select v-model="dayShow" mode="single-column" :list="dayList" @confirm="handleDayChange"></u-select>
 			</u-form-item>
 			<view class="uni-btn">
-				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">感染风险提醒
+				<u-button :ripple="true" :custom-style="customStyle" ripple-bg-color="#E9F8F5" @click="submit">七日病程对比
 				</u-button>
 			</view>
 		</u-form>
@@ -139,11 +139,13 @@
 </template>
 
 <script>
+	// 导入腾讯位置服务sdk用于根据获取的经纬度得到具体的地理位置名字
 	import QQMapWX from '@/libs/qqmap-wx-jssdk.min.js';
 	export default {
 		data() {
 			return {
 				Disable: false,
+				// 表单检验规则
 				formRules: {
 					age: [{
 						required: true,
@@ -180,11 +182,13 @@
 						trigger: ['change', 'blur'],
 					}],
 				},
+				// 设置温度样式
 				temperatrueStyle: {
 					fontSize: '72rpx',
 					width: '160rpx',
 					padding: '10rpx',
 				},
+				// 自定义样式
 				customStyle: {
 					height: '80rpx',
 					'margin-top': '10rpx',
@@ -192,11 +196,13 @@
 					'margin-right': '120rpx',
 					'margin-bottom': '40rpx'
 				},
+				// 标签样式
 				labelStyle: {
 					width: '190rpx',
 					'line-height': '32rpx'
 				},
 				bgColor: 'white',
+				// 发送的表单数据值
 				formvalue: {
 					age: "",
 					sex: "",
@@ -389,9 +395,11 @@
 			};
 		},
 		onReady() {
+			// 在ready生命周期设置表单校验规则
 			this.$refs.uForm.setRules(this.formRules);
 		},
 		onLoad(params) {
+			// 在load声明周期获取传过来的openid用于查询
 			console.log(params)
 			this.openId = params.openid;
 			this.agerange = new Array();
@@ -429,6 +437,7 @@
 		// 观察值变化 获取数据
 		watch: {
 			province: {
+				// 省份变化更新疫情数据
 				handler(newVal, oldVal) {
 					if (oldVal != null) {
 						this.getCovidData();
@@ -443,6 +452,8 @@
 			showsex() {
 				this.sexShow = true;
 			},
+			// 检验用户是否是新用户 
+			// 如果不是新用户 获取到年龄和性别并禁止修改
 			checkUser() {
 				let data = {
 					type: "person",
@@ -479,6 +490,7 @@
 					}
 				})
 			},
+			// 选择无症状时 其他症状取消勾选
 			disableOtherCondition(e) {
 				if (e.name == "null") {
 					for (let item in this.symptomsList) {
@@ -488,12 +500,14 @@
 					}
 				} else this.symptomsList[7].checked = false;
 			},
+			// 地理位置选择
 			regionConfirm(e) {
 				this.province = e.province.label;
 				this.city = e.city.label;
 				this.district = e.area.label;
 				this.formvalue.location = this.province + '>' + this.city + '>' + this.district;
 			},
+			// 显示数据信息
 			showdatamsg() {
 				uni.hideLoading();
 				uni.showModal({
@@ -501,6 +515,7 @@
 					content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间' + this.lastUpdateTime,
 				});
 			},
+			// 加载错误
 			loadError({
 				content = '疫情数据加载失败,请尝试刷新',
 				callback
@@ -523,6 +538,7 @@
 					}
 				});
 			},
+			// 处理日期数据 
 			processCityData(city) {
 				let index = 0,
 					result = city;
@@ -635,12 +651,7 @@
 											uni.openSetting({
 												success: () => this.getCityInfo()
 											});
-										} else {
-											// this.loadError({
-											// 	content: "请授权获取你的地理位置,否则部分功能将无法使用.",
-											// 	callback: this.getUserLocation
-											// });
-										}
+										} 
 									},
 								});
 							}
