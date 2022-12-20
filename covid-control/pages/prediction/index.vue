@@ -504,7 +504,7 @@
 					content: '1.数据来源:国家卫健委、各省市区卫健委公开数据\n\r2.数据更新时间' + this.lastUpdateTime,
 				});
 			},
-			loadError({content = '疫情数据加载失败,请尝试刷新', callback}) {
+			loadError({content = '疫情数据加载失败,请尝试刷新', callback,callback2}) {
 				uni.showModal({
 					title: '出错了',
 					content,
@@ -520,6 +520,13 @@
 							else
 							{
 							callback();
+							}
+						}
+						else
+						{
+							if(callback2!=undefined)
+							{
+								callback2();
 							}
 						}
 					
@@ -622,6 +629,7 @@
 				uni.getSetting({
 					success: (res) => {
 						if (res.authSetting && res.authSetting.hasOwnProperty("scope.userFuzzyLocation")) {
+							console.log('获取到auth',res)
 							if (res.authSetting["scope.userFuzzyLocation"]) {
 								this.getCityInfo();
 							} else {
@@ -633,11 +641,9 @@
 											uni.openSetting({
 												success: () => this.getCityInfo()
 											});
-										} else {
-											// this.loadError({
-											// 	content: "请授权获取你的地理位置,否则部分功能将无法使用.",
-											// 	callback: this.getUserLocation
-											// });
+										} else
+										{
+											this.getCovidData();
 										}
 									},
 								});
@@ -652,68 +658,69 @@
 			},
 			getCityInfo() {
 				console.log('调用getCityInfo')
-				uni.authorize({
-					scope: "scope.userFuzzyLocation",
-					success: () => {
-						console.log('授权')
-						uni.getFuzzyLocation({
-							type: "gcj02", //  wgs84: 返回GPS坐标，gcj02: 返回国测局坐标
-							success: res => {
-								console.log('获取位置',res);
-								const {
-									latitude,
-									longitude
-								} = res;
-								const location = {
-									latitude,
-									longitude
-								};
-								this.qqmapsdk.reverseGeocoder({
-									location,
-									success: (res) => {
-										let loginAddress = res.result.ad_info.name
-										console.log(loginAddress)
-										this.flag = true;
-										// 获取信息
-										this.country = loginAddress.split(',')[0];
-										this.province = loginAddress.split(',')[1];
-										this.city = loginAddress.split(',')[2];
-										this.district = loginAddress.split(',')[3];
-										this.formvalue.location = this.province + '>' +
-											this.city + '>' + this.district;
-										uni.showLoading({
-											title: '加载疫情数据中'
-										});
-										this.getCovidData();
-									},
-									fail: (res) => {
-										uni.showModal({
-											title: '错误',
-											content: '获取地理位置错误,请刷新重试',
-											showCancel: true,
-											confirmText: '确定'
-										});
-										console.log(res)
-									},
-								});
-							},
-							fail: () => {
-								uni.showModal({
-									title: '错误',
-									content: '获取地理位置错误,请刷新重试',
-									showCancel: true,
-									confirmText: '确定'
-								});
-							}
-						});
-					},
-					fail: () =>{
-						this.loadError({
-							content: "请授权获取你的地理位置,否则部分功能将无法使用.\r\n提示:点击小程序右上角的三个点在设置中修改授权",
-							callback: this.getUserLocation
-						});
-					}
-				})
+					uni.authorize({
+						scope: "scope.userFuzzyLocation",
+						success: () => {
+							console.log('授权')
+							uni.getFuzzyLocation({
+								type: "gcj02", //  wgs84: 返回GPS坐标，gcj02: 返回国测局坐标
+								success: res => {
+									console.log('获取位置',res);
+									const {
+										latitude,
+										longitude
+									} = res;
+									const location = {
+										latitude,
+										longitude
+									};
+									this.qqmapsdk.reverseGeocoder({
+										location,
+										success: (res) => {
+											let loginAddress = res.result.ad_info.name
+											console.log(loginAddress)
+											this.flag = true;
+											// 获取信息
+											this.country = loginAddress.split(',')[0];
+											this.province = loginAddress.split(',')[1];
+											this.city = loginAddress.split(',')[2];
+											this.district = loginAddress.split(',')[3];
+											this.formvalue.location = this.province + '>' +
+												this.city + '>' + this.district;
+											uni.showLoading({
+												title: '加载疫情数据中'
+											});
+											this.getCovidData();
+										},
+										fail: (res) => {
+											uni.showModal({
+												title: '错误',
+												content: '获取地理位置错误,请刷新重试',
+												showCancel: true,
+												confirmText: '确定'
+											});
+											console.log(res)
+										},
+									});
+								},
+								fail: () => {
+									uni.showModal({
+										title: '错误',
+										content: '获取地理位置错误,请刷新重试',
+										showCancel: true,
+										confirmText: '确定'
+									});
+								}
+							});
+						},
+						fail: () =>{
+							this.loadError({
+								content: "请授权获取你的地理位置,否则部分功能将无法使用.\r\n提示:点击小程序右上角的三个点在设置中修改授权",
+								callback: this.getUserLocation,
+								callback2:this.getCovidData
+							});
+						}
+					})
 			},
 			getDate() {
 				let d = new Date();
